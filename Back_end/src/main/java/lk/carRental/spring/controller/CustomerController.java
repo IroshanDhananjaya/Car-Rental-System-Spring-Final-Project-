@@ -1,8 +1,17 @@
 package lk.carRental.spring.controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lk.carRental.spring.dto.CustomerDTO;
+import lk.carRental.spring.service.CustomerService;
+import lk.carRental.spring.util.ResponseUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * @author : Dhananjaya
@@ -12,4 +21,59 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/v1/customer")
 @CrossOrigin
 public class CustomerController {
+
+    @Autowired
+    CustomerService customerService;
+
+//    @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE},produces = {MediaType.APPLICATION_JSON_VALUE})
+//    public String saveCustomer(@RequestPart("myFile") MultipartFile[] files){
+//        for(MultipartFile file:files){
+//            String projectPath=new File("E:/IJSE/GDSE57/Spring_Final_Project").getParentFile().getParentFile().getAbsolutePath();
+//            File uploadDir=new File(projectPath+"/uploads");
+//            uploadDir.mkdir();
+//
+//
+//            try {
+//                file.transferTo(new File(uploadDir.getAbsolutePath()+"/"+file.getOriginalFilename()));
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//        }
+//        return "Customer Added";
+//    }
+
+    @PostMapping
+   public ResponseUtil saveCustomer(@ModelAttribute CustomerDTO dto){
+        customerService.saveCustomer(dto);
+        return new ResponseUtil(200,"Customer Saved",null);
+    }
+
+
+    @DeleteMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil deleteCustomer(@RequestParam String id){
+
+       customerService.deleteCustomer(id);
+       return new ResponseUtil(200,"Deleted",null);
+    }
+
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil updateCustomer(@RequestBody CustomerDTO dto){
+        customerService.updateCustomer(dto);
+        return new ResponseUtil(200,"Customer Updated",null);
+
+    }
+
+
+    @GetMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getCustomer(@RequestParam String id){
+        CustomerDTO customerDTO = customerService.searchCustomer(id);
+        return new ResponseUtil(200,"OK",customerDTO);
+    }
+
+    @GetMapping
+    public ResponseUtil getAllCustomers(){
+        List<CustomerDTO> allCustomer = customerService.getAllCustomer();
+        return new ResponseUtil(200,"OK",allCustomer);
+    }
 }

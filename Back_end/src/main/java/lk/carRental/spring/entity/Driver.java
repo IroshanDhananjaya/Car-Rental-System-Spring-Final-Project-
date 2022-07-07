@@ -28,4 +28,5 @@ public class Driver {
     private String driverPassword;
     private String driverLicenseImg;
     private String diverLicenseNumber;
+    private String diverStatus;
 }
