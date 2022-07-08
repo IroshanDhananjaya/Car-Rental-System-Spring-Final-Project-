@@ -23,6 +23,7 @@ public class BookingDetailsDTO {
     private int bookingDetailsId;
     private double loseDamageStatus;
     private String loseDamageImg;
+    private String detailsStatus;
     private Booking bookingId;
     private Vehicle vehicleNumber;
     private Driver driverNICNumber;

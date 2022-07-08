@@ -1,5 +1,6 @@
 package lk.carRental.spring.dto;
 
+import lk.carRental.spring.entity.BookingDetails;
 import lk.carRental.spring.entity.Customer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,6 +10,8 @@ import lombok.ToString;
 import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author : Dhananjaya
@@ -22,5 +25,7 @@ public class BookingDTO {
     private String bookingId;
     private String pickUpDate;
     private String returnDate;
+    private String bookingStatus;
     private Customer customer;
+    private List<BookingDetailsDTO> bookingDetails = new ArrayList<>();
 }

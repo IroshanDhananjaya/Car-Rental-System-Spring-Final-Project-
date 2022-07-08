@@ -22,6 +22,7 @@ public class BookingDetails {
     private int bookingDetailsId;
     private double loseDamageStatus;
     private String loseDamageImg;
+    private String detailsStatus;
 
     @ManyToOne
     @JoinColumn(name = "bookingId",referencedColumnName = "bookingId")
@@ -35,4 +36,13 @@ public class BookingDetails {
     @JoinColumn(name = "driverNICNumber",referencedColumnName = "driverNICNumber")
     private Driver driverNICNumber;
 
+
+    public BookingDetails(double loseDamageStatus, String loseDamageImg, String detailsStatus, Booking bookingId, Vehicle vehicleNumber, Driver driverNICNumber) {
+        this.loseDamageStatus = loseDamageStatus;
+        this.loseDamageImg = loseDamageImg;
+        this.detailsStatus = detailsStatus;
+        this.bookingId = bookingId;
+        this.vehicleNumber = vehicleNumber;
+        this.driverNICNumber = driverNICNumber;
+    }
 }

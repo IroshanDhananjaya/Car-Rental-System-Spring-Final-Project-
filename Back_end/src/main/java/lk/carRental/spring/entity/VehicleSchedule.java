@@ -27,4 +27,11 @@ public class VehicleSchedule {
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name = "vehicleNumber", referencedColumnName = "vehicleNumber", nullable = false)
     private Vehicle vehicleNumber;
+
+    public VehicleSchedule(String vehicleStartDate, String vehicleEndDate, String vehicleScheduleStatus, Vehicle vehicleNumber) {
+        this.vehicleStartDate = vehicleStartDate;
+        this.vehicleEndDate = vehicleEndDate;
+        this.vehicleScheduleStatus = vehicleScheduleStatus;
+        this.vehicleNumber = vehicleNumber;
+    }
 }

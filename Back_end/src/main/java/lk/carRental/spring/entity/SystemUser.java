@@ -21,8 +21,8 @@ import javax.persistence.Id;
 @Entity
 public class SystemUser {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private String id;
     private String userName;
+    private String userEmail;
     private String password;
 }

@@ -27,4 +27,11 @@ public class DriverSchedule {
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name = "driverNICNumber", referencedColumnName = "driverNICNumber", nullable = false)
     private Driver driverId;
+
+    public DriverSchedule(String driverStartDate, String driverEndDate, String driverScheduleStatus, Driver driverId) {
+        this.driverStartDate = driverStartDate;
+        this.driverEndDate = driverEndDate;
+        this.driverScheduleStatus = driverScheduleStatus;
+        this.driverId = driverId;
+    }
 }
