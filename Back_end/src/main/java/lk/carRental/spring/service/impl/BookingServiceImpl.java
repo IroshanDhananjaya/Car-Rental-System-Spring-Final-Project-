@@ -47,13 +47,14 @@ public class BookingServiceImpl implements BookingService {
 
 
     public void saveBooking(BookingDTO entity) {
+        System.out.println(entity.getCustomer().toString());
         Booking booking=new Booking(
                 entity.getBookingId(),
                 entity.getPickUpDate(),
                 entity.getReturnDate(),
                 "Not Approved",
                 entity.getCustomer()
-                );
+        );
 
         Booking IsBooking = bookingRepo.save(booking);
 

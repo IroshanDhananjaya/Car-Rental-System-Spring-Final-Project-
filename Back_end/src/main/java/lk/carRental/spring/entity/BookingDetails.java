@@ -1,5 +1,6 @@
 package lk.carRental.spring.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,7 @@ import javax.persistence.*;
 @Data
 @ToString
 @Entity
+
 public class BookingDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,17 +27,18 @@ public class BookingDetails {
     private String detailsStatus;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "bookingId",referencedColumnName = "bookingId")
     private Booking bookingId;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "vehicleNumber",referencedColumnName = "vehicleNumber")
     private Vehicle vehicleNumber;
 
     @ManyToOne
     @JoinColumn(name = "driverNICNumber",referencedColumnName = "driverNICNumber")
     private Driver driverNICNumber;
-
 
     public BookingDetails(double loseDamageStatus, String loseDamageImg, String detailsStatus, Booking bookingId, Vehicle vehicleNumber, Driver driverNICNumber) {
         this.loseDamageStatus = loseDamageStatus;

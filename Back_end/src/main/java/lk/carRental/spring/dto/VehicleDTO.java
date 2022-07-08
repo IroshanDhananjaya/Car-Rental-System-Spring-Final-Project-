@@ -26,7 +26,7 @@ public class VehicleDTO {
     private double monthlyRent;
     private double priceForKM;
     private double priceForExtraKM;
-    private String VehicleStatus;
     private String vehicleFontImage;
     private String vehicleBackImage;
+    private String vehicleStatus;
 }
