@@ -21,7 +21,7 @@ import java.util.Optional;
  * @since : 0.0.1
  **/
 @Service
-@Transactional
+
 public class BookingServiceImpl implements BookingService {
 
     @Autowired
@@ -47,7 +47,7 @@ public class BookingServiceImpl implements BookingService {
 
 
     public void saveBooking(BookingDTO entity) {
-        System.out.println(entity.getCustomer().toString());
+        System.out.println(entity.toString());
         Booking booking=new Booking(
                 entity.getBookingId(),
                 entity.getPickUpDate(),
@@ -79,6 +79,7 @@ public class BookingServiceImpl implements BookingService {
                     Vehicle Isvehicle = vehicleRepo.save(vehicle);
 
                     if(Isvehicle!=null){
+                        System.out.println(detailsDTO.getVehicleNumber().getVehicleNumber());
                         Driver driver = driverRepo.findById(detailsDTO.getVehicleNumber().getVehicleNumber()).get();
                         driver.setDiverStatus("Assign");
 
