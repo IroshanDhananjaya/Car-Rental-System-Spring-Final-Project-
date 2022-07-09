@@ -21,7 +21,7 @@ import java.util.Optional;
  * @since : 0.0.1
  **/
 @Service
-
+@Transactional
 public class BookingServiceImpl implements BookingService {
 
     @Autowired
@@ -80,7 +80,7 @@ public class BookingServiceImpl implements BookingService {
 
                     if(Isvehicle!=null){
                         System.out.println(detailsDTO.getVehicleNumber().getVehicleNumber());
-                        Driver driver = driverRepo.findById(detailsDTO.getVehicleNumber().getVehicleNumber()).get();
+                        Driver driver = driverRepo.findById(detailsDTO.getDriverNICNumber().getDriverNICNumber()).get();
                         driver.setDiverStatus("Assign");
 
                         Driver IsDriver = driverRepo.save(driver);
@@ -124,8 +124,9 @@ public class BookingServiceImpl implements BookingService {
             if(IsBooking!=null){
                 List<BookingDetails> allByIds = bookingDetailsRepo.findAllByIds(entity.getBookingId());
                 for (BookingDetails details:allByIds) {
-                    details.setDetailsStatus("Rejected");
-                    BookingDetails details1 = bookingDetailsRepo.save(details);
+                    BookingDetails bookingDetails=details;
+                    bookingDetails.setDetailsStatus("Rejected");
+                    BookingDetails details1 = bookingDetailsRepo.save(bookingDetails);
 
                     if (details1!=null){
                         Vehicle vehicle = vehicleRepo.findById(details.getVehicleNumber().getVehicleNumber()).get();
@@ -159,11 +160,19 @@ public class BookingServiceImpl implements BookingService {
 
 
 
-        }else if(entity.getBookingStatus().equals("Pending Payment")){
+        }else if(entity.getBookingStatus().equals("Approved")){
             Booking booking = bookingRepo.findById(entity.getBookingId()).get();
-            booking.setBookingStatus(entity.getBookingStatus());
+            booking.setBookingStatus("Pending Payment");
 
             Booking IsBooking = bookingRepo.save(booking);
+            if(IsBooking!=null){
+                List<BookingDetails> all = bookingDetailsRepo.findAllByIds(entity.getBookingId());
+                for (BookingDetails details:all) {
+                    BookingDetails bookingDetails=details;
+                    bookingDetails.setDetailsStatus("Pending Payment");
+                    bookingDetailsRepo.save(bookingDetails);
+                }
+            }
         }
     }
 
