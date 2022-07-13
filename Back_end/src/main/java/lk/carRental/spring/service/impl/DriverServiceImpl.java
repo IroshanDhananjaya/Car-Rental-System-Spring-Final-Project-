@@ -27,13 +27,20 @@ public class DriverServiceImpl implements DriverService {
     ModelMapper mapper;
 
     public void saveDriver(DriverDTO entity) {
-        Driver driver = mapper.map(entity, Driver.class);
-        driverRepo.save(driver);
+        if(!driverRepo.existsById(entity.getDriverNICNumber())){
+            Driver driver = mapper.map(entity, Driver.class);
+            driverRepo.save(driver);
+        }else {
+            throw new RuntimeException("This NIC Number Already Exist..!");
+        }
+
     }
 
     public void deleteDriver(String id) {
         if(driverRepo.existsById(id)){
             driverRepo.deleteById(id);
+        }else {
+            throw new RuntimeException("Invalid NIC Number Try Again..!");
         }
     }
 
@@ -41,6 +48,8 @@ public class DriverServiceImpl implements DriverService {
         if(driverRepo.existsById(entity.getDriverNICNumber())){
             Driver driver = mapper.map(entity, Driver.class);
             driverRepo.save(driver);
+        }else {
+            throw new RuntimeException("Invalid NIC Number Try Again..!");
         }
     }
 

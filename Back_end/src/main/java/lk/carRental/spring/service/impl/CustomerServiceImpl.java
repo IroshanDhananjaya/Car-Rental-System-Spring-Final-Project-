@@ -25,13 +25,21 @@ public class CustomerServiceImpl implements CustomerService {
     ModelMapper mapper;
 
     public void saveCustomer(CustomerDTO dto) {
-        Customer customer = mapper.map(dto, Customer.class);
-        customerRepo.save(customer);
+        if(!customerRepo.existsById(dto.getCustNICNumber())){
+            Customer customer = mapper.map(dto, Customer.class);
+            customerRepo.save(customer);
+        }else {
+            throw new RuntimeException("This NIC Number Already Exist..!");
+        }
+
     }
 
     public void deleteCustomer(String id) {
+
         if(customerRepo.existsById(id)){
             customerRepo.deleteById(id);
+        }else {
+            throw new RuntimeException("Invalid NIC Number Try Again..!");
         }
     }
 
@@ -39,6 +47,8 @@ public class CustomerServiceImpl implements CustomerService {
         if(customerRepo.existsById(entity.getCustNICNumber())){
             Customer customer = mapper.map(entity, Customer.class);
             customerRepo.save(customer);
+        }else {
+            throw new RuntimeException("Invalid NIC Number Try Again..!");
         }
     }
 

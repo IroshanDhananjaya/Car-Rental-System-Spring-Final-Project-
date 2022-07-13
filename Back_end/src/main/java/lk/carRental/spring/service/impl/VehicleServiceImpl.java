@@ -28,13 +28,20 @@ public class VehicleServiceImpl implements VehicleService {
     ModelMapper mapper;
 
     public void saveVehicle(VehicleDTO entity) {
-        Vehicle vehicle = mapper.map(entity, Vehicle.class);
-        vehicleRepo.save(vehicle);
+        if(!vehicleRepo.existsById(entity.getVehicleNumber())) {
+            Vehicle vehicle = mapper.map(entity, Vehicle.class);
+            vehicleRepo.save(vehicle);
+        }else {
+            throw new RuntimeException("This Vehicle Number Already Exist..!");
+        }
     }
 
     public void deleteVehicle(String id) {
         if(vehicleRepo.existsById(id)){
             vehicleRepo.deleteById(id);
+        }
+        else {
+            throw new RuntimeException("Invalid Vehicle Number Try Again..!");
         }
 
     }
@@ -43,7 +50,10 @@ public class VehicleServiceImpl implements VehicleService {
         if(vehicleRepo.existsById(entity.getVehicleNumber())){
             Vehicle vehicle = mapper.map(entity, Vehicle.class);
             vehicleRepo.save(vehicle);
+        }else {
+            throw new RuntimeException("Invalid Vehicle Number Try Again..!");
         }
+
     }
 
     public VehicleDTO searchVehicle(String id) {

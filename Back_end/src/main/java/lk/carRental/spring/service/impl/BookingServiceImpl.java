@@ -47,67 +47,72 @@ public class BookingServiceImpl implements BookingService {
 
 
     public void saveBooking(BookingDTO entity) {
-        System.out.println(entity.toString());
-        Booking booking=new Booking(
-                entity.getBookingId(),
-                entity.getPickUpDate(),
-                entity.getReturnDate(),
-                "Not Approved",
-                entity.getCustomer()
-        );
+        if(!bookingRepo.existsById(entity.getBookingId())){
 
-        Booking IsBooking = bookingRepo.save(booking);
+            Booking booking=new Booking(
+                    entity.getBookingId(),
+                    entity.getPickUpDate(),
+                    entity.getReturnDate(),
+                    "Not Approved",
+                    entity.getCustomer()
+            );
 
-        if(IsBooking!=null){
-            for (BookingDetailsDTO detailsDTO:entity.getBookingDetails()) {
+            Booking IsBooking = bookingRepo.save(booking);
 
-                BookingDetails bookingDetails=new BookingDetails(
-                        detailsDTO.getLoseDamageStatus(),
-                        detailsDTO.getLoseDamageImg(),
-                        "Not Approved",
-                        detailsDTO.getBookingId(),
-                        detailsDTO.getVehicleNumber(),
-                        detailsDTO.getDriverNICNumber()
-                );
+            if(IsBooking!=null){
+                for (BookingDetailsDTO detailsDTO:entity.getBookingDetails()) {
 
-                BookingDetails IsBookingDetails = bookingDetailsRepo.save(bookingDetails);
+                    BookingDetails bookingDetails=new BookingDetails(
+                            detailsDTO.getLoseDamageStatus(),
+                            detailsDTO.getLoseDamageImg(),
+                            "Not Approved",
+                            detailsDTO.getBookingId(),
+                            detailsDTO.getVehicleNumber(),
+                            detailsDTO.getDriverNICNumber()
+                    );
 
-                if(IsBookingDetails!=null){
-                    Vehicle vehicle = vehicleRepo.findById(detailsDTO.getVehicleNumber().getVehicleNumber()).get();
-                    vehicle.setVehicleStatus("On Booking");
+                    BookingDetails IsBookingDetails = bookingDetailsRepo.save(bookingDetails);
 
-                    Vehicle Isvehicle = vehicleRepo.save(vehicle);
+                    if(IsBookingDetails!=null){
+                        Vehicle vehicle = vehicleRepo.findById(detailsDTO.getVehicleNumber().getVehicleNumber()).get();
+                        vehicle.setVehicleStatus("On Booking");
 
-                    if(Isvehicle!=null){
-                        System.out.println(detailsDTO.getVehicleNumber().getVehicleNumber());
-                        Driver driver = driverRepo.findById(detailsDTO.getDriverNICNumber().getDriverNICNumber()).get();
-                        driver.setDiverStatus("Assign");
+                        Vehicle Isvehicle = vehicleRepo.save(vehicle);
 
-                        Driver IsDriver = driverRepo.save(driver);
+                        if(Isvehicle!=null){
+                            System.out.println(detailsDTO.getVehicleNumber().getVehicleNumber());
+                            Driver driver = driverRepo.findById(detailsDTO.getDriverNICNumber().getDriverNICNumber()).get();
+                            driver.setDiverStatus("Assign");
 
-                        if(IsDriver!=null){
-                            DriverSchedule driverSchedule=new DriverSchedule(
-                                    entity.getPickUpDate(),
-                                    entity.getReturnDate(),
-                                    "On Work",
-                                    driver
-                            );
+                            Driver IsDriver = driverRepo.save(driver);
 
-                            DriverSchedule IsDriverSchedule = drivescheduleRepo.save(driverSchedule);
-                            if(IsDriverSchedule!=null){
-                                VehicleSchedule vehicleSchedule=new VehicleSchedule(
+                            if(IsDriver!=null){
+                                DriverSchedule driverSchedule=new DriverSchedule(
                                         entity.getPickUpDate(),
                                         entity.getReturnDate(),
-                                        "On Booking",
-                                        vehicle
+                                        "On Work",
+                                        driver
                                 );
-                                vehicleScheduleRepo.save(vehicleSchedule);
+
+                                DriverSchedule IsDriverSchedule = drivescheduleRepo.save(driverSchedule);
+                                if(IsDriverSchedule!=null){
+                                    VehicleSchedule vehicleSchedule=new VehicleSchedule(
+                                            entity.getPickUpDate(),
+                                            entity.getReturnDate(),
+                                            "On Booking",
+                                            vehicle
+                                    );
+                                    vehicleScheduleRepo.save(vehicleSchedule);
+                                }
                             }
                         }
                     }
                 }
             }
+        }else {
+            throw new RuntimeException("This Booking ID is Already Exist !");
         }
+
     }
 
     public void deleteBooking(String id) {
@@ -115,65 +120,70 @@ public class BookingServiceImpl implements BookingService {
     }
 
     public void updateBooking(BookingDTO entity) {
-        if(entity.getBookingStatus().equals("Rejected")){
-            Booking booking = bookingRepo.findById(entity.getBookingId()).get();
-            booking.setBookingStatus(entity.getBookingStatus());
+        if(bookingRepo.existsById(entity.getBookingId())){
+            if(entity.getBookingStatus().equals("Rejected")){
+                Booking booking = bookingRepo.findById(entity.getBookingId()).get();
+                booking.setBookingStatus(entity.getBookingStatus());
 
-            Booking IsBooking = bookingRepo.save(booking);
+                Booking IsBooking = bookingRepo.save(booking);
 
-            if(IsBooking!=null){
-                List<BookingDetails> allByIds = bookingDetailsRepo.findAllByIds(entity.getBookingId());
-                for (BookingDetails details:allByIds) {
-                    BookingDetails bookingDetails=details;
-                    bookingDetails.setDetailsStatus("Rejected");
-                    BookingDetails details1 = bookingDetailsRepo.save(bookingDetails);
+                if(IsBooking!=null){
+                    List<BookingDetails> allByIds = bookingDetailsRepo.findAllByIds(entity.getBookingId());
+                    for (BookingDetails details:allByIds) {
+                        BookingDetails bookingDetails=details;
+                        bookingDetails.setDetailsStatus("Rejected");
+                        BookingDetails details1 = bookingDetailsRepo.save(bookingDetails);
 
-                    if (details1!=null){
-                        Vehicle vehicle = vehicleRepo.findById(details.getVehicleNumber().getVehicleNumber()).get();
-                        vehicle.setVehicleStatus("Not Use");
-                        Vehicle vehicle1 = vehicleRepo.save(vehicle);
+                        if (details1!=null){
+                            Vehicle vehicle = vehicleRepo.findById(details.getVehicleNumber().getVehicleNumber()).get();
+                            vehicle.setVehicleStatus("Not Use");
+                            Vehicle vehicle1 = vehicleRepo.save(vehicle);
 
-                        if (vehicle1!=null){
-                            List<VehicleSchedule> allVehicleByIds = vehicleScheduleRepo.findAllVehicleByIds(details.getVehicleNumber().getVehicleNumber());
-                            for (VehicleSchedule scheduleDetails:allVehicleByIds) {
-                                if(entity.getPickUpDate().equals(scheduleDetails.getVehicleStartDate())&entity.getReturnDate().equals(scheduleDetails.getVehicleEndDate())){
-                                    scheduleDetails.setVehicleScheduleStatus("Cancel");
-                                    vehicleScheduleRepo.save(scheduleDetails);
+                            if (vehicle1!=null){
+                                List<VehicleSchedule> allVehicleByIds = vehicleScheduleRepo.findAllVehicleByIds(details.getVehicleNumber().getVehicleNumber());
+                                for (VehicleSchedule scheduleDetails:allVehicleByIds) {
+                                    if(entity.getPickUpDate().equals(scheduleDetails.getVehicleStartDate())&entity.getReturnDate().equals(scheduleDetails.getVehicleEndDate())){
+                                        scheduleDetails.setVehicleScheduleStatus("Cancel");
+                                        vehicleScheduleRepo.save(scheduleDetails);
+                                    }
+                                }
+
+                            }
+                            List<DriverSchedule> allDriversByIds = drivescheduleRepo.findAllDriversByIds(details.getDriverNICNumber().getDriverNICNumber());
+                            for (DriverSchedule driverScheduleDetails:allDriversByIds) {
+                                if(entity.getPickUpDate().equals(driverScheduleDetails.getDriverStartDate())&entity.getReturnDate().equals(driverScheduleDetails.getDriverEndDate())){
+                                    driverScheduleDetails.setDriverScheduleStatus("Cancel");
+                                    drivescheduleRepo.save(driverScheduleDetails);
                                 }
                             }
+                        }
 
-                        }
-                        List<DriverSchedule> allDriversByIds = drivescheduleRepo.findAllDriversByIds(details.getDriverNICNumber().getDriverNICNumber());
-                        for (DriverSchedule driverScheduleDetails:allDriversByIds) {
-                            if(entity.getPickUpDate().equals(driverScheduleDetails.getDriverStartDate())&entity.getReturnDate().equals(driverScheduleDetails.getDriverEndDate())){
-                                driverScheduleDetails.setDriverScheduleStatus("Cancel");
-                                drivescheduleRepo.save(driverScheduleDetails);
-                            }
-                        }
                     }
 
+
+
                 }
 
 
 
-            }
+            }else if(entity.getBookingStatus().equals("Approved")){
+                Booking booking = bookingRepo.findById(entity.getBookingId()).get();
+                booking.setBookingStatus("Pending Payment");
 
-
-
-        }else if(entity.getBookingStatus().equals("Approved")){
-            Booking booking = bookingRepo.findById(entity.getBookingId()).get();
-            booking.setBookingStatus("Pending Payment");
-
-            Booking IsBooking = bookingRepo.save(booking);
-            if(IsBooking!=null){
-                List<BookingDetails> all = bookingDetailsRepo.findAllByIds(entity.getBookingId());
-                for (BookingDetails details:all) {
-                    BookingDetails bookingDetails=details;
-                    bookingDetails.setDetailsStatus("Pending Payment");
-                    bookingDetailsRepo.save(bookingDetails);
+                Booking IsBooking = bookingRepo.save(booking);
+                if(IsBooking!=null){
+                    List<BookingDetails> all = bookingDetailsRepo.findAllByIds(entity.getBookingId());
+                    for (BookingDetails details:all) {
+                        BookingDetails bookingDetails=details;
+                        bookingDetails.setDetailsStatus("Pending Payment");
+                        bookingDetailsRepo.save(bookingDetails);
+                    }
                 }
             }
+        }else {
+            throw new RuntimeException("No such Booking! Try Again....!");
         }
+
     }
 
     public BookingDTO searchBooking(String id) {
