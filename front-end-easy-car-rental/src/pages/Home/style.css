@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&family=Caveat:wght@700&family=Pacifico&family=Patrick+Hand&family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&family=Caveat:wght@700&family=Pacifico&family=Patrick+Hand&family=Righteous&family=Russo+One&display=swap');
+
+
+.nav-item>a{
+    text-decoration: none;
+}
+
+.nav-list{
+    list-style: none;
+}
+
+.header{
+    position: fixed;
+    z-index: 1;
+    display: flex;
+    height: 50px;
+    background: #ffffff;
+    justify-content: space-around;
+    padding: 1rem 0;
+    width: 99vw;
+    align-items: center;
+    justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.nav-list{
+
+    display: flex;
+    align-items: center;
+    left: 0;
+
+
+}
+.nav-item{
+    margin: 0 8px;
+}
+.nav-link{
+    padding: 10px;
+    color: rgba(0, 0, 0, 0.93);
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 5px;
+}
+.nav-link:hover{
+    color: black;
+    background-color: turquoise;
+}
+.btn-signIn{
+    position: absolute;
+    top: 20px;
+    right: 60px;
+    color: black;
+    text-decoration: none;
+    border: 1px solid blue;
+    padding: 10px 20px;
+    transition: 0.5s;
+    font-weight: bold;
+
+}
+.btn-signIn:hover{
+    background-color: blue;
+    color: white;
+}
+
+/*=========hero-section=============*/
+
+.hero-section{
+    display: flex ;
+    /*background: aqua;*/
+    flex-direction: row;
+    height: 100vh;
+    width: 98.5vw;
+}
+.hero-content{
+
+    height: 100vh;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.hero-content-h1{
+    font-size: 4em;
+    font-weight: bold;
+    font-family: 'Pacifico', cursive;
+    color: black;
+}
+.hero-content-p{
+    position: absolute;
+    top: 370px;
+    font-size: 0.7em;
+    font-weight: bold;
+    font-family: 'Righteous', cursive;
+    color: #3d3c3c;
+}
+
+.hero-image{
+    /*background: blue;*/
+    height: 100vh;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.himage{
+    position: absolute;
+    width: 50%;
+}
+
+/*=================Service-area===================*/
+
+.Service-area{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100vh;
+    width: 98.5vw;
+}
+.Service-area>h1{
+    font-size: 2em;
+    position: absolute;
+    top:0;
+    font-weight: bold;
+    border-bottom: 3px solid green;
+
+}
+.services1{
+    top: 100px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 80%;
+    height: 40%;
+
+}
+.services1-div1{
+    position: relative;
+    width: 40%;
+    height: 90%;
+    background-color: #dedcdc;
+
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.services1-div1>h1{
+    position: absolute;
+    border-bottom: 2px solid blue;
+  font-family: cursive;
+    padding: 5px;
+    top: 10px;
+}
+.services1-div1>p{
+    position: absolute;
+    top: 80px;
+    padding: 10px 20px;
+    text-align: center;
+    color: #525151;
+    font-family: DialogInput;
+
+}
+.services2{
+    bottom: 0;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 80%;
+    height: 40%;
+
+}
+.services2-div1{
+    position: relative;
+    width: 40%;
+    height: 90%;
+    background-color: #dedcdc;
+
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.services2-div1>h1{
+    position: absolute;
+    border-bottom: 2px solid blue;
+    font-family: cursive;
+    padding: 5px;
+    top: 10px;
+}
+.services2-div1>p{
+    position: absolute;
+    top: 80px;
+    padding: 10px 20px;
+    color: #525151;
+    text-align: center;
+    font-family: DialogInput;
+
+}
