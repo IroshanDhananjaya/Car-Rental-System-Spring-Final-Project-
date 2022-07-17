@@ -9,6 +9,9 @@ import * as React from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import phone from "../../assets/image/call.png"
+import gmail from "../../assets/image/gmail (1).png"
+import location from "../../assets/image/placeholder (1).png"
 
 
 
@@ -75,9 +78,12 @@ class HomePage extends Component{
                 <div className="hero-section">
                     <div className="hero-content">
                         <h1 className="hero-content-h1">
-                            Easy Car Rental
+                            #1 Car Rent Service In Your City
                         </h1>
-                        <p className= "hero-content-p">Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+                        <p className= "hero-content-p">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis sunt temporibus voluptatibus? Aliquam at commodi, consectetur dolor dolorem fugiat id in ipsam nulla, quae quibusdam temporibus velit voluptatum. Ab, eveniet!</p>
+
+                        <a>BOOKING NOW</a>
+
                     </div>
 
 
@@ -130,8 +136,32 @@ class HomePage extends Component{
                     </Slider>
                 </div>
 
-                <div className="">
+                <div className="footer">
+                    <div className="footer-top">
+                        <div className="about-us">
+                            <h1>EasyCarRent</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.<br/>Aperiam beatae corporis deserunt dolorum enim error esse ex facilis fugiat impedit<br/> in libero minus possimus repudiandae velit, vero voluptatibus? Asperiores, et?</p>
+                        </div>
+                        <div className="contact-us">
+                            <div className="contact">
+                                <img src={phone}/>
+                                <h3>(+94)11-7619826<br/>
+                                  (+94)11-7619866</h3>
+                            </div>
+                            <div className="address">
+                                <img src={gmail}/>
+                                <h3>easycarrental@gmail.com</h3>
+                            </div>
+                            <div className="location">
+                                <img src={location}/>
+                                <h3>No. 200,Galle Road, Panadura,</h3>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div className="footer-bottom">
+                        <h4>Copyright © EasyCarRent 2018. All rights reserved.</h4>
+                    </div>
                 </div>
 
             </section>
