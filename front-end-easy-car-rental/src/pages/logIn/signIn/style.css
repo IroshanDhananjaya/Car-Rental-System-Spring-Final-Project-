@@ -1,0 +1,53 @@
+.loging-are{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.loging-container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height: 80%;
+    width: 60%;
+    border-radius: 35px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.loging-container>h1{
+    position: absolute;
+    top: 0px;
+    font-size: 5rem;
+    font-family: "Calibri";
+    font-weight: bold;
+}
+.loging-container>h4{
+    position: absolute;
+    top: 150px;
+    left: 360px;
+    font-size: 1.2rem;
+    font-family: "sans-serif";
+    font-weight: bold;
+}
+.loging-container>a{
+    position: absolute;
+    top: 176px;
+    left: 560px;
+    font-size: 1.2rem;
+    font-family: "sans-serif";
+    font-weight: bold;
+    color: blue;
+}
+.btn-logIn{
+    position: absolute;
+    top:450px;
+    width: 600px;
+}
+.loging-container>h6{
+    position: absolute;
+    top:470px;
+
+}
