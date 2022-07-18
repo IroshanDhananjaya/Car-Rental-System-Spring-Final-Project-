@@ -4,6 +4,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #e0dede;
+    background-image: url("../../../assets/image/heroimg3.jpeg");
+    background-position: center;
+    background-size: cover;
 
 }
 .loging-container{
@@ -11,10 +15,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: white;
-    height: 80%;
+    background-color: #ffffff;
+    height: 60%;
     width: 60%;
     border-radius: 35px;
+    opacity: 75%;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .loging-container>h1{
@@ -49,5 +54,19 @@
 .loging-container>h6{
     position: absolute;
     top:470px;
+
+}
+.text-field-area{
+    position: absolute;
+   /*border: 2px solid  red;*/
+    width: 70%;
+    top: 200px;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+#standard-basic{
 
 }

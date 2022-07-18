@@ -1,7 +1,8 @@
 import {Component} from "react";
 import "./style.css"
 import TextField from '@mui/material/TextField';
-import {Box, Button, Grid} from "@mui/material";
+import {Autocomplete, Box, Button, Grid} from "@mui/material";
+import MYButton from "../../../components/Button";
 
 class LogIn extends Component{
     constructor(props) {
@@ -16,23 +17,12 @@ class LogIn extends Component{
                     <h1>LOGIN</h1>
                     <h4>Don't have an account?</h4>
                     <a>Register Here</a>
-                    <Box
-                        component="form"
-                        sx={{
-                            '& > :not(style)': { m: 1, width: '70ch' },
-                        }}
-                        noValidate
-                        autoComplete="off"
-                    >
+                    <div className="text-field-area" >
+                        <TextField id="standard-basic" label="Email" variant="standard"  style={{width: '100%'}}/>
+                        <TextField id="standard-basic" label="Password" variant="standard" style={{width: '100%'}} />
 
-                        <TextField id="standard-basic" label="Email" variant="standard" />
-                        <br/><br/><br/>
-                        <TextField id="standard-basic" type="password" label="Password" variant="standard" />
-                    </Box>
-                    <Button className="btn-logIn" variant="contained" color="success">
-                        Log In
-                    </Button>
-                    <h6>forget Password</h6>
+                        <Button variant="outlined">Sign In</Button>
+                    </div>
 
                 </div>
             </section>

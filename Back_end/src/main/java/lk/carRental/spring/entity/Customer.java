@@ -25,7 +25,6 @@ public class Customer {
     private String custAddress;
     private String custNICImg;
     private String custdrivingImg;
-    private String custdrivingNumber;
     private String custContact;
     private String custEmail;
     private String custPassword;
