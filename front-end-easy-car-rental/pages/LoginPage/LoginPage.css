@@ -1,0 +1,109 @@
+/*<!--==========================Login Form==============================-->*/
+
+.login-area{
+    position: relative;
+    background-image: url("../../assets/images/heroimg3.jpeg");
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loging-Form{
+    position: relative;
+    width: 60%;
+    height: 60%;
+    background-color: white;
+    border-radius: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 80%;
+
+}
+.loging-Form>h3{
+    position: absolute;
+    color: #484747;
+    top: 30px;
+    font-size: 5rem;
+    font-weight: bold;
+}
+.loging-Form>div:nth-child(2){
+    position: absolute;
+    width: 300px;
+    height: 40px;
+    top: 130px;
+    color: #0a53be;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.loging-Form>div:nth-child(2)>a{
+    position: relative;
+    top: -4px;
+    font-weight: bold;
+
+}
+.loging-Form>div:nth-child(3){
+    position: absolute;
+    top: 180px;
+    width: 80%;
+    height:50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/*<!--==========================Register Form==============================-->*/
+
+.register-form{
+    position: relative;
+    width: 60%;
+    height: 98%;
+    background-color: white;
+    border-radius: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 80%;
+
+}
+.register-form>h3{
+    position: absolute;
+    color: #484747;
+    top: 30px;
+    font-size: 5rem;
+    font-weight: bold;
+}
+.register-form>div:nth-child(2){
+    position: absolute;
+    width: 300px;
+    height: 40px;
+    top: 130px;
+    color: #0a53be;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.register-form>div:nth-child(2)>a{
+    position: relative;
+    top: -4px;
+    font-weight: bold;
+
+}
+.register-form>div:nth-child(3){
+    position: absolute;
+    top: 180px;
+    width: 80%;
+    height:50%;
+
+}
+
+#btn-register{
+    position: absolute;
+    bottom: 50px;
+}
