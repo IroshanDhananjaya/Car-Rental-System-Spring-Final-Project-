@@ -1,16 +1,25 @@
 
 @import url('https://fonts.googleapis.com/css?family=Nova+Slim&display=swap');
 
+.test{
+    width: 500px;
+    height: 500px;
+    background-color: #0a53be;
+    right: 0;
+    z-index: 6;
+    display: none;
+}
+
 body, html {
-    line-height: 1.8;
+	line-height: 1.8;
     font-family: 'Roboto', sans-serif;
-    color: #555e58;
-    text-transform:capitalize;
-    text-rendering: optimizeLegibility !important;
-    -webkit-font-smoothing: antialiased !important;
-    font-weight: 400;
-    margin:0px;
-    padding:0px;
+     color: #555e58;
+	 text-transform:capitalize;
+	text-rendering: optimizeLegibility !important;
+	-webkit-font-smoothing: antialiased !important;
+	 font-weight: 400;
+	 margin:0px;
+     padding:0px;
 }
 
 
@@ -21,32 +30,32 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
 
 
 p {
-    font-size: 15px;
-    margin: 12px 0 0;
-    line-height: 24px;
+	font-size: 15px;
+	margin: 12px 0 0;
+	line-height: 24px;
 }
 
 
 
 a{
-    color: #333;
-    font-weight: 400;
+	color: #333;
+	font-weight: 400;
 }
 
 button:focus{
-    box-shadow:none;
-    outline:none;
-    border:none;
+	box-shadow:none;
+	outline:none;
+	border:none;
 }
 
 button{
-    cursor:pointer;
+	cursor:pointer;
 }
 
 ul, ol {
-    padding: 0;
-    margin:0px;
-    list-style: none;
+	padding: 0;
+	margin:0px;
+		list-style: none;
 }
 
 
@@ -66,11 +75,11 @@ a:focus {
   ==================================================*/
 
 @font-face {
-    font-family: 'Material Icons';
-    font-style: normal;
-    font-weight: 400;
-    src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
-    src: local('Material Icons'),
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: local('Material Icons'),
     local('MaterialIcons-Regular'),
     url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
     url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
@@ -79,28 +88,28 @@ a:focus {
 
 
 .material-icons {
-    font-family: 'Material Icons';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px;  /* Preferred icon size */
-    display: inline-block;
-    line-height: 1;
-    text-transform: none;
-    letter-spacing: normal;
-    word-wrap: normal;
-    white-space: nowrap;
-    direction: ltr;
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
 
-    /* Support for all WebKit browsers. */
-    -webkit-font-smoothing: antialiased;
-    /* Support for Safari and Chrome. */
-    text-rendering: optimizeLegibility;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
 
-    /* Support for Firefox. */
-    -moz-osx-font-smoothing: grayscale;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
 
-    /* Support for IE. */
-    font-feature-settings: 'liga';
+  /* Support for IE. */
+  font-feature-settings: 'liga';
 }
 
 /*=======================================================
@@ -110,9 +119,9 @@ a:focus {
 
 
 .wrapper {
-    position: relative;
+	position: relative;
     width:100%;
-    overflow:auto;
+	overflow:auto;
 }
 
 
@@ -127,62 +136,62 @@ a:focus {
 
 #sidebar {
     position:fixed;
-    height:100vh!important;
+	height:100vh!important;
     top: 0;
     bottom: 0;
     left: 0;
     z-index:11;
     width: 260px;
-    overflow:auto;
-    transition:all 0.3s ;
+	overflow:auto;
+	transition:all 0.3s ;
     background: #FFFFFF;
     box-shadow: 0 10px 30px -12px rgb(0 0 0 / 42%), 0 4px 25px 0px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
 }
 
 
 #sidebar::-webkit-scrollbar{
-    width:5px;
-    border-radius:10px;
-    background-color:#eee;
-    display:none;
+	width:5px;
+	border-radius:10px;
+	background-color:#eee;
+	display:none;
 }
 #sidebar::-webkit-scrollbar-thumbs{
-    width:5px;
-    border-radius:10px;
-    background-color:#333;
-    display:none;
+	width:5px;
+	border-radius:10px;
+	background-color:#333;
+	display:none;
 }
 
 
 #sidebar:hover::-webkit-scrollbar{
-    display:block;
+	display:block;
 }
 #sidebar:hover::-webkit-scrollbar-thumbs{
-    display:block;
+	display:block;
 }
 
 #sidebar .sidebar-header {
     padding:20px;
-    background-color:#ffffff;
-    border-bottom:1px solid #eee;
+	background-color:#ffffff;
+	border-bottom:1px solid #eee;
 }
 
 .sidebar-header h3{
-    color:#333;
-    font-size:17px;
-    margin:0px;
-    text-transform:uppercase;
-    transition:all 0.5s ease;
-    font-weight:600;
+	color:#333;
+	font-size:17px;
+	margin:0px;
+	text-transform:uppercase;
+	transition:all 0.5s ease;
+	font-weight:600;
 }
 
 .sidebar-header h3 img{
-    width:45px;
-    margin-right:10px;
+	width:45px;
+	margin-right:10px;
 }
 
 #sidebar ul li{
-    padding:2px 7px;
+	padding:2px 7px;
 }
 
 #sidebar ul li.active>a{
@@ -202,34 +211,34 @@ a:focus {
 }
 
 #sidebar ul li.drodown{
-    position:sticky;
+	position:sticky;
 }
 
 
-#sidebar ul.components {
+#sidebar ul.components {    
     padding: 20px 0;
 }
 
 #sidebar ul li a {
     padding: 10px;
-    line-height: 30px;
-    border-radius:5px;
+	line-height: 30px;
+	border-radius:5px;
     font-size: 15px;
-    position:relative;'
-font-weight: 400;
+	position:relative;'
+    font-weight: 400;
     display: block;
 }
 
 #sidebar ul li a span{
-    text-transform:capitalize;
-    display:inline-block;
+	text-transform:capitalize;
+	display:inline-block;
 }
 
 #sidebar ul li a i {
     position: relative;
     margin-right: 10px;
     top: 5px;
-    color: #555555;
+	color: #555555;
     margin-left: 10px;
 }
 
@@ -251,25 +260,30 @@ font-weight: 400;
 
 
 #content {
-    position: relative;
+	position: relative;
     transition: all 0.3s;
-    background-color: #EEEEEE;
+	background-color: #EEEEEE;
 }
 
 .top-navbar{
-    width:100%;
-    z-index:9;
-    position:relative;
+	width:100%;
+	z-index:9;
+	position:relative;
 }
 
 
-.main-content{
-    padding:10px 20px 0px 20px;
-    position: relative;
+.content-body{
+	padding:10px 20px 0px 20px;
+	position: relative;
     width: 100%;
 }
 
 
+.driver-manage-content{
+    padding:10px 20px 0px 20px;
+    position: relative;
+    width: 100%;
+}
 
 .navbar{
     background-color: #2196F3;
@@ -281,21 +295,21 @@ font-weight: 400;
 }
 
 .navbar button{
-    background-color:transparent;
-    border:none;
+	background-color:transparent;
+	border:none;
 }
 .navbar button span{
-    color:#fff;
+	color:#fff;
 }
 
 #sidebarCollapse{
-    border-radius:50%;
-    width:45px;
-    height:45px;
-    text-align:center;
-    line-height:45px;
-    margin-right:20px;
-    border:none;
+	border-radius:50%;
+	width:45px;
+	height:45px;
+	text-align:center;
+	line-height:45px;
+	margin-right:20px;
+	border:none;
     color: #FFFFFF;
     background-color: rgba(0, 0, 0, 0.09);
 }
@@ -308,10 +322,10 @@ font-weight: 400;
 
 
 .navbar-nav > li.active{
-    color: #FFFFFF;
-    border-radius:4px;
-    background-color: rgba(0, 0, 0, 0.08);
-}
+   color: #FFFFFF;
+   border-radius:4px;
+    background-color: rgba(0, 0, 0, 0.08);  
+ }
 
 .navbar-nav > li > a {
     color: #FFFFFF;
@@ -319,16 +333,16 @@ font-weight: 400;
 
 
 .navbar .notification {
-    position: absolute;
+	 position: absolute;
     top: 5px;
     right: 10px;
-    display: block;
+	display: block;
     font-size: 9px;
     border: 0px;
     font-size: 10px;
     background: #d9534f;
     min-width: 15px;
-    text-align: center;
+	 text-align: center;
     padding: 1px 5px;
     height: 15px;
     border-radius: 2px;
@@ -336,10 +350,10 @@ font-weight: 400;
 }
 
 
-.navbar-nav > li.show .dropdown-menu {
+ .navbar-nav > li.show .dropdown-menu {
     transform: translate3d(0, 0, 0);
-    opacity:1;
-    visibility:visible;
+	opacity:1;
+	visibility:visible;
 }
 
 
@@ -348,7 +362,7 @@ font-weight: 400;
     padding: 10px 20px;
     margin: 0 5px;
     border-radius: 2px;
-    font-weight: 400;
+	font-weight: 400;
     transition: all 150ms linear;
 }
 
@@ -391,7 +405,7 @@ font-weight: 400;
 .card {
     display: inline-block;
     position: relative;
-    border:none!important;
+	border:none!important;
     width: 100%;
     margin:15px 0;
     box-shadow: 0 1px 2px rgb(0 0 0 / 8%);
@@ -408,8 +422,8 @@ font-weight: 400;
 .card .card-header {
     padding: 15px 20px 0;
     z-index: 3;
-    background-color:#fff!important;
-    border-bottom:none;
+	background-color:#fff!important;
+	border-bottom:none;
 }
 
 .card .card-footer .stats .material-icons {
@@ -441,7 +455,7 @@ font-weight: 400;
 .card .card-footer {
     margin: 0 7px 0px;
     padding-top: 10px;
-    background-color:#fff;
+	background-color:#fff;
     border-top: 1px solid #eeeeee;
 }
 
@@ -490,11 +504,11 @@ font-weight: 400;
 .card .card-header-text h4{
     margin-top: 0;
     margin-bottom: 3px;
-    font-size:19px;
+	font-size:19px;
     font-weight: 400;
-    color: #222222;
+	color: #222222;
     text-decoration: none;
-
+	
 }
 
 .table > thead > tr > th {
@@ -568,12 +582,12 @@ font-weight: 400;
 .streamline .sl-item .text-muted {
     color: inherit;
     opacity: .6;
-    font-size:12px;
+	font-size:12px;
 }
 
 .streamline .sl-item p {
-    font-size:14px;
-    color:#333;
+	font-size:14px;
+	color:#333;
 }
 
 
@@ -586,15 +600,15 @@ font-weight: 400;
 /*=============================================
   footer design start
   =========================================*/
-
+ 
 .footer {
     border-top: 1px solid #e7e7e7;
 }
 
 footer {
     padding: 10px 0;
-    position:relative;
-    width:100%;
+	position:relative;
+	width:100%;
 }
 
 footer ul li {
@@ -616,7 +630,7 @@ footer ul li a {
 
 footer .copyright {
     padding: 15px;
-    font-size:14px;
+	font-size:14px;
     margin: 0;
 }
 
@@ -624,15 +638,15 @@ footer .copyright {
 /*=============================================
   footer design end
   =========================================*/
-
+  
 
 
 #sidebar.show-nav,.body-overlay.show-nav{
-    transform:translatex(0%);
-    opacity:1;
-    display:block;
-    visibility:visible;
-    z-index:15;
+	transform:translatex(0%);
+	opacity:1;
+	display:block;
+	visibility:visible;
+	z-index:15;
 }
 
 
@@ -644,103 +658,103 @@ footer .copyright {
 ----------------------------------------------------- */
 
 @media only screen and (min-width:992px){
-    #sidebar.active {
-        width:80px;
-        height:100%!important;
-        position:absolute!important;
-        overflow:visible!important;
-        top:0!important;
-        z-index:666;
-        float:left!important;
-        bottom: 0!important;
-    }
+	#sidebar.active {
+    width:80px;
+	height:100%!important;
+	position:absolute!important;
+	overflow:visible!important;
+	top:0!important;
+	z-index:666;
+	float:left!important;
+    bottom: 0!important;
+}
 
 
-    #sidebar.active .sidebar-header h3 span {
-        display:none;
-        transition:all 0.5s ease;
-    }
+#sidebar.active .sidebar-header h3 span {
+   display:none;
+   transition:all 0.5s ease;
+}
 
-    #sidebar.active ul li a span{
-        display:none;
-        transition:all 0.5s ease;
-    }
+#sidebar.active ul li a span{
+    display:none;
+	transition:all 0.5s ease;
+}
 
-    #sidebar.active .dropdown-toggle::after {
-        display:none;
-        transition:all 0.5s ease;
-    }
+#sidebar.active .dropdown-toggle::after {
+    display:none;
+	transition:all 0.5s ease;
+}
 
-    #content {
-        width: calc(100% - 260px);
-        position: relative;
-        float: right;
-        transition: all 0.3s;
-        background-color: #EEEEEE;
-    }
+#content {
+    width: calc(100% - 260px);
+    position: relative;
+    float: right;
+    transition: all 0.3s;
+    background-color: #EEEEEE;
+}  
 
-    #content.active {
-        width: calc(100% - 80px);
-    }
+#content.active {
+    width: calc(100% - 80px);
+} 
 
-    #sidebar.active .menu {
-        position: absolute;
-        left: 81px;
-        background-color: white;
-        width: 180px;
-        height: auto;
-        margin: 5px 0;
-        top: 0;
-        border: 1px solid #dcd9d9;
-        z-index: 4;
-    }
+#sidebar.active .menu {
+    position: absolute;
+    left: 81px;
+    background-color: white;
+    width: 180px;
+    height: auto;
+    margin: 5px 0;
+    top: 0;
+    border: 1px solid #dcd9d9;
+    z-index: 4;
+}                                                                                                                                                                                                              
 }
 
 
 @media only screen and (min-width:992px){
-    .dropdown-menu {
-        border: 0;
-        box-shadow: 0 2px 5px 0 rgb(0 0 0 / 26%);
-        transform: translate3d(0, -20px, 0);
-        visibility: hidden;
-        transition: all 150ms linear;
-        display: block;
-        min-width:15rem;
-        right: 0;
-        left: auto;
-        opacity: 0;
-    }
-
+.dropdown-menu {
+    border: 0;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 26%);
+	transform: translate3d(0, -20px, 0);
+    visibility: hidden;
+	transition: all 150ms linear;
+    display: block;
+	min-width:15rem;
+	right: 0;
+    left: auto;
+    opacity: 0;
+}
+	
 }
 
 
 /*===============small-screen overlay sidebar design media queries==============*/
 
 @media only screen and (max-width:992px){
-    #sidebar {
-        position:fixed;
-        top: 0;
-        bottom:0;
-        z-index: 10;
-        width: 260px;
-        transform:translatex(-100%);
-        transition: all 150ms linear;
-        box-shadow:none!important;
-    }
+#sidebar {
+    position:fixed;
+    top: 0;
+    bottom:0;
+    z-index: 10;
+    width: 260px;
+	transform:translatex(-100%);
+	transition: all 150ms linear;
+	box-shadow:none!important;
+}	
 
-    .body-overlay{
-        position:fixed;
-        top:0;
-        left:0;
-        width:100%;
-        height:100%;
-        display:none;
-        visibility:hidden;
-        opacity:0;
-        z-index:3;
-        transition: all 150ms linear;
-        background-color:rgba(0,0,0,0.5);
-    }
+.body-overlay{
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	display:none;
+	visibility:hidden;
+	opacity:0;
+	z-index:3;
+	transition: all 150ms linear;
+	background-color:rgba(0,0,0,0.5);
+}
 }
 /*===============small-screen overlay sidebar design media queries==============*/
 
