@@ -20,9 +20,9 @@ public class CustomerDTO {
     private String custAddress;
     private String custNICImg;
     private String custdrivingImg;
-    private String custdrivingNumber;
     private String custContact;
     private String custEmail;
     private String custPassword;
     private String custStatus;
+    private String type;
 }

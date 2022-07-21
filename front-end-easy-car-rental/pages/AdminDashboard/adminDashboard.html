@@ -8,6 +8,7 @@
     <title>ADMIN
     </title>
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!----css3---->
     <link rel="stylesheet" href="css/custom.css">
@@ -103,7 +104,7 @@
                     <i class="material-icons">directions_car</i><span>Vehicles</span></a>
                 <ul class="collapse list-unstyled menu" id="pageSubmenu3">
                     <li>
-                        <a href="#" onclick="forvehicleMage()">Manage Vehicle</a>
+                        <a href="#" onclick="forvehicle()">Manage Vehicle</a>
                     </li>
                     <li>
                         <a href="#" onclick="forvehicleScheduleMage()">Manage Vehicle Schedule</a>
@@ -427,41 +428,46 @@
             <h4>Admin Dashboard</h4>
             <p>Dashboard \ Drivers \ Driver Manage </p>
             <div class="row ">
-                <div class="12 col-md-6 card-hover">
-                    <div class="card" style="min-height: 950px">
+                <div class="12 12 card-hover">
+                    <div class="card" style="min-height: 850px">
                         <div class="card-header card-header-text">
                             <h4 class="card-title">Manage Driver</h4>
                         </div>
                         <div class="card-content">
                             <div class="row">
                                 <div class="col-6">
-                                    <label for="exampleFormControlInput1" class="form-label">Driver NIC</label>
-                                    <input type="email" class="form-control" id="exampleFormControlInput1"
+                                    <label for="txtDriverNICNumber" class="form-label">Driver NIC</label>
+                                    <input type="email" class="form-control" id="txtDriverNICNumber"
                                            placeholder="">
+                                    <p><small class="text-danger pl-1" id="lblDriverNIC"></small></p>
                                 </div>
-                                <div class="col-12">
-                                    <label for="exampleFormControlInput1" class="form-label">Driver Full Name</label>
-                                    <input type="email" class="form-control" id="exampleFormControlInput1"
+                                <div class="col-6">
+                                    <label for="txtDriverName" class="form-label">Driver Full Name</label>
+                                    <input type="email" class="form-control" id="txtDriverName"
                                            placeholder="">
+                                    <p><small class="text-danger pl-1" id="lblDriverName"></small></p>
                                 </div>
-                                <div class="col-12">
-                                    <label for="exampleFormControlInput1" class="form-label">Driver Address</label>
-                                    <input type="email" class="form-control" id="exampleFormControlInput1"
+                                <div class="col-6">
+                                    <label for="txtDriverAddress" class="form-label">Driver Address</label>
+                                    <input type="email" class="form-control" id="txtDriverAddress"
                                            placeholder="">
+                                    <p><small class="text-danger pl-1" id="lblDriverAdress"></small></p>
                                 </div>
-                                <div class="col-7">
-                                    <label for="exampleFormControlInput1" class="form-label">Driver Contact</label>
-                                    <input type="email" class="form-control" id="exampleFormControlInput1"
+                                <div class="col-6">
+                                    <label for="txtDriverContact" class="form-label">Driver Contact</label>
+                                    <input type="email" class="form-control" id="txtDriverContact"
                                            placeholder="">
+                                    <p><small class="text-danger pl-1" id="lblDriverContact"></small></p>
                                 </div>
                                 <div class=" col-6">
-                                    <label for="exampleFormControlInput1" class="form-label">Driving License</label>
-                                    <input type="file" class="form-control" id="exampleFormControlInput2">
+                                    <label for="txtDriverlicenseImg" class="form-label">Driving License</label>
+                                    <input type="file" name="Driverfiles" class="form-control" id="txtDriverlicenseImg">
 
                                 </div>
                                 <div class=" col-6">
-                                    <label for="exampleFormControlInput1" class="form-label">Email</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput2">
+                                    <label for="txtDriverEmail" class="form-label">Email</label>
+                                    <input type="text" class="form-control" id="txtDriverEmail">
+                                    <p><small class="text-danger pl-1" id="lblDriverEmail"></small></p>
                                 </div>
                                 <div class=" col-6">
 
@@ -474,10 +480,10 @@
 
                         </div>
                         <div class="mx-5 md-5">
-                            <button type="button" class="btn btn-outline-primary">Save</button>
-                            <button type="button" class="btn btn-outline-success">Update</button>
-                            <button type="button" class="btn btn-outline-danger">Delete</button>
-                            <button type="button" class="btn btn-outline-info">Clear</button>
+                            <button type="button" id="btn-save-Driver" class="btn btn-outline-primary">Save</button>
+                            <button type="button" id="btn-update-Driver" class="btn btn-outline-success">Update</button>
+                            <button type="button" id="btn-delete-Driver" class="btn btn-outline-danger">Delete</button>
+                            <button type="button" id="btn-clear-Driver" class="btn btn-outline-info">Clear</button>
                         </div>
 
                     </div>
@@ -485,7 +491,7 @@
                 </div>
 
 
-                <div class="12 col-md-6">
+                <div class="12 col-md-12">
                     <div class="card" style="min-height: 0">
                         <div class="card-header card-header-text">
                             <h4 class="card-title">Drivers</h4>
@@ -503,14 +509,8 @@
                                     <th>status</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Bob Williams</td>
-                                    <td>$23,566</td>
-                                    <td>USA</td>
-                                    <td>Not Approved</td>
-                                </tr>
+                                <tbody id="driverTable">
+
                                 </tbody>
                             </table>
                         </div>
@@ -813,62 +813,99 @@
                         <div class="card-content">
                             <div class="row">
                                 <div class="col-4">
-                                    <label for="exampleFormControlInput1" class="form-label">Vehicle Number</label>
-                                    <input type="email" class="form-control" id="exampleFormControlInput1"
+                                    <label for="txtVehicleNumber" class="form-label">Vehicle Number</label>
+                                    <input type="email" class="form-control" id="txtVehicleNumber"
                                            placeholder="">
                                 </div>
                                 <div class="col-4">
-                                    <label for="exampleFormControlInput1" class="form-label">Type</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput1"
+                                <label for="cmbVehicleBrand" class="form-label">Brand</label>
+                                <select class="form-select" aria-label="Default select example" id="cmbVehicleBrand">
+                                    <option selected>Select Vehicle Brand</option>
+                                    <option>Suzuki Alto</option>
+                                    <option>Suzuki Alto K10</option>
+                                    <option>Suzuki Celerio</option>
+                                    <option>Perodua (Daihatsu) Axia</option>
+                                    <option>Toyota Prius C/ Aqua</option>
+                                    <option>Toyota Corolla Axio</option>
+                                    <option>Perodua Bezza Prime Sedan</option>
+                                    <option>Toyota Allion NZT 260</option>
+                                    <option>Toyota Premio</option>
+                                    <option>Mercedes</option>
+                                    <option>BMW i8</option>
+                                </select>
+                                </div>
+                                <div class="col-4">
+                                    <label for="cmbVehicleType" class="form-label">Type</label>
+                                    <select class="form-select" aria-label="Default select example" id="cmbVehicleType">
+                                        <option selected>Select Vehicle Type</option>
+                                        <option >General</option>
+                                        <option >Premium</option>
+                                        <option >Luxury</option>
+                                    </select>
+                                </div>
+
+
+                                <div class="col-4">
+                                    <label for="cmbTransmissionType" class="form-label">Transmission Type</label>
+                                    <select class="form-select" aria-label="Default select example" id="cmbTransmissionType">
+                                        <option selected>Select Transmission Type</option>
+                                        <option>Auto</option>
+                                        <option>Manual</option>
+
+                                    </select>
+                                </div>
+                                <div class="col-4">
+                                    <label for="cmbFuelType" class="form-label">Fuel Type</label>
+                                    <select class="form-select" aria-label="Default select example" id="cmbFuelType">
+                                        <option selected>Select Fuel Type</option>
+                                        <option>Petrol</option>
+                                        <option>Diesel</option>
+
+                                    </select>
+                                </div>
+                                <div class="col-4">
+                                    <label for="txtNoOfPassenger" class="form-label">No Of Passenger</label>
+                                    <input type="number" class="form-control" id="txtNoOfPassenger"
                                            placeholder="">
                                 </div>
                                 <div class="col-4">
-                                    <label for="exampleFormControlInput1" class="form-label">Brand</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput1"
-                                           placeholder="">
+                                    <label for="cmbVehicleColor" class="form-label">Colour</label>
+                                    <select class="form-select" aria-label="Default select example" id="cmbVehicleColor">
+                                        <option selected>Select Colour</option>
+                                        <option>Red</option>
+                                        <option>Blue</option>
+                                        <option>Wight</option>
+                                        <option>Black</option>
+                                        <option>Silver</option>
+                                    </select>
                                 </div>
-                                <div class="col-4">
-                                    <label for="exampleFormControlInput1" class="form-label">Transmission Type</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput1"
-                                           placeholder="">
-                                </div>
-                                <div class="col-4">
-                                    <label for="exampleFormControlInput1" class="form-label">No Of Passenger</label>
-                                    <input type="number" class="form-control" id="exampleFormControlInput1"
-                                           placeholder="">
-                                </div>
-                                <div class="col-4">
-                                    <label for="exampleFormControlInput1" class="form-label">Colour</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput1"
-                                           placeholder="">
-                                </div>
-                                <div class=" col-3">
-                                    <label for="exampleFormControlInput1" class="form-label">Daily Rent</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput2">
+                                <div class=" col-4">
+                                    <label for="txtDailyRent" class="form-label">Daily Rent</label>
+                                    <input type="text" class="form-control" id="txtDailyRent">
 
                                 </div>
-                                <div class=" col-3">
-                                    <label for="exampleFormControlInput1" class="form-label">Monthly Rent</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput2">
-
-                                </div>
-                                <div class=" col-3">
-                                    <label for="exampleFormControlInput1" class="form-label">Price For KM</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput2">
-
-                                </div>
-                                <div class=" col-3">
-                                    <label for="exampleFormControlInput1" class="form-label">Price For Extra KM</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput2">
+                                <div class=" col-4">
+                                    <label for="txtMonthlyRent" class="form-label">Monthly Rent</label>
+                                    <input type="text" class="form-control" id="txtMonthlyRent">
 
                                 </div>
                                 <div class=" col-6">
-                                    <label for="exampleFormControlInput1" class="form-label">Vehicle Front Image</label>
-                                    <input type="file" class="form-control" id="exampleFormControlInput2">
+                                    <label for="txtPriceForKM" class="form-label">Price For KM</label>
+                                    <input type="text" class="form-control" id="txtPriceForKM">
+
                                 </div>
                                 <div class=" col-6">
-                                    <label for="exampleFormControlInput1" class="form-label">Vehicle Front Image</label>
-                                    <input type="file" class="form-control" id="exampleFormControlInput2">
+                                    <label for="txtPriceForExtraKM" class="form-label">Price For Extra KM</label>
+                                    <input type="text" class="form-control" id="txtPriceForExtraKM">
+
+                                </div>
+                                <div class=" col-6">
+                                    <label for="txtVehicleFrontImage" class="form-label">Vehicle Front Image</label>
+                                    <input type="file" name="vImgFile" class="form-control" id="txtVehicleFrontImage">
+                                </div>
+                                <div class=" col-6">
+                                    <label for="txtVehicleBackImg" class="form-label">Vehicle Back Image</label>
+                                    <input type="file" name="vImgFile" class="form-control" id="txtVehicleBackImg">
                                 </div>
                                 <div class=" col-6">
 
@@ -885,10 +922,10 @@
 
                         </div>
                         <div class="mx-5 md-5">
-                            <button type="button" class="btn btn-outline-primary">Save</button>
-                            <button type="button" class="btn btn-outline-success">Update</button>
-                            <button type="button" class="btn btn-outline-danger">Delete</button>
-                            <button type="button" class="btn btn-outline-info">Clear</button>
+                            <button type="button" id="btn-vehicle-save" class="btn btn-outline-primary">Save</button>
+                            <button type="button" id="btn-vehicle-update" class="btn btn-outline-success">Update</button>
+                            <button type="button" id="btn-vehicle-delete" class="btn btn-outline-danger">Delete</button>
+                            <button type="button" id="btn-vehicle-clear" class="btn btn-outline-info">Clear</button>
                         </div>
 
                     </div>
@@ -910,6 +947,7 @@
                                     <th>Type</th>
                                     <th>Brand</th>
                                     <th>Transmission Type</th>
+                                    <th>Fuel Type</th>
                                     <th>No Of Passenger</th>
                                     <th>Colour</th>
                                     <th>Daily Rent</th>
@@ -919,14 +957,8 @@
                                     <th>Status</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Bob Williams</td>
-                                    <td>$23,566</td>
-                                    <td>USA</td>
-                                    <td>Not Approved</td>
-                                </tr>
+                                <tbody id="vehicleTable">
+
                                 </tbody>
                             </table>
                         </div>
@@ -1295,14 +1327,17 @@
     </div>
 </div>
 
+<script src="../../assets/jQuery/jquery-3.6.0.min.js"></script>
+<script src="../../assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
 <script src="js/jquery-3.3.1.slim.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery-3.3.1.min.js"></script>
 
+<script src="Controller/DriverController.js"></script>
+<script src="Controller/VehicleController.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -1318,6 +1353,7 @@
     });
 
 
+/*
     function forManageDriver() {
         document.getElementsByClassName("AdminHomePage")[0].style.display = "none"
         document.getElementsByClassName("driver-manage-content")[0].style.display = "block"
@@ -1328,6 +1364,7 @@
         document.getElementsByClassName(" Manage-Booking-content")[0].style.display = "none"
 
     }
+*/
 
     function forDashBoard() {
         document.getElementsByClassName("AdminHomePage")[0].style.display = "block"
@@ -1360,15 +1397,21 @@
         document.getElementsByClassName(" Manage-Booking-content")[0].style.display = "none"
     }
 
-    function forvehicleMage() {
+/*
+    function forvehicle() {
         document.getElementsByClassName("AdminHomePage")[0].style.display = "none"
         document.getElementsByClassName("driver-manage-content")[0].style.display = "none"
         document.getElementsByClassName("driver-schedule-content")[0].style.display = "none"
         document.getElementsByClassName(" customer-Manage-content")[0].style.display = "none"
         document.getElementsByClassName("vehicle-manage-content")[0].style.display = "block"
         document.getElementsByClassName("vehicle-schedule-content")[0].style.display ="none"
-            document.getElementsByClassName(" Manage-Booking-content")[0].style.display = "none"
+        document.getElementsByClassName(" Manage-Booking-content")[0].style.display = "none"
+
     }
+
+
+*/
+
 
     function forvehicleScheduleMage() {
         document.getElementsByClassName("AdminHomePage")[0].style.display = "none"

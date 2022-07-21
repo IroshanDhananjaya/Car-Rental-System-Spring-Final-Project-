@@ -22,6 +22,6 @@ public class DriverDTO {
     private String driverEmail;
     private String driverPassword;
     private String driverLicenseImg;
-    private String diverLicenseNumber;
     private String diverStatus;
+    private String type;
 }

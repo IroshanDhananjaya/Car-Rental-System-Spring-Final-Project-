@@ -734,52 +734,54 @@
 </div>
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="js/jquery-3.3.1.slim.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery-3.3.1.min.js"></script>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="js/jquery-3.3.1.slim.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="../../assets/jQuery/jquery-3.6.0.min.js"></script>
+<script src="../../assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-                $('#content').toggleClass('active');
-            });
-
-            $('.more-button,.body-overlay').on('click', function () {
-                $('#sidebar,.body-overlay').toggleClass('show-nav');
-            });
-
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+            $('#content').toggleClass('active');
         });
 
+        $('.more-button,.body-overlay').on('click', function () {
+            $('#sidebar,.body-overlay').toggleClass('show-nav');
+        });
 
-        function forDashBoard() {
-            document.getElementsByClassName("CustomerHomePage")[0].style.display = "block"
-            document.getElementsByClassName("customer-Manage-content")[0].style.display = "none"
-            document.getElementsByClassName("vehicle-manage-content")[0].style.display = "none"
-            document.getElementsByClassName(" Manage-Booking-content")[0].style.display = "none"
-        }
+    });
 
 
-        function forvehicleMage() {
-            document.getElementsByClassName("CustomerHomePage")[0].style.display = "none"
-            document.getElementsByClassName(" customer-Manage-content")[0].style.display = "none"
-            document.getElementsByClassName("vehicle-manage-content")[0].style.display = "block"
-            document.getElementsByClassName(" Manage-Booking-content")[0].style.display = "none"
-        }
+    function forDashBoard() {
+        document.getElementsByClassName("CustomerHomePage")[0].style.display = "block"
+        document.getElementsByClassName("customer-Manage-content")[0].style.display = "none"
+        document.getElementsByClassName("vehicle-manage-content")[0].style.display = "none"
+        document.getElementsByClassName(" Manage-Booking-content")[0].style.display = "none"
+    }
 
 
-        function forBookingManage() {
-            document.getElementsByClassName("CustomerHomePage")[0].style.display = "none"
-            document.getElementsByClassName(" customer-Manage-content")[0].style.display = "none"
-            document.getElementsByClassName("vehicle-manage-content")[0].style.display = "none"
-            document.getElementsByClassName(" Manage-Booking-content")[0].style.display = "block"
-        }
+    function forvehicleMage() {
+        document.getElementsByClassName("CustomerHomePage")[0].style.display = "none"
+        document.getElementsByClassName(" customer-Manage-content")[0].style.display = "none"
+        document.getElementsByClassName("vehicle-manage-content")[0].style.display = "block"
+        document.getElementsByClassName(" Manage-Booking-content")[0].style.display = "none"
+    }
 
-    </script>
+
+    function forBookingManage() {
+        document.getElementsByClassName("CustomerHomePage")[0].style.display = "none"
+        document.getElementsByClassName(" customer-Manage-content")[0].style.display = "none"
+        document.getElementsByClassName("vehicle-manage-content")[0].style.display = "none"
+        document.getElementsByClassName(" Manage-Booking-content")[0].style.display = "block"
+    }
+
+</script>
 
 
 </body>

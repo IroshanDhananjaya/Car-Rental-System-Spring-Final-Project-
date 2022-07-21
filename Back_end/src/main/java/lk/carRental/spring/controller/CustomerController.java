@@ -25,29 +25,30 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
-//    @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE},produces = {MediaType.APPLICATION_JSON_VALUE})
-//    public String saveCustomer(@RequestPart("myFile") MultipartFile[] files){
-//        for(MultipartFile file:files){
-//            String projectPath=new File("E:/IJSE/GDSE57/Spring_Final_Project").getParentFile().getParentFile().getAbsolutePath();
-//            File uploadDir=new File(projectPath+"/uploads");
-//            uploadDir.mkdir();
-//
-//
-//            try {
-//                file.transferTo(new File(uploadDir.getAbsolutePath()+"/"+file.getOriginalFilename()));
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//        }
-//        return "Customer Added";
-//    }
+    @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE},produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseUtil saveCustomer(@RequestPart("files") MultipartFile[] files,@RequestPart("customer")CustomerDTO dto){
+        for(MultipartFile file:files){
+            String projectPath=new File("E:/IJSE/GDSE57/Spring_Final_Project").getParentFile().getParentFile().getAbsolutePath();
+            File uploadDir=new File(projectPath+"/uploads");
+            uploadDir.mkdir();
 
-    @PostMapping
-   public ResponseUtil saveCustomer(@ModelAttribute CustomerDTO dto){
+
+            try {
+                file.transferTo(new File(uploadDir.getAbsolutePath()+"/"+file.getOriginalFilename()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
         customerService.saveCustomer(dto);
         return new ResponseUtil(200,"Customer Saved",null);
     }
+
+//    @PostMapping
+//   public ResponseUtil saveCustomer(@ModelAttribute CustomerDTO dto){
+//        customerService.saveCustomer(dto);
+//        return new ResponseUtil(200,"Customer Saved",null);
+//    }
 
 
     @DeleteMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)

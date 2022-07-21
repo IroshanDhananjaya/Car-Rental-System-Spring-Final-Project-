@@ -29,4 +29,5 @@ public class Customer {
     private String custEmail;
     private String custPassword;
     private String custStatus;
+    private String type;
 }

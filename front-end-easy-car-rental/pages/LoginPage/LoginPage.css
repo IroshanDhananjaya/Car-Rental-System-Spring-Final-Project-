@@ -60,6 +60,19 @@
 
 /*<!--==========================Register Form==============================-->*/
 
+
+.rejister-area{
+    position: relative;
+    background-image: url("../../assets/images/heroimg3.jpeg");
+    background-size: cover;
+    background-position: center;
+    width: 98vw;
+    height: 110vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .register-form{
     position: relative;
     width: 60%;
@@ -103,7 +116,11 @@
 
 }
 
-#btn-register{
-    position: absolute;
-    bottom: 50px;
-}
+/*#btn-register{*/
+/*    position: absolute;*/
+/*    bottom: 20px;*/
+/*}*/
+ .form p{
+     color: red;
+
+ }
