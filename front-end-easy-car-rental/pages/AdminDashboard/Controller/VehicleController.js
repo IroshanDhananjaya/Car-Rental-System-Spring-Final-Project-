@@ -45,7 +45,7 @@ function saveVehicle() {
     Vdata.append("vehicle", new Blob([JSON.stringify(vehicle)], {type: "application/json"}))
 
     $.ajax({
-        url: "http://localhost:8080/Back_end_war/api/v1/vehicle",
+        url: "http://localhost:8080/Back_end_war_exploded/api/v1/vehicle",
         method: "post",
         async: true,
         contentType: false,
@@ -61,7 +61,7 @@ function saveVehicle() {
     function loadAllVehicle() {
         $("#vehicleTable").empty();
         $.ajax({
-            url: "http://localhost:8080/Back_end_war/api/v1/vehicle",
+            url: "http://localhost:8080/Back_end_war_exploded/api/v1/vehicle",
             method: "GET",
             success(resp) {
                 for (var i of resp.data) {
@@ -158,7 +158,7 @@ $("#btn-vehicle-Maintenance").click(function (){
     var vehicleId=$("#txtMaintenanceVehicle").val();
 
     $.ajax({
-        url: "http://localhost:8080/Back_end_war/api/v1/vehicle?id=" + vehicleId,
+        url: "http://localhost:8080/Back_end_war_exploded/api/v1/vehicle?id=" + vehicleId,
         method: "GET",
         success(resp) {
             var vehicle = {
@@ -180,7 +180,7 @@ $("#btn-vehicle-Maintenance").click(function (){
             }
 
             $.ajax({
-                url: "http://localhost:8080/Back_end_war/api/v1/vehicle",
+                url: "http://localhost:8080/Back_end_war_exploded/api/v1/vehicle",
                 method: "put",
                 contentType: "application/json",
                 data: JSON.stringify(vehicle),
@@ -201,7 +201,7 @@ $("#btn-Release-Maintenance").click(function (){
     var vehicleId=$("#txtMaintenanceVehicle").val();
 
     $.ajax({
-        url: "http://localhost:8080/Back_end_war/api/v1/vehicle?id=" + vehicleId,
+        url: "http://localhost:8080/Back_end_war_exploded/api/v1/vehicle?id=" + vehicleId,
         method: "GET",
         success(resp) {
             var vehicle = {
@@ -223,7 +223,7 @@ $("#btn-Release-Maintenance").click(function (){
             }
 
             $.ajax({
-                url: "http://localhost:8080/Back_end_war/api/v1/vehicle",
+                url: "http://localhost:8080/Back_end_war_exploded/api/v1/vehicle",
                 method: "put",
                 contentType: "application/json",
                 data: JSON.stringify(vehicle),
@@ -243,7 +243,7 @@ $("#btn-Release-Maintenance").click(function (){
 function loadAllMaintanceVehicle() {
     $("#MaintenancevehicleTable").empty();
     $.ajax({
-        url: "http://localhost:8080/Back_end_war/api/v1/vehicle",
+        url: "http://localhost:8080/Back_end_war_exploded/api/v1/vehicle",
         method: "GET",
         success(resp) {
             for (var i of resp.data) {

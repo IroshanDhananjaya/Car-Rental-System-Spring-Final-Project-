@@ -3,9 +3,11 @@ package lk.carRental.spring.service.impl;
 import lk.carRental.spring.dto.BookingDTO;
 import lk.carRental.spring.dto.BookingDetailsDTO;
 import lk.carRental.spring.dto.CustomerDTO;
+import lk.carRental.spring.dto.DriverDTO;
 import lk.carRental.spring.entity.*;
 import lk.carRental.spring.repo.*;
 import lk.carRental.spring.service.BookingService;
+import lk.carRental.spring.service.DriverService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,70 +45,69 @@ public class BookingServiceImpl implements BookingService {
     DrivescheduleRepo drivescheduleRepo;
 
     @Autowired
+    CustomerRepo customerRepo;
+
+    @Autowired
+    DriverService driverService;
+
+    @Autowired
     ModelMapper mapper;
 
 
     public void saveBooking(BookingDTO entity) {
         if(!bookingRepo.existsById(entity.getBookingId())){
-
+            Customer customer = customerRepo.findById(entity.getCustomer()).get();
             Booking booking=new Booking(
                     entity.getBookingId(),
                     entity.getPickUpDate(),
                     entity.getReturnDate(),
                     "Not Approved",
-                    entity.getCustomer()
+                    customer
             );
 
             Booking IsBooking = bookingRepo.save(booking);
 
             if(IsBooking!=null){
                 for (BookingDetailsDTO detailsDTO:entity.getBookingDetails()) {
-
+                   /* Booking booking1 = bookingRepo.findById(detailsDTO.getBookingId()).get();*/
                     BookingDetails bookingDetails=new BookingDetails(
                             detailsDTO.getLoseDamageStatus(),
-                            detailsDTO.getLoseDamageImg(),
+                            "uploads/"+detailsDTO.getLoseDamageImg(),
                             "Not Approved",
-                            detailsDTO.getBookingId(),
-                            detailsDTO.getVehicleNumber(),
-                            detailsDTO.getDriverNICNumber()
+                            booking
+
                     );
 
                     BookingDetails IsBookingDetails = bookingDetailsRepo.save(bookingDetails);
 
-                    if(IsBookingDetails!=null){
-                        Vehicle vehicle = vehicleRepo.findById(detailsDTO.getVehicleNumber().getVehicleNumber()).get();
-                        vehicle.setVehicleStatus("On Booking");
+                    if(IsBookingDetails!=null) {
 
-                        Vehicle Isvehicle = vehicleRepo.save(vehicle);
-
-                        if(Isvehicle!=null){
-                            System.out.println(detailsDTO.getVehicleNumber().getVehicleNumber());
-                            Driver driver = driverRepo.findById(detailsDTO.getDriverNICNumber().getDriverNICNumber()).get();
-                            driver.setDiverStatus("Assign");
-
-                            Driver IsDriver = driverRepo.save(driver);
-
-                            if(IsDriver!=null){
-                                DriverSchedule driverSchedule=new DriverSchedule(
-                                        entity.getPickUpDate(),
-                                        entity.getReturnDate(),
-                                        "On Work",
-                                        driver
-                                );
-
-                                DriverSchedule IsDriverSchedule = drivescheduleRepo.save(driverSchedule);
-                                if(IsDriverSchedule!=null){
-                                    VehicleSchedule vehicleSchedule=new VehicleSchedule(
+                        System.out.println(detailsDTO.getDriverNICNumber());
+                        if(detailsDTO.getDriverNICNumber()!=("Not Assign")){
+                            Driver driver=mapper.map( driverService.getRandomDriver(),Driver.class);
+                            DriverSchedule driverSchedule = new DriverSchedule(
+                                            entity.getPickUpDate(),
+                                            entity.getReturnDate(),
+                                            "On Work",
+                                    booking,
+                                            driver
+                                    );
+                                    DriverSchedule IsDriverSchedule = drivescheduleRepo.save(driverSchedule);
+                                }
+                        if (IsBookingDetails != null) {
+                                    Vehicle vehicle = vehicleRepo.findById(detailsDTO.getVehicleNumber()).get();
+                                    VehicleSchedule vehicleSchedule = new VehicleSchedule(
                                             entity.getPickUpDate(),
                                             entity.getReturnDate(),
                                             "On Booking",
+                                            booking,
                                             vehicle
                                     );
                                     vehicleScheduleRepo.save(vehicleSchedule);
                                 }
                             }
-                        }
-                    }
+
+
                 }
             }
         }else {
@@ -119,8 +120,8 @@ public class BookingServiceImpl implements BookingService {
 
     }
 
-    public void updateBooking(BookingDTO entity) {
-        if(bookingRepo.existsById(entity.getBookingId())){
+   public void updateBooking(BookingDTO entity) {
+      /*   if(bookingRepo.existsById(entity.getBookingId())){
             if(entity.getBookingStatus().equals("Rejected")){
                 Booking booking = bookingRepo.findById(entity.getBookingId()).get();
                 booking.setBookingStatus(entity.getBookingStatus());
@@ -182,9 +183,9 @@ public class BookingServiceImpl implements BookingService {
             }
         }else {
             throw new RuntimeException("No such Booking! Try Again....!");
-        }
-
-    }
+       }
+*/
+}
 
     public BookingDTO searchBooking(String id) {
         Booking booking = bookingRepo.findById(id).get();
@@ -195,5 +196,10 @@ public class BookingServiceImpl implements BookingService {
     public List<BookingDTO> getAllBooking() {
         List<Booking> all=bookingRepo.findAll();
         return mapper.map(all,new TypeToken<List<BookingDTO>>(){}.getType());
+    }
+
+    @Override
+    public String getLastRid() {
+        return bookingRepo.getLastID();
     }
 }

@@ -26,6 +26,6 @@ public class BookingDTO {
     private String pickUpDate;
     private String returnDate;
     private String bookingStatus;
-    private Customer customer;
+    private String customer;
     private List<BookingDetailsDTO> bookingDetails = new ArrayList<>();
 }

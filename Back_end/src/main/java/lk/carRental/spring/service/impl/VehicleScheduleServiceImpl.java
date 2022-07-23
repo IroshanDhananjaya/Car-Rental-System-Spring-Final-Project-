@@ -3,6 +3,7 @@ package lk.carRental.spring.service.impl;
 import lk.carRental.spring.dto.BookingDTO;
 import lk.carRental.spring.dto.VehicleScheduleDTO;
 import lk.carRental.spring.entity.Booking;
+import lk.carRental.spring.entity.DriverSchedule;
 import lk.carRental.spring.entity.VehicleSchedule;
 import lk.carRental.spring.repo.VehicleScheduleRepo;
 import lk.carRental.spring.service.VehicleScheduleService;
@@ -28,11 +29,14 @@ public class VehicleScheduleServiceImpl implements VehicleScheduleService {
     ModelMapper mapper;
 
     public void saveVehicleSchedule(VehicleScheduleDTO entity) {
-
+        VehicleSchedule vehicleSchedule = mapper.map(entity, VehicleSchedule.class);
+        vehicleScheduleRepo.save(vehicleSchedule);
     }
 
     public void deleteVehicleSchedule(String id) {
-
+        if(vehicleScheduleRepo.existsById(id)){
+            vehicleScheduleRepo.deleteById(id);
+        }
     }
 
     public void updateVehicleSchedule(VehicleScheduleDTO entity) {
@@ -40,7 +44,10 @@ public class VehicleScheduleServiceImpl implements VehicleScheduleService {
     }
 
     public VehicleScheduleDTO searchVehicleSchedule(String id) {
-        return null;
+
+        VehicleSchedule vehicleSchedule = vehicleScheduleRepo.findById(id).get();
+        VehicleScheduleDTO scheduleDTO = mapper.map(vehicleSchedule, VehicleScheduleDTO.class);
+        return scheduleDTO;
     }
 
     public List<VehicleScheduleDTO> getAllVehicleSchedule() {

@@ -25,7 +25,8 @@ public class BookingDetailsDTO {
     private double loseDamageStatus;
     private String loseDamageImg;
     private String detailsStatus;
-    private Booking bookingId;
-    private Vehicle vehicleNumber;
-    private Driver driverNICNumber;
+    private String bookingId;
+    private String vehicleNumber;
+    private String driverNICNumber;
 }
+

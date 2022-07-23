@@ -469,12 +469,7 @@
                                     <input type="text" class="form-control" id="txtDriverEmail">
                                     <p><small class="text-danger pl-1" id="lblDriverEmail"></small></p>
                                 </div>
-                                <div class=" col-12">
-
-                                    <img src="img/license.jpg" style="width: 600px">
-                                </div>
-                                <div class=" col-3">
-
+                                                            <div class=" col-3">
                                     <button type="button" id="btn-save-Driver" class="btn btn-outline-primary col-12">Save</button>
                                 </div>
                                 <div class=" col-3">
@@ -484,6 +479,9 @@
                                 <div class=" col-3">
 
                                     <button type="button" id="btn-clear-Driver" class="btn btn-outline-info col-12">Clear</button>
+                                </div>
+                                <div class=" col-6 mx-5" style="margin-top: 40px">
+                                    <div id="driverImg" class="border border-1, w-100 md-5" style="height: 300px"></div>
                                 </div>
 
 
@@ -593,22 +591,16 @@
                                 <table class="table table-hover">
                                     <thead class="text-primary">
                                     <tr>
-                                        <th>Schedule ID</th>
+
                                         <th>Driver NIC</th>
+                                        <th>Booking ID</th>
                                         <th>Start Date</th>
                                         <th>End Date</th>
-
                                         <th>status</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Bob Williams</td>
-                                        <td>$23,566</td>
-                                        <td>USA</td>
-                                        <td>Not Approved</td>
-                                    </tr>
+                                    <tbody id="tblDriverSchedule">
+
                                     </tbody>
                                 </table>
                             </div>
@@ -662,30 +654,30 @@
             <h4>Admin Dashboard</h4>
             <p>Dashboard \ Customer \ Customer Manage </p>
             <div class="row ">
-                <div class="12 col-md-5">
-                    <div class="card" style="min-height: 1200px">
+                <div class="12 col-md-12">
+                    <div class="card" style="min-height: 650px">
                         <div class="card-header card-header-text">
-                            <h4 class="card-title">Manage Customer</h4>
+                            <h4 class="card-title">View Customer</h4>
                         </div>
                         <div class="card-content">
                             <div class="row">
-                                <div class="col-12">
+                                <div class="col-6">
                                     <label for="txtCNICNumber" class="form-label">National Identity Card
                                         No</label>
                                     <input type="text" class="form-control" id="txtCNICNumber"
                                            placeholder="" disabled>
                                 </div>
-                                <div class="mb-2 col-12">
+                                <div class="mb-2 col-6">
                                     <label for="txtCname" class="form-label">Full Name</label>
                                     <input type="text" class="form-control" id="txtCname"
                                            placeholder="E.K.Iroshan Dhananjaya" disabled>
                                 </div>
-                                <div class="mb-2 col-12">
+                                <div class="mb-2 col-6">
                                     <label for="txtCAddress" class="form-label">Address</label>
                                     <input type="text" class="form-control" id="txtCAddress"
                                            placeholder="123/A Galle Road,Panadura" disabled>
                                 </div>
-                                <div class="mb-2 col-12">
+                                <div class="mb-2 col-6">
                                     <label for="txtCContactNumber" class="form-label">Contact Number</label>
                                     <input type="text" class="form-control" id="txtCContactNumber"
                                            placeholder="0771239850" disabled>
@@ -695,33 +687,28 @@
                                     <input type="Email" class="form-control" id="txtCEmail"
                                            placeholder="iroshandhananjaya@gmail.com" disabled>
                                 </div>
-                                <div class=" col-12">
+                                <div class=" col-6">
+                                    <label for="display" class="form-label">NIC Image</label>
                                     <div id="display" class="border border-1, w-100" style="height: 300px"></div>
                                 </div>
-                                <div class=" col-12">
-                                    <img src="http://localhost:8080/Back_end_war_exploded/uploads/NIC.jpg" style="width: 500px">
+                                <div class=" col-6">
+                                    <label for="display2" class="form-label">License Image</label>
+                                    <div id="display2" class="border border-1, w-100" style="height: 300px"></div>
                                 </div>
 
                             </div>
 
 
                         </div>
-                        <div class="mx-5 md-5">
-                            <button type="button" id="btn-approve-customer" class="btn btn-outline-primary">Approve</button>
-                            <button type="button" id="btn-reject-customer" class="btn btn-outline-danger">Reject</button>
-
-                        </div>
-
-
                     </div>
 
                 </div>
 
 
-                <div class="12 col-md-7">
+                <div class="12 col-md-12">
                     <div class="card" style="min-height: 0">
                         <div class="card-header card-header-text">
-                            <h4 class="card-title">Pending Customer</h4>
+                            <h4 class="card-title">Customers</h4>
 
                         </div>
                         <div class="card-content table-responsive">
@@ -795,7 +782,7 @@
             <p>Dashboard \ Vehicle \ Vehicle Manage </p>
             <div class="row ">
                 <div class="12 col-md-12 card-hover">
-                    <div class="card" style="min-height: 850px">
+                    <div class="card" style="min-height: 570px">
                         <div class="card-header card-header-text">
                             <h4 class="card-title">Manage Vehicle</h4>
                         </div>
@@ -896,21 +883,13 @@
                                     <label for="txtVehicleBackImg" class="form-label">Vehicle Back Image</label>
                                     <input type="file" name="vImgFile" class="form-control" id="txtVehicleBackImg">
                                 </div>
-                                <div class=" col-6">
-
-                                    <img src="img/license.jpg" style="width: 500px">
-                                </div>
-                                <div class=" col-6">
-
-                                    <img src="img/license.jpg" style="width: 500px">
-                                </div>
-                                <div class=" col-3">
+                                <div class=" col-3" style="margin-top: 40px">
                                     <button type="button" id="btn-vehicle-save" class="btn btn-outline-primary col-12">Save</button>
                                 </div>
-                                <div class=" col-3">
+                                <div class=" col-3" style="margin-top: 40px">
                                     <button type="button" id="btn-vehicle-delete" class="btn btn-outline-danger col-12">Delete</button>
                                 </div>
-                                <div class=" col-3">
+                                <div class=" col-3" style="margin-top: 40px">
                                     <button type="button" id="btn-vehicle-clear" class="btn btn-outline-info col-12">Clear</button>
                                 </div>
 
@@ -1080,21 +1059,16 @@
                                 <table class="table table-hover">
                                     <thead class="text-primary">
                                     <tr>
-                                        <th>Schedule ID</th>
+
                                         <th>Vehicle Number</th>
+                                        <th>Booking ID</th>
                                         <th>Start Date</th>
                                         <th>End Date</th>
                                         <th>status</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Bob Williams</td>
-                                        <td>$23,566</td>
-                                        <td>USA</td>
-                                        <td>Not Approved</td>
-                                    </tr>
+                                    <tbody id="tblVehicleSchedule">
+
                                     </tbody>
                                 </table>
                             </div>
@@ -1386,6 +1360,9 @@
 <script src="Controller/DriverController.js"></script>
 <script src="Controller/VehicleController.js"></script>
 <script src="Controller/CustomerController.js"></script>
+<script src="Controller/VehicleScheduleController.js"></script>
+<script src="Controller/DriverScheduleController.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function () {
         $('#sidebarCollapse').on('click', function () {
@@ -1422,7 +1399,7 @@
         document.getElementsByClassName("vehicle-schedule-content")[0].style.display = "none"
         document.getElementsByClassName(" Manage-Booking-content")[0].style.display = "none"
     }
-
+/*
     function fordriverSchedule() {
         document.getElementsByClassName("AdminHomePage")[0].style.display = "none"
         document.getElementsByClassName("driver-manage-content")[0].style.display = "none"
@@ -1431,7 +1408,7 @@
         document.getElementsByClassName("vehicle-manage-content")[0].style.display = "none"
         document.getElementsByClassName("vehicle-schedule-content")[0].style.display = "none"
         document.getElementsByClassName(" Manage-Booking-content")[0].style.display = "none"
-    }
+    }*/
 
 /*
     function forCustomerMange() {
@@ -1461,7 +1438,7 @@
 
 */
 
-
+/*
     function forvehicleScheduleMage() {
         document.getElementsByClassName("AdminHomePage")[0].style.display = "none"
         document.getElementsByClassName("driver-manage-content")[0].style.display = "none"
@@ -1470,7 +1447,7 @@
         document.getElementsByClassName("vehicle-manage-content")[0].style.display = "none"
         document.getElementsByClassName("vehicle-schedule-content")[0].style.display = "block"
         document.getElementsByClassName(" Manage-Booking-content")[0].style.display = "none"
-    }
+    }*/
 
     function forBookingManage() {
         document.getElementsByClassName("AdminHomePage")[0].style.display = "none"

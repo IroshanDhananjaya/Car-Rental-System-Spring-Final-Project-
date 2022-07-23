@@ -31,21 +31,13 @@ public class BookingDetails {
     @JoinColumn(name = "bookingId",referencedColumnName = "bookingId")
     private Booking bookingId;
 
-    @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "vehicleNumber",referencedColumnName = "vehicleNumber")
-    private Vehicle vehicleNumber;
 
-    @ManyToOne
-    @JoinColumn(name = "driverNICNumber",referencedColumnName = "driverNICNumber")
-    private Driver driverNICNumber;
 
-    public BookingDetails(double loseDamageStatus, String loseDamageImg, String detailsStatus, Booking bookingId, Vehicle vehicleNumber, Driver driverNICNumber) {
+    public BookingDetails(double loseDamageStatus, String loseDamageImg, String detailsStatus, Booking bookingId) {
         this.loseDamageStatus = loseDamageStatus;
         this.loseDamageImg = loseDamageImg;
         this.detailsStatus = detailsStatus;
         this.bookingId = bookingId;
-        this.vehicleNumber = vehicleNumber;
-        this.driverNICNumber = driverNICNumber;
+
     }
 }

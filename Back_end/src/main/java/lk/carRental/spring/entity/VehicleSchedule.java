@@ -1,5 +1,6 @@
 package lk.carRental.spring.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,14 +25,20 @@ public class VehicleSchedule {
     private String vehicleEndDate;
     private String vehicleScheduleStatus;
 
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "bookingId",referencedColumnName = "bookingId")
+    private Booking bookingId;
+
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
-    @JoinColumn(name = "vehicleNumber", referencedColumnName = "vehicleNumber", nullable = false)
+    @JoinColumn(name = "vehicleNumber", referencedColumnName = "vehicleNumber")
     private Vehicle vehicleNumber;
 
-    public VehicleSchedule(String vehicleStartDate, String vehicleEndDate, String vehicleScheduleStatus, Vehicle vehicleNumber) {
+    public VehicleSchedule(String vehicleStartDate, String vehicleEndDate, String vehicleScheduleStatus, Booking bookingId, Vehicle vehicleNumber) {
         this.vehicleStartDate = vehicleStartDate;
         this.vehicleEndDate = vehicleEndDate;
         this.vehicleScheduleStatus = vehicleScheduleStatus;
+        this.bookingId = bookingId;
         this.vehicleNumber = vehicleNumber;
     }
 }

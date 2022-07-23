@@ -1,5 +1,6 @@
 package lk.carRental.spring.dto;
 
+import lk.carRental.spring.entity.Booking;
 import lk.carRental.spring.entity.Vehicle;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,5 +25,7 @@ public class VehicleScheduleDTO {
     private String vehicleStartDate;
     private String vehicleEndDate;
     private String vehicleScheduleStatus;
+    private Booking bookingId;
     private Vehicle vehicleNumber;
+
 }

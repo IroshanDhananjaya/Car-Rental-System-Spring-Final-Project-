@@ -19,4 +19,6 @@ public interface BookingService {
     public BookingDTO searchBooking(String id);
 
     public List<BookingDTO> getAllBooking();
+
+    public String getLastRid();
 }

@@ -16,7 +16,7 @@ function forManageDriver() {
 function loadAllDriver() {
     $("#driverTable").empty();
     $.ajax({
-        url: "http://localhost:8080/Back_end_war/api/v1/driver",
+        url: "http://localhost:8080/Back_end_war_exploded/api/v1/driver",
         method: "GET",
         success(resp) {
             for (var i of resp.data) {
@@ -25,13 +25,27 @@ function loadAllDriver() {
 
                 $("#driverTable>tr").click(function () {
 
-
                     $("#txtDriverNICNumber").val($(this).children(":eq(0)").text());
                     $("#txtDriverName").val($(this).children(":eq(1)").text());
                     $("#txtDriverAddress").val($(this).children(":eq(2)").text());
                     $("#txtDriverContact").val($(this).children(":eq(3)").text());
                     $("#txtDriverEmail").val($(this).children(":eq(4)").text());
 
+
+                    $.ajax({
+                        url:"http://localhost:8080/Back_end_war_exploded/api/v1/driver?id="+$("#txtDriverNICNumber").val(),
+                        method:"get",
+                        success(resp){
+
+                            $("#driverImg").css({
+                                "background": `url(${"http://localhost:8080/Back_end_war_exploded/"+resp.data.driverLicenseImg})`,
+                                "background-size": "cover",
+                                "background-position":"center",
+                                "height": "300px"
+                            });
+
+                        }
+                    });
 
                 });
 
@@ -63,7 +77,7 @@ function saveDriver(){
 
 
     $.ajax({
-        url:"http://localhost:8080/Back_end_war/api/v1/driver",
+        url:"http://localhost:8080/Back_end_war_exploded/api/v1/driver",
         method:"post",
         async:true,
         contentType:false,
