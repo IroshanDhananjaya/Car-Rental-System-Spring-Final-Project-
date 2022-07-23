@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Kanit:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&family=Caveat:wght@700&family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&family=Caveat:wght@700&family=Patrick+Hand&family=Russo+One&display=swap');
+
+@import url('https://fonts.googleapis.com/css?family=Rajdhani:300,400,500,600,700');
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
+@import url('https://fonts.googleapis.com/css?family=Righteous&display=swap');
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+header{
+    position: absolute;
+    z-index: 1;
+}
+.loader{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+.loader>img{
+    position: absolute;
+    background-color: white;
+    z-index: 5;
+}
+.hidden-loader{
+    display: none;
+}
+
+#btn-sign{
+    border: 2px solid #1400ff;
+    margin-left: 30px;
+    padding: 10px 20px;
+    transition: 1s;
+}
+#btn-sign:hover{
+    background-color:#1400ff ;
+    color: white;
+}
+/* ================== HeroSection ================================= */
+
+.hero-Section{
+    background:url("../images/heroimg3.jpeg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.hero-content{
+    position: absolute;
+    /* border: 2px solid red; */
+    text-align: center;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    color: rgb(255, 255, 255);
+
+}
+.hero-content>h1:nth-child(1){
+    position: relative;
+    z-index: 1;
+    font-size:5.4rem;
+    align-items: center;
+    font-family: 'Patrick Hand', cursive;
+  /*  padding: 10px;*/
+
+}
+.hero-content>p:nth-child(2){
+    position: relative;
+    font-size:1.2rem;
+    align-items: center;
+    padding: 10px;
+    z-index: 1;
+
+}
+.social-img{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.social-img>li{
+    position: relative;
+    list-style: none;
+    height: 40px;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    animation-name: test;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+@keyframes test {
+    to{
+        transform: scale(1);
+    }from{
+         transform: scale(1.2);
+     }
+}
+.social-img>li{
+    font-size: 20px;
+}
+
+
+.social-img>li>a>i{
+    color: white;
+}
+.btn-hire-me{
+    position: relative;
+    top: 30px;
+    padding: 10px 50px;
+    background: transparent;
+    color: white;
+    border-radius: 15px;
+    border: 2px solid white;
+    transition: 1s;
+    font-weight: bold;
+}
+.btn-hire-me:hover{
+    color: rgb(255, 255, 255);
+    transform: scale(1.3);
+    border: 2px solid rgb(255, 0, 0);
+    background-color: rgb(0, 0, 0);
+}
+
+/* =======================About-Section======================= */
+
+.about-section{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.about-area{
+    position: relative;
+
+}
+
+.about-img{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+
+}
+.about-img>img{
+    position: absolute;
+    width: 65%;
+    border-radius: 15%;
+    animation-name: img;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+@keyframes img {
+    to{
+        top: -10px;
+    }from{
+         top: 10px;
+     }
+}
+
+.about-content{
+
+    height: 100%;
+    /* // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+}
+.about-content>h6:nth-child(1){
+    font-family: 'Patrick Hand', cursive;
+    color: orangered;
+    text-align: center;
+    font-size: 4em;
+}
+.about-content>h2:nth-child(2){
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    padding: 30px;
+    font-size: 2em;
+}
+.about-content>p:nth-child(2){
+
+    color: rgb(63, 62, 62);
+    text-align: center;
+    padding: 20px 30px;
+    font-size: 1.02em;
+}
+
+
+/* =======================Our Service======================= */
+.ourServices{
+    position: relative;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+
+    margin-top: -50px;
+}
