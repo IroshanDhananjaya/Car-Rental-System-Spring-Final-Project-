@@ -55,6 +55,24 @@ public class VehicleController {
 
     }
 */
+/*  @PutMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE},produces = {MediaType.APPLICATION_JSON_VALUE})
+  public ResponseUtil updateVehicle(@RequestPart("vImgFile") MultipartFile[] files, @RequestPart("vehicle") VehicleDTO dto){
+      for(MultipartFile file:files){
+          String projectPath=new File("E:/IJSE/GDSE57/Spring_Final_Project").getParentFile().getParentFile().getAbsolutePath();
+          File uploadDir=new File(projectPath+"/uploads");
+          uploadDir.mkdir();
+
+
+          try {
+              file.transferTo(new File(uploadDir.getAbsolutePath()+"/"+file.getOriginalFilename()));
+          } catch (IOException e) {
+              e.printStackTrace();
+          }
+
+      }
+      vehicleService.updateVehicle(dto);
+      return new ResponseUtil(200,"Vehicle Saved",null);
+  }*/
 
     @DeleteMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil deleteVehicle(@RequestParam String id){

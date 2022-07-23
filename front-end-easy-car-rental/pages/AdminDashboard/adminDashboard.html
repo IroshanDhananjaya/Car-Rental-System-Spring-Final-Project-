@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <title>ADMIN
     </title>
-    <!-- Bootstrap CSS -->
+
     <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!----css3---->
+
     <link rel="stylesheet" href="css/custom.css">
-    <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
+
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -469,9 +469,21 @@
                                     <input type="text" class="form-control" id="txtDriverEmail">
                                     <p><small class="text-danger pl-1" id="lblDriverEmail"></small></p>
                                 </div>
-                                <div class=" col-6">
+                                <div class=" col-12">
 
                                     <img src="img/license.jpg" style="width: 600px">
+                                </div>
+                                <div class=" col-3">
+
+                                    <button type="button" id="btn-save-Driver" class="btn btn-outline-primary col-12">Save</button>
+                                </div>
+                                <div class=" col-3">
+
+                                    <button type="button" id="btn-delete-Driver" class="btn btn-outline-danger col-12">Delete</button>
+                                </div>
+                                <div class=" col-3">
+
+                                    <button type="button" id="btn-clear-Driver" class="btn btn-outline-info col-12">Clear</button>
                                 </div>
 
 
@@ -479,12 +491,7 @@
 
 
                         </div>
-                        <div class="mx-5 md-5">
-                            <button type="button" id="btn-save-Driver" class="btn btn-outline-primary">Save</button>
-                            <button type="button" id="btn-update-Driver" class="btn btn-outline-success">Update</button>
-                            <button type="button" id="btn-delete-Driver" class="btn btn-outline-danger">Delete</button>
-                            <button type="button" id="btn-clear-Driver" class="btn btn-outline-info">Clear</button>
-                        </div>
+
 
                     </div>
 
@@ -506,6 +513,7 @@
                                     <th>Address</th>
                                     <th>Contact</th>
                                     <th>Email</th>
+                                    <th>License</th>
                                     <th>status</th>
                                 </tr>
                                 </thead>
@@ -655,65 +663,52 @@
             <p>Dashboard \ Customer \ Customer Manage </p>
             <div class="row ">
                 <div class="12 col-md-5">
-                    <div class="card" style="min-height: 1450px">
+                    <div class="card" style="min-height: 1200px">
                         <div class="card-header card-header-text">
                             <h4 class="card-title">Manage Customer</h4>
                         </div>
                         <div class="card-content">
                             <div class="row">
                                 <div class="col-12">
-                                    <label for="exampleFormControlInput1" class="form-label">National Identity Card
+                                    <label for="txtCNICNumber" class="form-label">National Identity Card
                                         No</label>
-                                    <input type="email" class="form-control" id="exampleFormControlInput1"
-                                           placeholder="">
+                                    <input type="text" class="form-control" id="txtCNICNumber"
+                                           placeholder="" disabled>
                                 </div>
                                 <div class="mb-2 col-12">
-                                    <label for="exampleFormControlInput1" class="form-label">Full Name</label>
-                                    <input type="password" class="form-control" id="exampleFormControlInput2"
-                                           placeholder="E.K.Iroshan Dhananjaya">
+                                    <label for="txtCname" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="txtCname"
+                                           placeholder="E.K.Iroshan Dhananjaya" disabled>
                                 </div>
                                 <div class="mb-2 col-12">
-                                    <label for="exampleFormControlInput1" class="form-label">Address</label>
-                                    <input type="password" class="form-control" id="exampleFormControlInput2"
-                                           placeholder="123/A Galle Road,Panadura">
+                                    <label for="txtCAddress" class="form-label">Address</label>
+                                    <input type="text" class="form-control" id="txtCAddress"
+                                           placeholder="123/A Galle Road,Panadura" disabled>
                                 </div>
                                 <div class="mb-2 col-12">
-                                    <label for="exampleFormControlInput1" class="form-label">Contact Number</label>
-                                    <input type="password" class="form-control" id="exampleFormControlInput2"
-                                           placeholder="0771239850">
+                                    <label for="txtCContactNumber" class="form-label">Contact Number</label>
+                                    <input type="text" class="form-control" id="txtCContactNumber"
+                                           placeholder="0771239850" disabled>
                                 </div>
                                 <div class="mb-2 col-7">
-                                    <label for="exampleFormControlInput1" class="form-label">Email</label>
-                                    <input type="Email" class="form-control" id="exampleFormControlInput2"
-                                           placeholder="iroshandhananjaya@gmail.com">
-                                </div>
-                                <div class="mb-2 col-6">
-                                    <label for="exampleFormControlInput1" class="form-label">Identity Card</label>
-                                    <input type="file" class="form-control" id="exampleFormControlInput2"
-                                           placeholder="0771239850">
+                                    <label for="txtCEmail" class="form-label">Email</label>
+                                    <input type="Email" class="form-control" id="txtCEmail"
+                                           placeholder="iroshandhananjaya@gmail.com" disabled>
                                 </div>
                                 <div class=" col-12">
-
-                                    <img src="img/license.jpg" style="width: 500px">
-                                </div>
-                                <div class="mb-2 col-6">
-                                    <label for="exampleFormControlInput1" class="form-label">Driving License</label>
-                                    <input type="file" class="form-control" id="exampleFormControlInput2"
-                                           placeholder="0771239850">
+                                    <div id="display" class="border border-1, w-100" style="height: 300px"></div>
                                 </div>
                                 <div class=" col-12">
-
-                                    <img src="img/license.jpg" style="width: 500px">
+                                    <img src="http://localhost:8080/Back_end_war_exploded/uploads/NIC.jpg" style="width: 500px">
                                 </div>
-
 
                             </div>
 
 
                         </div>
                         <div class="mx-5 md-5">
-                            <button type="button" class="btn btn-outline-primary">Approve</button>
-                            <button type="button" class="btn btn-outline-danger">Reject</button>
+                            <button type="button" id="btn-approve-customer" class="btn btn-outline-primary">Approve</button>
+                            <button type="button" id="btn-reject-customer" class="btn btn-outline-danger">Reject</button>
 
                         </div>
 
@@ -726,7 +721,7 @@
                 <div class="12 col-md-7">
                     <div class="card" style="min-height: 0">
                         <div class="card-header card-header-text">
-                            <h4 class="card-title">Drivers</h4>
+                            <h4 class="card-title">Pending Customer</h4>
 
                         </div>
                         <div class="card-content table-responsive">
@@ -741,14 +736,8 @@
                                     <th>status</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Bob Williams</td>
-                                    <td>$23,566</td>
-                                    <td>USA</td>
-                                    <td>Not Approved</td>
-                                </tr>
+                                <tbody id="tblPendingCustomer">
+
                                 </tbody>
                             </table>
                         </div>
@@ -806,7 +795,7 @@
             <p>Dashboard \ Vehicle \ Vehicle Manage </p>
             <div class="row ">
                 <div class="12 col-md-12 card-hover">
-                    <div class="card" style="min-height: 750px">
+                    <div class="card" style="min-height: 850px">
                         <div class="card-header card-header-text">
                             <h4 class="card-title">Manage Vehicle</h4>
                         </div>
@@ -915,18 +904,22 @@
 
                                     <img src="img/license.jpg" style="width: 500px">
                                 </div>
+                                <div class=" col-3">
+                                    <button type="button" id="btn-vehicle-save" class="btn btn-outline-primary col-12">Save</button>
+                                </div>
+                                <div class=" col-3">
+                                    <button type="button" id="btn-vehicle-delete" class="btn btn-outline-danger col-12">Delete</button>
+                                </div>
+                                <div class=" col-3">
+                                    <button type="button" id="btn-vehicle-clear" class="btn btn-outline-info col-12">Clear</button>
+                                </div>
 
 
                             </div>
 
 
                         </div>
-                        <div class="mx-5 md-5">
-                            <button type="button" id="btn-vehicle-save" class="btn btn-outline-primary">Save</button>
-                            <button type="button" id="btn-vehicle-update" class="btn btn-outline-success">Update</button>
-                            <button type="button" id="btn-vehicle-delete" class="btn btn-outline-danger">Delete</button>
-                            <button type="button" id="btn-vehicle-clear" class="btn btn-outline-info">Clear</button>
-                        </div>
+
 
                     </div>
 
@@ -936,7 +929,7 @@
                 <div class="12 col-md-12">
                     <div class="card" style="min-height: 0">
                         <div class="card-header card-header-text">
-                            <h4 class="card-title">Drivers</h4>
+                            <h4 class="card-title">Vehicles</h4>
 
                         </div>
                         <div class="card-content table-responsive">
@@ -958,6 +951,60 @@
                                 </tr>
                                 </thead>
                                 <tbody id="vehicleTable">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="12 col-md-12">
+                    <div class="card" style="min-height: 0">
+                        <div class="card-header card-header-text">
+                            <h4 class="card-title">Vehicles Maintenance</h4>
+
+                        </div>
+                        <div class="card-content table-responsive">
+                            <div class="row">
+                                <div class=" col-6">
+                                    <label for="txtMaintenanceVehicle" class="form-label">Enter Vehicle Number</label>
+                                    <input type="text" class="form-control" id="txtMaintenanceVehicle">
+                                </div>
+
+                                    <button type="button" id="btn-vehicle-Maintenance" class="btn btn-outline-info col-3 md-5 col-3">Add Maintenance</button>
+                                    <button type="button" id="btn-Release-Maintenance" class="btn btn-outline-warning col-3 md-5 col-3">Release Maintenance</button>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="12 col-md-12">
+                    <div class="card" style="min-height: 0">
+                        <div class="card-header card-header-text">
+                            <h4 class="card-title">Maintenance Vehicle</h4>
+
+                        </div>
+                        <div class="card-content table-responsive">
+                            <table class="table table-hover">
+                                <thead class="text-primary">
+                                <tr>
+                                    <th>Vehicle Number</th>
+                                    <th>Type</th>
+                                    <th>Brand</th>
+                                    <th>Transmission Type</th>
+                                    <th>Fuel Type</th>
+                                    <th>No Of Passenger</th>
+                                    <th>Colour</th>
+                                    <th>Daily Rent</th>
+                                    <th>MonthlyRent</th>
+                                    <th>Price For KM</th>
+                                    <th>Price For Extra KM</th>
+                                    <th>Status</th>
+                                </tr>
+                                </thead>
+                                <tbody id="MaintenancevehicleTable">
 
                                 </tbody>
                             </table>
@@ -1338,7 +1385,7 @@
 
 <script src="Controller/DriverController.js"></script>
 <script src="Controller/VehicleController.js"></script>
-
+<script src="Controller/CustomerController.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $('#sidebarCollapse').on('click', function () {
@@ -1386,6 +1433,7 @@
         document.getElementsByClassName(" Manage-Booking-content")[0].style.display = "none"
     }
 
+/*
     function forCustomerMange() {
 
         document.getElementsByClassName("AdminHomePage")[0].style.display = "none"
@@ -1396,6 +1444,7 @@
         document.getElementsByClassName("vehicle-schedule-content")[0].style.display = "none"
         document.getElementsByClassName(" Manage-Booking-content")[0].style.display = "none"
     }
+*/
 
 /*
     function forvehicle() {

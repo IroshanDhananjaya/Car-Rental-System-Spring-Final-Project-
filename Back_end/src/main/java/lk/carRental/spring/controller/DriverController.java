@@ -69,7 +69,11 @@ public class DriverController {
         return new ResponseUtil(200,"Driver Updated",null);
 
     }
-
+    @GetMapping(path = "randomDriver",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getDriverRandom(){
+        DriverDTO dto = driverService.getRandomDriver();
+        return new ResponseUtil(200,"OK",dto);
+    }
 
     @GetMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil getDriver(@RequestParam String id){

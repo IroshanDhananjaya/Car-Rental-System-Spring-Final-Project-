@@ -20,8 +20,21 @@ function loadAllDriver() {
         method: "GET",
         success(resp) {
             for (var i of resp.data) {
-                var row = `<tr><td>${i.driverNICNumber}</td><td>${i.driverName}</td><td>${i.driverAddress}</td><td>${i.driverContact}</td><td>${i.driverEmail}</td><td>${i.diverStatus}</td></tr>`;
+                var row = `<tr><td>${i.driverNICNumber}</td><td>${i.driverName}</td><td>${i.driverAddress}</td><td>${i.driverContact}</td><td>${i.driverEmail}</td><td>${i.driverLicenseImg}</td><td>${i.diverStatus}</td></tr>`;
                 $("#driverTable").append(row);
+
+                $("#driverTable>tr").click(function () {
+
+
+                    $("#txtDriverNICNumber").val($(this).children(":eq(0)").text());
+                    $("#txtDriverName").val($(this).children(":eq(1)").text());
+                    $("#txtDriverAddress").val($(this).children(":eq(2)").text());
+                    $("#txtDriverContact").val($(this).children(":eq(3)").text());
+                    $("#txtDriverEmail").val($(this).children(":eq(4)").text());
+
+
+                });
+
             }
         }
     });
@@ -58,6 +71,10 @@ function saveDriver(){
         data:data,
         success(resp){
             alert(resp.message);
+            loadAllDriver();
+            clearAll();
+        },error (ob, textStatus, error) {
+            alert(ob.responseJSON.message);
         }
     });
 
@@ -65,6 +82,20 @@ function saveDriver(){
 
 $("#btn-save-Driver").click(function (){
     saveDriver();
+});
+
+
+
+$("#btn-delete-Driver").click(function (){
+    $.ajax({
+        url:"http://localhost:8080/Back_end_war/api/v1/driver?id="+$("#txtDriverNICNumber").val(),
+        method:"delete",
+        success(resp){
+            alert(resp.message);
+            loadAllDriver();
+            clearAll();
+        }
+    });
 });
 
 //validation start

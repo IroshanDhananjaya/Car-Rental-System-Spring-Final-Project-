@@ -2,17 +2,27 @@
 <html lang="en">
 <head>
 
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <title>Customer Dashboard</title>
+    <title>User
+    </title>
+
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+
     <link rel="stylesheet" href="css/custom.css">
+
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+
+    <!--google material icon-->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons"
+          rel="stylesheet">
 </head>
 <body>
 
@@ -231,46 +241,46 @@
                         <div class="card-content">
                             <div class="row">
                                 <div class="col-12">
-                                    <label for="exampleFormControlInput1" class="form-label">Booking ID</label>
-                                    <input type="email" class="form-control" disabled id="exampleFormControlInput1"
+                                    <label for="txtCustBookingID" class="form-label">Booking ID</label>
+                                    <input type="email" class="form-control" disabled id="txtCustBookingID"
                                            placeholder="">
                                 </div>
                                 <div class="col-12">
-                                    <label for="exampleFormControlInput1" class="form-label">Your NIC Number</label>
-                                    <input type="email" class="form-control" id="exampleFormControlInput1"
+                                    <label for="txtBookingCustId" class="form-label">Your NIC Number</label>
+                                    <input type="email" class="form-control" id="txtBookingCustId"
                                            placeholder="">
                                 </div>
                                 <div class="col-12">
-                                    <label for="exampleFormControlInput1" class="form-label">Pick Up Date</label>
-                                    <input type="date" class="form-control" id="exampleFormControlInput1"
+                                    <label for="txtBookingPickDate" class="form-label">Pick Up Date</label>
+                                    <input type="date" class="form-control" id="txtBookingPickDate"
                                            placeholder="">
                                 </div>
                                 <div class="col-12">
-                                    <label for="exampleFormControlInput1" class="form-label">Return Date</label>
-                                    <input type="date" class="form-control" id="exampleFormControlInput1"
+                                    <label for="txtBookingReturnDate" class="form-label">Return Date</label>
+                                    <input type="date" class="form-control" id="txtBookingReturnDate"
                                            placeholder="">
                                 </div>
 
                                 <div class="col-12">
-                                    <label for="exampleFormControlInput1" class="form-label">Do you Need Driver</label>
-                                    <input class="form-check-input mx-3" type="checkbox" value="Yes"
-                                           id="flexCheckDefault">
-                                    <input type="text" class="form-control" id="exampleFormControlInput1" disabled
-                                           placeholder="Driver Not Assign ">
+                                    <label for="cmbDriverAssign" class="form-label">Do you need a driver ?</label>
+                                    <select class="form-select" aria-label="Default select example" id="cmbDriverAssign">
+                                        <option>Yes</option>
+                                        <option selected>No</option>
+                                    </select>
                                 </div>
                                 <div class="col-12">
-                                    <label for="exampleFormControlInput1" class="form-label">Vehicle Number</label>
-                                    <input type="email" class="form-control" disabled id="exampleFormControlInput1"
+                                    <label for="txtBookingVNumber" class="form-label">Vehicle Number</label>
+                                    <input type="email" class="form-control" disabled id="txtBookingVNumber"
                                            placeholder="">
                                 </div>
                                 <div class="col-12">
-                                    <label for="exampleFormControlInput1" class="form-label">Lose Damage</label>
-                                    <input type="email" class="form-control" disabled id="exampleFormControlInput1"
+                                    <label for="txtBookingLoseDamage" class="form-label">Lose Damage</label>
+                                    <input type="email" class="form-control" disabled id="txtBookingLoseDamage"
                                            placeholder="">
                                 </div>
                                 <div class="col-12">
-                                    <label for="exampleFormControlInput1" class="form-label">Upload Slip</label>
-                                    <input type="file" class="form-control" id="exampleFormControlInput1"
+                                    <label for="txtBookingLoseDamageImg" class="form-label">Upload Slip</label>
+                                    <input type="file" class="form-control" id="txtBookingLoseDamageImg"
                                            placeholder="">
                                 </div>
 
@@ -279,21 +289,51 @@
                                 </div>
 
                                 <div class="col-12">
-                                    <button type="button" class="btn btn-outline-success ">Add To Cart</button>
-                                    <button type="button" class="btn btn-outline-info">Place Your Booking</button>
+                                    <button type="button" id="btn-booking-addToCart" class="btn btn-outline-success ">Add To Cart</button>
+                                    <button type="button" id="btn-booking-place" class="btn btn-outline-info">Place Your Booking</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="12 col-md-7">
+                    <div class="card" style="min-height: 0">
+                        <div class="card-header card-header-text">
+                            <h4 class="card-title">Your Cart</h4>
+
+                        </div>
+
+                        <div class="card-content table-responsive" style="min-height:980px">
+                            <table class="table table-hover">
+                                <thead class="text-primary">
+                                <tr>
+                                    <th>Booking ID</th>
+                                    <th>Pick up Date</th>
+                                    <th>Return Date</th>
+                                    <th>Lose Damage</th>
+                                    <th>Vehicle Number</th>
+                                    <th>Driver Name</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="12 col-md-12">
                     <div class="card" style="min-height: 0">
                         <div class="card-header card-header-text">
                             <h4 class="card-title">Choose Your Vehicle</h4>
 
                         </div>
-                        <div class="card-content table-responsive  pre-scrollable" style="min-height:980px">
+                        <div class="card-content table-responsive  pre-scrollable" >
                             <table class="table table-hover">
                                 <thead class="text-primary">
                                 <tr>
@@ -309,7 +349,7 @@
                                     <th>Status</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="tblCustVehicleTable">
 
                                 </tbody>
                             </table>
@@ -317,37 +357,6 @@
                     </div>
                 </div>
 
-
-                <div class="12 col-md-12">
-                    <div class="card" style="min-height: 0">
-                        <div class="card-header card-header-text">
-                            <h4 class="card-title">Your Cart</h4>
-
-                        </div>
-
-                        <div class="card-content table-responsive">
-                            <table class="table table-hover">
-                                <thead class="text-primary">
-                                <tr>
-                                    <th>Booking ID</th>
-                                    <th>Your NIC Number</th>
-                                    <th>Pick up Date</th>
-                                    <th>Return Date</th>
-                                    <th>Lose Damage</th>
-                                    <th>Vehicle Number</th>
-                                    <th>Driver Name</th>
-                                    <th>status</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
 
 
                 <footer class="footer">
@@ -532,7 +541,7 @@
                 </footer>
 
 
-                <!--    ====================2 page==============-->
+
 
 
             </div>
@@ -742,6 +751,8 @@
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="../../assets/jQuery/jquery-3.6.0.min.js"></script>
 <script src="../../assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="Controller/CustomerDashboadController.js"></script>
+
 
 
 <script type="text/javascript">

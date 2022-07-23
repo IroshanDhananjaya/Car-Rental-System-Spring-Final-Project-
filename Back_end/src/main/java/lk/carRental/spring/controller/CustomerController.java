@@ -4,6 +4,7 @@ import lk.carRental.spring.dto.CustomerDTO;
 import lk.carRental.spring.service.CustomerService;
 import lk.carRental.spring.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
 
 /**
@@ -25,7 +27,35 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
-    @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE},produces = {MediaType.APPLICATION_JSON_VALUE})
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(path = "register", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseUtil registerCustomer(@RequestPart("files") MultipartFile[] file, @RequestPart("customer") CustomerDTO customerDTO) {
+
+
+        for (MultipartFile myFile : file) {
+
+            try {
+                String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
+                File uploadsDir = new File(projectPath + "/uploads");
+                uploadsDir.mkdir();
+                myFile.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + myFile.getOriginalFilename()));
+                System.out.println(projectPath);
+            } catch (IOException | URISyntaxException e) {
+                e.printStackTrace();
+                return new ResponseUtil(500, "Registration Failed.Try Again Latter", null);
+            }
+        }
+
+
+
+        customerDTO.setCustdrivingImg("uploads/" + customerDTO.getCustdrivingImg());
+        customerDTO.setCustNICImg("uploads/" + customerDTO.getCustNICImg());
+
+        customerService.saveCustomer(customerDTO);
+        return new ResponseUtil(200,"Customer Saved",null);
+    }
+
+  /*  @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE},produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseUtil saveCustomer(@RequestPart("files") MultipartFile[] files,@RequestPart("customer")CustomerDTO dto){
         for(MultipartFile file:files){
             String projectPath=new File("E:/IJSE/GDSE57/Spring_Final_Project").getParentFile().getParentFile().getAbsolutePath();
@@ -42,7 +72,7 @@ public class CustomerController {
         }
         customerService.saveCustomer(dto);
         return new ResponseUtil(200,"Customer Saved",null);
-    }
+    }*/
 
 //    @PostMapping
 //   public ResponseUtil saveCustomer(@ModelAttribute CustomerDTO dto){

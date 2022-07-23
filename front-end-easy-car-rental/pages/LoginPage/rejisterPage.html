@@ -89,7 +89,7 @@
 
 <script>
 
-    function customerRegistration(){
+/*    function customerRegistration(){
         var data=new FormData();
 
         let custLicenseImg=$("#txtCustLicenseImg")[0].files[0];
@@ -115,7 +115,7 @@
         data.append("customer",new Blob([JSON.stringify(customer)],{type:"application/json"}))
 
         $.ajax({
-            url:"http://localhost:8080/Back_end_war/api/v1/customer",
+            url:"http://localhost:8080/Back_end_war_exploded/api/v1/customer/register",
             method:"post",
             async:true,
             contentType:false,
@@ -126,10 +126,45 @@
             }
         });
 
-    }
+    }*/
 
     $("#btn-register").click(function (){
-        customerRegistration();
+        var data=new FormData();
+
+        let custLicenseImg=$("#txtCustLicenseImg")[0].files[0];
+        let cusNICImg=$("#txtCustNICImage")[0].files[0];
+        let licenseImgName=$("#txtCustLicenseImg")[0].files[0].name;
+        let nicImgName=$("#txtCustNICImage")[0].files[0].name
+
+        var customer={
+            "custNICNumber":$("#txtCustNICNumber").val(),
+            "custName":$("#txtCustName").val(),
+            "custAddress":$("#txtCustAddress").val(),
+            "custNICImg":nicImgName,
+            "custdrivingImg":licenseImgName,
+            "custContact":$("#txtContactNumber").val(),
+            "custEmail":$("#txtCustEmail").val(),
+            "custPassword":$("#txtCustPassword").val(),
+            "custStatus":"Not Approved",
+            "type":"Customer",
+        }
+
+        data.append("files",custLicenseImg);
+        data.append("files",cusNICImg);
+        data.append("customer",new Blob([JSON.stringify(customer)],{type:"application/json"}))
+
+        $.ajax({
+            url:"http://localhost:8080/Back_end_war_exploded/api/v1/customer/register",
+            method:"post",
+            async:true,
+            contentType:false,
+            processData:false,
+            data:data,
+            success(resp){
+                alert(resp.message);
+            }
+        });
+
     });
 
   /*  $("#btn-register").click(function (){
