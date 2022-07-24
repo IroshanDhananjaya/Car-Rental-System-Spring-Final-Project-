@@ -29,3 +29,30 @@ function loadAllVehicleSchedule(){
     });
 
 }
+
+
+function SearchVehicleSchedule(){
+
+
+    $("#tblVehicleSchedule").empty();
+    $.ajax({
+        url:"http://localhost:8080/Back_end_war_exploded/api/v1/vehicleSchedule",
+        method:"get",
+        success(resp){
+            console.log(resp)
+            for (var i of resp.data){
+                if(i.vehicleNumber.vehicleNumber==$("#txtVehiclescheduleSearch").val()){
+                    var row=`<tr><td>${i.vehicleNumber.vehicleNumber}</td><td>${i.bookingId.bookingId}</td><<td>${i.vehicleStartDate}</td>/<td>${i.vehicleEndDate}</td>t<td>${i.vehicleScheduleStatus}</td>r>`;
+
+                    $("#tblVehicleSchedule").append(row);
+                }
+
+            }
+        }
+    });
+
+}
+
+$("#btn-vehicleSchedule-search").click(function (){
+    SearchVehicleSchedule();
+});
