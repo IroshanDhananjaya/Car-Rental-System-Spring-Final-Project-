@@ -54,17 +54,17 @@ public class BookingController {
 
 
         bookingService.saveBooking(bookingDTO);
-        return new ResponseUtil(200,"Booking Saved Saved",null);
+        return new ResponseUtil(200,"Booking Saved",null);
     }
 
 
 
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+/*    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil addBooking(@RequestBody BookingDTO bookingDTO){
        bookingService.saveBooking(bookingDTO);
         return new ResponseUtil(200,"Booking saved",null);
-    }
+    }*/
 
     @GetMapping(params = {"bookingId"},produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil getBooking(@RequestParam String bookingId){

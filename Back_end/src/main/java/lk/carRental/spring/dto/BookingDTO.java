@@ -23,9 +23,6 @@ import java.util.List;
 @ToString
 public class BookingDTO {
     private String bookingId;
-    private String pickUpDate;
-    private String returnDate;
-    private String bookingStatus;
     private String customer;
     private List<BookingDetailsDTO> bookingDetails = new ArrayList<>();
 }

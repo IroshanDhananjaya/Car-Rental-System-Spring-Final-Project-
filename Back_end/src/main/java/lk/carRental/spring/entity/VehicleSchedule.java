@@ -27,18 +27,18 @@ public class VehicleSchedule {
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "bookingId",referencedColumnName = "bookingId")
-    private Booking bookingId;
+    @JoinColumn(name = "bookingDetailsId",referencedColumnName = "bookingDetailsId")
+    private BookingDetails bookingDetails;
 
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name = "vehicleNumber", referencedColumnName = "vehicleNumber")
     private Vehicle vehicleNumber;
 
-    public VehicleSchedule(String vehicleStartDate, String vehicleEndDate, String vehicleScheduleStatus, Booking bookingId, Vehicle vehicleNumber) {
+    public VehicleSchedule(String vehicleStartDate, String vehicleEndDate, String vehicleScheduleStatus, BookingDetails bookingDetails, Vehicle vehicleNumber) {
         this.vehicleStartDate = vehicleStartDate;
         this.vehicleEndDate = vehicleEndDate;
         this.vehicleScheduleStatus = vehicleScheduleStatus;
-        this.bookingId = bookingId;
+        this.bookingDetails = bookingDetails;
         this.vehicleNumber = vehicleNumber;
     }
 }

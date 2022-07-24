@@ -128,6 +128,8 @@ function addbooking(){
 
          details={
              "bookingDetailsId":"1",
+             "pickUpDate":i.pickDate,
+             "returnDate":i.retDate,
              "loseDamageStatus":i.damage,
              "loseDamageImg":losDamageSlipName,
              "detailsStatus":"Not Approved",
@@ -141,9 +143,6 @@ function addbooking(){
 
     var Booking={
         "bookingId":bookingID,
-        "pickUpDate":pickUpDate,
-        "returnDate":returnDate,
-        "bookingStatus":"Not Approved",
         "customer":custID,
         "bookingDetails":BookingDetailsDB,
 

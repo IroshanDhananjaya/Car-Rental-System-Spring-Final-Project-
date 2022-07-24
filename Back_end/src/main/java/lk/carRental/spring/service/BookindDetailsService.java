@@ -19,4 +19,6 @@ public interface BookindDetailsService {
     public BookingDetailsDTO searchBookingDetails(String id);
 
     public List<BookingDetailsDTO> getAllBookingDetails();
+
+
 }

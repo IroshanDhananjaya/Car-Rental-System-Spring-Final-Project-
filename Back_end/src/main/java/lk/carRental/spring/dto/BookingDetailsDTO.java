@@ -22,6 +22,8 @@ import javax.persistence.ManyToOne;
 @ToString
 public class BookingDetailsDTO {
     private int bookingDetailsId;
+    private String pickUpDate;
+    private String returnDate;
     private double loseDamageStatus;
     private String loseDamageImg;
     private String detailsStatus;

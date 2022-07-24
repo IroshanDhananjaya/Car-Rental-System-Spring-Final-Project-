@@ -22,7 +22,7 @@ function loadAllDriverSchedule(){
         success(resp){
             console.log(resp)
             for (var i of resp.data){
-                var row=`<tr><td>${i.driverId.driverNICNumber}</td><td>${i.bookingId.bookingId}</td><<td>${i.driverStartDate}</td>/<td>${i.driverEndDate}</td>t<td>${i.driverScheduleStatus}</td>r>`;
+                var row=`<tr><td>${i.driverId.driverNICNumber}</td><td>${i.driverStartDate}</td>/<td>${i.driverEndDate}</td>t<td>${i.driverScheduleStatus}</td>r>`;
 
                 $("#tblDriverSchedule").append(row);
             }
@@ -42,7 +42,7 @@ function SearchDriverSchedule(){
             console.log(resp)
             for (var i of resp.data){
                 if (i.driverId.driverNICNumber==$("#txtDriverSheduleSearch").val()){
-                    var row=`<tr><td>${i.driverId.driverNICNumber}</td><td>${i.bookingId.bookingId}</td><<td>${i.driverStartDate}</td>/<td>${i.driverEndDate}</td>t<td>${i.driverScheduleStatus}</td>r>`;
+                    var row=`<tr><td>${i.driverId.driverNICNumber}</td><td>${i.driverStartDate}</td>/<td>${i.driverEndDate}</td>t<td>${i.driverScheduleStatus}</td>r>`;
 
                     $("#tblDriverSchedule").append(row);
                 }

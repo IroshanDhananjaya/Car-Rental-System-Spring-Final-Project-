@@ -593,7 +593,6 @@
                                     <tr>
 
                                         <th>Driver NIC</th>
-                                        <th>Booking ID</th>
                                         <th>Start Date</th>
                                         <th>End Date</th>
                                         <th>status</th>
@@ -1061,7 +1060,6 @@
                                     <tr>
 
                                         <th>Vehicle Number</th>
-                                        <th>Booking ID</th>
                                         <th>Start Date</th>
                                         <th>End Date</th>
                                         <th>status</th>
@@ -1131,48 +1129,54 @@
                         <div class="card-content">
                             <div class="row">
                                 <div class="col-4">
-                                    <label for="exampleFormControlInput1" class="form-label">Booking ID</label>
-                                    <input type="email" class="form-control" id="exampleFormControlInput1"
+                                    <label for="txtBManageBookingID" class="form-label">Booking ID</label>
+                                    <input type="text" class="form-control" id="txtBManageBookingID"
                                            placeholder="">
                                 </div>
                                 <div class="col-4">
-                                    <label for="exampleFormControlInput1" class="form-label">Customer Name</label>
-                                    <input type="email" class="form-control" id="exampleFormControlInput1"
+                                    <label for="txtBManageCustomerID" class="form-label">Customer NIC</label>
+                                    <input type="text" class="form-control" id="txtBManageCustomerID"
                                            placeholder="">
                                 </div>
                                 <div class="col-4">
-                                    <label for="exampleFormControlInput1" class="form-label">Vehicle Number</label>
-                                    <input type="email" class="form-control" id="exampleFormControlInput1"
+                                    <label for="txtBManageCustomerName" class="form-label">Customer Name</label>
+                                    <input type="text" class="form-control" id="txtBManageCustomerName"
+                                           placeholder="">
+                                </div>
+                                <div class="col-4">
+                                    <label for="txtBManageVNumber" class="form-label">Vehicle Number</label>
+                                    <input type="text" class="form-control" id="txtBManageVNumber"
                                            placeholder="">
                                 </div>
 
-                                <div class="col-6">
-                                    <label for="exampleFormControlInput1" class="form-label">Driver Name</label>
-                                    <input type="email" class="form-control" id="exampleFormControlInput1"
+                                <div class="col-4">
+                                    <label for="txtBManageDriverNIC" class="form-label">Driver NIC</label>
+                                    <input type="text" class="form-control" id="txtBManageDriverNIC"
                                            placeholder="">
                                 </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <br>
-                                    <button type="button" class="btn btn-outline-success">Change Driver</button>
+                                    <button type="button" id="btn-change-driver" class="btn btn-outline-success">Change Driver</button>
                                 </div>
                                 <div class=" col-6">
-                                    <label for="exampleFormControlInput1" class="form-label">Pick Up Date</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput2">
+                                    <label for="txtBManagePickDate" class="form-label">Pick Up Date</label>
+                                    <input type="text" class="form-control" id="txtBManagePickDate">
 
                                 </div>
                                 <div class=" col-6">
-                                    <label for="exampleFormControlInput1" class="form-label">Return Date</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput2">
+                                    <label for="txtBManageReturnDate" class="form-label">Return Date</label>
+                                    <input type="text" class="form-control" id="txtBManageReturnDate">
                                 </div>
 
                                 <div class=" col-6">
-                                    <label for="exampleFormControlInput1" class="form-label">Lose Damage</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput2">
+                                    <label for="txtBManageLoseDamage" class="form-label">Lose Damage</label>
+                                    <input type="text" class="form-control" id="txtBManageLoseDamage">
                                 </div>
                                 <div class=" col-12">
                                     <br>
                                     <label for="exampleFormControlInput1" class="form-label">Lose Damage Slip</label>
-                                    <img src="img/license.jpg" style="width: 600px">
+
+                                    <div id="loseDamageSlip" class="border border-1, w-100" style="height: 300px"></div>
                                 </div>
 
 
@@ -1216,11 +1220,7 @@
 
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Bob Williams</td>
 
-                                    </tr>
 
 
                                     </tbody>
@@ -1242,23 +1242,16 @@
                             <table class="table table-hover">
                                 <thead class="text-primary">
                                 <tr>
+                                    <th>Booking Details ID</th>
                                     <th>Booking ID</th>
                                     <th>Pick up Date</th>
                                     <th>Return Date</th>
                                     <th>Lose Damage</th>
-                                    <th>Vehicle Number</th>
-                                    <th>Driver Name</th>
                                     <th>status</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Bob Williams</td>
-                                    <td>$23,566</td>
-                                    <td>USA</td>
-                                    <td>Not Approved</td>
-                                </tr>
+                                <tbody id="tblPendingBooking">
+
                                 </tbody>
                             </table>
                         </div>
@@ -1327,6 +1320,7 @@
 <script src="Controller/CustomerController.js"></script>
 <script src="Controller/VehicleScheduleController.js"></script>
 <script src="Controller/DriverScheduleController.js"></script>
+<script src="Controller/BookingController.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -1414,7 +1408,7 @@
         document.getElementsByClassName(" Manage-Booking-content")[0].style.display = "none"
     }*/
 
-    function forBookingManage() {
+  /*  function forBookingManage() {
         document.getElementsByClassName("AdminHomePage")[0].style.display = "none"
         document.getElementsByClassName("driver-manage-content")[0].style.display = "none"
         document.getElementsByClassName("driver-schedule-content")[0].style.display = "none"
@@ -1422,7 +1416,7 @@
         document.getElementsByClassName("vehicle-manage-content")[0].style.display = "none"
         document.getElementsByClassName("vehicle-schedule-content")[0].style.display = "none"
         document.getElementsByClassName(" Manage-Booking-content")[0].style.display = "block"
-    }
+    }*/
 
 </script>
 

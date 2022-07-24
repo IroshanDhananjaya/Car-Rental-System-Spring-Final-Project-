@@ -22,6 +22,8 @@ public class BookingDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bookingDetailsId;
+    private String pickUpDate;
+    private String returnDate;
     private double loseDamageStatus;
     private String loseDamageImg;
     private String detailsStatus;
@@ -32,12 +34,12 @@ public class BookingDetails {
     private Booking bookingId;
 
 
-
-    public BookingDetails(double loseDamageStatus, String loseDamageImg, String detailsStatus, Booking bookingId) {
+    public BookingDetails(String pickUpDate, String returnDate, double loseDamageStatus, String loseDamageImg, String detailsStatus, Booking bookingId) {
+        this.pickUpDate = pickUpDate;
+        this.returnDate = returnDate;
         this.loseDamageStatus = loseDamageStatus;
         this.loseDamageImg = loseDamageImg;
         this.detailsStatus = detailsStatus;
         this.bookingId = bookingId;
-
     }
 }

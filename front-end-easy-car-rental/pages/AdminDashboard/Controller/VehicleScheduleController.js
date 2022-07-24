@@ -21,7 +21,7 @@ function loadAllVehicleSchedule(){
         success(resp){
             console.log(resp)
             for (var i of resp.data){
-                var row=`<tr><td>${i.vehicleNumber.vehicleNumber}</td><td>${i.bookingId.bookingId}</td><<td>${i.vehicleStartDate}</td>/<td>${i.vehicleEndDate}</td>t<td>${i.vehicleScheduleStatus}</td>r>`;
+                var row=`<tr><td>${i.vehicleNumber.vehicleNumber}</td><<td>${i.vehicleStartDate}</td>/<td>${i.vehicleEndDate}</td>t<td>${i.vehicleScheduleStatus}</td>r>`;
 
                 $("#tblVehicleSchedule").append(row);
             }
@@ -42,7 +42,7 @@ function SearchVehicleSchedule(){
             console.log(resp)
             for (var i of resp.data){
                 if(i.vehicleNumber.vehicleNumber==$("#txtVehiclescheduleSearch").val()){
-                    var row=`<tr><td>${i.vehicleNumber.vehicleNumber}</td><td>${i.bookingId.bookingId}</td><<td>${i.vehicleStartDate}</td>/<td>${i.vehicleEndDate}</td>t<td>${i.vehicleScheduleStatus}</td>r>`;
+                    var row=`<tr><td>${i.vehicleNumber.vehicleNumber}</td><<td>${i.vehicleStartDate}</td>/<td>${i.vehicleEndDate}</td>t<td>${i.vehicleScheduleStatus}</td>r>`;
 
                     $("#tblVehicleSchedule").append(row);
                 }

@@ -59,9 +59,6 @@ public class BookingServiceImpl implements BookingService {
             Customer customer = customerRepo.findById(entity.getCustomer()).get();
             Booking booking=new Booking(
                     entity.getBookingId(),
-                    entity.getPickUpDate(),
-                    entity.getReturnDate(),
-                    "Not Approved",
                     customer
             );
 
@@ -71,6 +68,8 @@ public class BookingServiceImpl implements BookingService {
                 for (BookingDetailsDTO detailsDTO:entity.getBookingDetails()) {
                    /* Booking booking1 = bookingRepo.findById(detailsDTO.getBookingId()).get();*/
                     BookingDetails bookingDetails=new BookingDetails(
+                            detailsDTO.getPickUpDate(),
+                            detailsDTO.getReturnDate(),
                             detailsDTO.getLoseDamageStatus(),
                             "uploads/"+detailsDTO.getLoseDamageImg(),
                             "Not Approved",
@@ -83,24 +82,26 @@ public class BookingServiceImpl implements BookingService {
                     if(IsBookingDetails!=null) {
 
                         System.out.println(detailsDTO.getDriverNICNumber());
-                        if(detailsDTO.getDriverNICNumber()!=("Not Assign")){
+                        if(detailsDTO.getDriverNICNumber().equals("Assign")){
                             Driver driver=mapper.map( driverService.getRandomDriver(),Driver.class);
+
+
                             DriverSchedule driverSchedule = new DriverSchedule(
-                                            entity.getPickUpDate(),
-                                            entity.getReturnDate(),
-                                            "On Work",
-                                    booking,
-                                            driver
+                                    detailsDTO.getPickUpDate(),
+                                    detailsDTO.getReturnDate(),
+                                    "On Work",
+                                    IsBookingDetails,
+                                    driver
                                     );
                                     DriverSchedule IsDriverSchedule = drivescheduleRepo.save(driverSchedule);
                                 }
                         if (IsBookingDetails != null) {
                                     Vehicle vehicle = vehicleRepo.findById(detailsDTO.getVehicleNumber()).get();
                                     VehicleSchedule vehicleSchedule = new VehicleSchedule(
-                                            entity.getPickUpDate(),
-                                            entity.getReturnDate(),
+                                            detailsDTO.getPickUpDate(),
+                                            detailsDTO.getReturnDate(),
                                             "On Booking",
-                                            booking,
+                                            IsBookingDetails,
                                             vehicle
                                     );
                                     vehicleScheduleRepo.save(vehicleSchedule);

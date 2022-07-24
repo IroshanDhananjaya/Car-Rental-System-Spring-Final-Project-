@@ -34,6 +34,7 @@ function loadAllPendingCustomer(){
                     $("#txtCContactNumber").val($(this).children(":eq(3)").text());
                     $("#txtCEmail").val($(this).children(":eq(4)").text());
 
+
                     $.ajax({
                         url:"http://localhost:8080/Back_end_war_exploded/api/v1/customer?id="+$("#txtCNICNumber").val(),
                         method:"get",
