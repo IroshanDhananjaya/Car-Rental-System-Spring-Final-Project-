@@ -41,9 +41,14 @@ public class VehicleScheduleController {
     @GetMapping
     public ResponseUtil getAllDriverSchedule(){
         List<VehicleScheduleDTO> allVehicleSchedule = vehicleScheduleService.getAllVehicleSchedule();
-
-
         return new ResponseUtil(200,"OK",allVehicleSchedule);
     }
+
+    @PutMapping(path = "freeVehicleSchedule",consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil freeDriverSchedule(@RequestBody VehicleScheduleDTO dto){
+        vehicleScheduleService.updateVehicleSchedule(dto);
+        return new ResponseUtil(200,"OK",null);
+    }
+
 
 }

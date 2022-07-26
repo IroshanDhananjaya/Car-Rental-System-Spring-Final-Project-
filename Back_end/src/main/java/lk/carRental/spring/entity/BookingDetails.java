@@ -27,19 +27,19 @@ public class BookingDetails {
     private double loseDamageStatus;
     private String loseDamageImg;
     private String detailsStatus;
-
+    private String custNIC;
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "bookingId",referencedColumnName = "bookingId")
     private Booking bookingId;
 
-
-    public BookingDetails(String pickUpDate, String returnDate, double loseDamageStatus, String loseDamageImg, String detailsStatus, Booking bookingId) {
+    public BookingDetails(String pickUpDate, String returnDate, double loseDamageStatus, String loseDamageImg, String detailsStatus, String custNIC, Booking bookingId) {
         this.pickUpDate = pickUpDate;
         this.returnDate = returnDate;
         this.loseDamageStatus = loseDamageStatus;
         this.loseDamageImg = loseDamageImg;
         this.detailsStatus = detailsStatus;
+        this.custNIC = custNIC;
         this.bookingId = bookingId;
     }
 }

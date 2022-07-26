@@ -10,30 +10,31 @@ function loadAllVehicleInCustomerDashboard(){
          method: "GET",
          success(resp) {
              for (var i of resp.data) {
-                 var row = `<tr><td>${i.vehicleNumber}</td><td>${i.vehicleType}</td><td>${i.vehicleBrand}</td><td>${i.trasmissionType}</td><td>${i.vehicleFuelType}</td><td>${i.noOfPassenger}</td><td>${i.colour}</td><td>${i.dailyRent}</td><td>${i.monthlyRent}</td><td>${i.priceForKM}</td><td>${i.priceForExtraKM}</td><td>${i.vehicleStatus}</td></tr>`;
+
+                     var row = `<tr><td>${i.vehicleNumber}</td><td>${i.vehicleType}</td><td>${i.vehicleBrand}</td><td>${i.trasmissionType}</td><td>${i.vehicleFuelType}</td><td>${i.noOfPassenger}</td><td>${i.colour}</td><td>${i.dailyRent}</td><td>${i.monthlyRent}</td><td>${i.priceForKM}</td><td>${i.priceForExtraKM}</td><td>${i.vehicleStatus}</td></tr>`;
                  $("#tblCustVehicleTable").append(row);
 
                  $("#tblCustVehicleTable>tr").click(function () {
 
 
-
-                    genarateNewBookingId();
+                     genarateNewBookingId();
 
 
                      $("#txtBookingVNumber").val($(this).children(":eq(0)").text());
 
-                        var type=$(this).children(":eq(1)").text();
+                     var type = $(this).children(":eq(1)").text();
 
-                        if(type=="General"){
-                            $("#txtBookingLoseDamage").val("10000")
-                        }else if(type=="Premium"){
-                            $("#txtBookingLoseDamage").val("15000")
-                        }else {
-                            $("#txtBookingLoseDamage").val("20000")
-                        }
+                     if (type == "General") {
+                         $("#txtBookingLoseDamage").val("10000")
+                     } else if (type == "Premium") {
+                         $("#txtBookingLoseDamage").val("15000")
+                     } else {
+                         $("#txtBookingLoseDamage").val("20000")
+                     }
 
                  });
              }
+
          }
      });
  }
@@ -110,7 +111,7 @@ function addbooking(){
          url:"http://localhost:8080/Back_end_war_exploded/api/v1/customer?id="+custID,
          method: "get",
          success(resp) {
-             customer= resp.data ;
+             customer= resp.data;
              console.log("Customer"+customer)
          }
      });
@@ -143,7 +144,9 @@ function addbooking(){
 
     var Booking={
         "bookingId":bookingID,
-        "customer":custID,
+        "customer": {
+            "custNICNumber":custID,
+        },
         "bookingDetails":BookingDetailsDB,
 
     }

@@ -52,7 +52,7 @@ public class CustomerController {
         customerDTO.setCustNICImg("uploads/" + customerDTO.getCustNICImg());
 
         customerService.saveCustomer(customerDTO);
-        return new ResponseUtil(200,"Customer Saved",null);
+        return new ResponseUtil(200,"Customer Saved",customerDTO);
     }
 
   /*  @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE},produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -91,7 +91,7 @@ public class CustomerController {
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil updateCustomer(@RequestBody CustomerDTO dto){
         customerService.updateCustomer(dto);
-        return new ResponseUtil(200,"Customer Updated",null);
+        return new ResponseUtil(200,"Update Successful",null);
 
     }
 

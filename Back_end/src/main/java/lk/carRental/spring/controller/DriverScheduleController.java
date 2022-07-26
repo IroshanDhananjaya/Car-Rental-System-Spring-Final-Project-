@@ -1,5 +1,6 @@
 package lk.carRental.spring.controller;
 
+import lk.carRental.spring.dto.BookingDetailsDTO;
 import lk.carRental.spring.dto.DriverDTO;
 import lk.carRental.spring.dto.DriverScheduleDTO;
 import lk.carRental.spring.service.DriverScheduleService;
@@ -22,15 +23,19 @@ public class DriverScheduleController {
     @Autowired
     DriverScheduleService driverScheduleService;
 
-    @DeleteMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
+   /* @DeleteMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil deleteDriverschedule(@RequestParam String id){
-
         driverScheduleService.deleteDriverSchedule(id);
         return new ResponseUtil(200,"Deleted",null);
+    }*/
+
+
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil addDriverSchedule(@RequestBody DriverScheduleDTO dto){
+        driverScheduleService.updateDriverSchedule(dto);
+        return new ResponseUtil(200,"OK",null);
     }
-
-
-
 
     @GetMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil getDriverSchedule(@RequestParam String id){
@@ -44,4 +49,15 @@ public class DriverScheduleController {
         return new ResponseUtil(200,"OK",allDriverSchedule);
     }
 
+    @PutMapping(path = "freeDriverSchedule",consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil freeDriverSchedule(@RequestBody DriverScheduleDTO dto){
+        driverScheduleService.updateDriverSchedule(dto);
+        return new ResponseUtil(200,"OK",null);
+    }
+
+    @DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil RemovDriverSchedule(@RequestBody DriverScheduleDTO dto){
+        driverScheduleService.deleteDriverSchedule(dto);
+        return new ResponseUtil(200,"OK",null);
+    }
 }

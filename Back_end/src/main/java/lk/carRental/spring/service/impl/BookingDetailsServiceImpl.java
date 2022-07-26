@@ -28,20 +28,26 @@ public class BookingDetailsServiceImpl implements BookindDetailsService {
     ModelMapper mapper;
 
     public void saveBookingDetails(BookingDetailsDTO entity) {
-
+        BookingDetails details = mapper.map(entity, BookingDetails.class);
+        bookingDetailsRepo.save(details);
     }
 
-    public void deleteBookingDetails(String id) {
+    public void deleteBookingDetails(BookingDetailsDTO dto) {
+        BookingDetails details = mapper.map(dto, BookingDetails.class);
+
+            bookingDetailsRepo.delete(details);
 
     }
 
     public void updateBookingDetails(BookingDetailsDTO entity) {
-
-
+        BookingDetails details = mapper.map(entity, BookingDetails.class);
+        bookingDetailsRepo.save(details);
     }
 
     public BookingDetailsDTO searchBookingDetails(String id) {
-        return null;
+        BookingDetails bookingDetails = bookingDetailsRepo.findById(id).get();
+        BookingDetailsDTO detailsDTO = mapper.map(bookingDetails, BookingDetailsDTO.class);
+        return detailsDTO;
     }
 
     public List<BookingDetailsDTO> getAllBookingDetails() {

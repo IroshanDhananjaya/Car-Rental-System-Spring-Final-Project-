@@ -7,13 +7,12 @@
     background-position: center;
     width: 100vw;
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+
 }
 
 .loging-Form{
-    position: relative;
+    position: absolute;
     width: 60%;
     height: 60%;
     background-color: white;
@@ -22,6 +21,11 @@
     align-items: center;
     justify-content: center;
     opacity: 80%;
+margin:auto;
+    left: 0;
+    right: 0;
+    top:0;
+    bottom: 0;
 
 }
 .loging-Form>h3{

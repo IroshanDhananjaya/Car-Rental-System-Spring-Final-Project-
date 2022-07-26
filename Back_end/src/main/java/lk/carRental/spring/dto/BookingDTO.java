@@ -23,6 +23,11 @@ import java.util.List;
 @ToString
 public class BookingDTO {
     private String bookingId;
-    private String customer;
+    private Customer customer;
     private List<BookingDetailsDTO> bookingDetails = new ArrayList<>();
+
+    public BookingDTO(String bookingId, Customer customer) {
+        this.bookingId = bookingId;
+        this.customer = customer;
+    }
 }

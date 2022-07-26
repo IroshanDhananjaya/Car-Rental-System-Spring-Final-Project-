@@ -40,7 +40,8 @@ public class VehicleScheduleServiceImpl implements VehicleScheduleService {
     }
 
     public void updateVehicleSchedule(VehicleScheduleDTO entity) {
-
+        VehicleSchedule vehicleSchedule = mapper.map(entity, VehicleSchedule.class);
+        vehicleScheduleRepo.save(vehicleSchedule);
     }
 
     public VehicleScheduleDTO searchVehicleSchedule(String id) {

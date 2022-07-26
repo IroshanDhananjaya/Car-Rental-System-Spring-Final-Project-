@@ -6,10 +6,7 @@ import lk.carRental.spring.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,4 +27,17 @@ public class BookingDetailsController {
         List<BookingDetailsDTO> allBookingDetails = bookindDetailsService.getAllBookingDetails();
         return new ResponseUtil(200,"OK",allBookingDetails);
     }
+
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil approvedBooking(@RequestBody BookingDetailsDTO dto){
+        bookindDetailsService.updateBookingDetails(dto);
+        return new ResponseUtil(200,"Booking Approved Successful",null);
+    }
+
+    @PutMapping(path = "Reject",consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil RejectBooking(@RequestBody BookingDetailsDTO dto){
+        bookindDetailsService.updateBookingDetails(dto);
+        return new ResponseUtil(200,"Booking Reject Successful",null);
+    }
+
 }

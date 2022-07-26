@@ -13,7 +13,7 @@ public interface DriverScheduleService {
 
     public void saveDriverSchedule(DriverScheduleDTO entity);
 
-    public void deleteDriverSchedule(String id);
+    public void deleteDriverSchedule(DriverScheduleDTO dto);
 
     public void updateDriverSchedule(DriverScheduleDTO entity);
 

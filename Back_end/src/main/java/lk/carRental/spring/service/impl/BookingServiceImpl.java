@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -54,12 +55,13 @@ public class BookingServiceImpl implements BookingService {
     ModelMapper mapper;
 
 
+
     public void saveBooking(BookingDTO entity) {
         if(!bookingRepo.existsById(entity.getBookingId())){
-            Customer customer = customerRepo.findById(entity.getCustomer()).get();
+         /*   Customer customer = customerRepo.findById(entity.getCustomer()).get();*/
             Booking booking=new Booking(
                     entity.getBookingId(),
-                    customer
+                    entity.getCustomer()
             );
 
             Booking IsBooking = bookingRepo.save(booking);
@@ -73,6 +75,7 @@ public class BookingServiceImpl implements BookingService {
                             detailsDTO.getLoseDamageStatus(),
                             "uploads/"+detailsDTO.getLoseDamageImg(),
                             "Not Approved",
+                            detailsDTO.getCustNIC(),
                             booking
 
                     );
@@ -195,8 +198,19 @@ public class BookingServiceImpl implements BookingService {
     }
 
     public List<BookingDTO> getAllBooking() {
+        List<BookingDTO>bookingDTOS=new ArrayList<>();
         List<Booking> all=bookingRepo.findAll();
-        return mapper.map(all,new TypeToken<List<BookingDTO>>(){}.getType());
+
+        for (Booking b:all){
+            bookingDTOS.add(new BookingDTO(
+                    b.getBookingId(),
+                    b.getCustomer()
+            ));
+
+        }
+
+        return bookingDTOS;
+
     }
 
     @Override

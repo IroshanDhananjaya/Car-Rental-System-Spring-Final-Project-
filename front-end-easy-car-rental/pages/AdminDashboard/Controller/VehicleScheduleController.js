@@ -21,7 +21,7 @@ function loadAllVehicleSchedule(){
         success(resp){
             console.log(resp)
             for (var i of resp.data){
-                var row=`<tr><td>${i.vehicleNumber.vehicleNumber}</td><<td>${i.vehicleStartDate}</td>/<td>${i.vehicleEndDate}</td>t<td>${i.vehicleScheduleStatus}</td>r>`;
+                var row=`<tr><td>${i.bookingDetailsId.bookingDetailsId}</td><td>${i.vehicleNumber.vehicleNumber}</td><<td>${i.vehicleStartDate}</td>/<td>${i.vehicleEndDate}</td>t<td>${i.vehicleScheduleStatus}</td>r>`;
 
                 $("#tblVehicleSchedule").append(row);
             }
@@ -42,7 +42,7 @@ function SearchVehicleSchedule(){
             console.log(resp)
             for (var i of resp.data){
                 if(i.vehicleNumber.vehicleNumber==$("#txtVehiclescheduleSearch").val()){
-                    var row=`<tr><td>${i.vehicleNumber.vehicleNumber}</td><<td>${i.vehicleStartDate}</td>/<td>${i.vehicleEndDate}</td>t<td>${i.vehicleScheduleStatus}</td>r>`;
+                    var row=`<tr><td>${i.bookingDetailsId.bookingDetailsId}</td><td>${i.vehicleNumber.vehicleNumber}</td><<td>${i.vehicleStartDate}</td>/<td>${i.vehicleEndDate}</td>t<td>${i.vehicleScheduleStatus}</td>r>`;
 
                     $("#tblVehicleSchedule").append(row);
                 }
@@ -55,4 +55,60 @@ function SearchVehicleSchedule(){
 
 $("#btn-vehicleSchedule-search").click(function (){
     SearchVehicleSchedule();
+});
+
+$("#btn-all-Vehiclescedule").click(function (){
+    $("#tblVehicleSchedule").empty();
+    $.ajax({
+        url:"http://localhost:8080/Back_end_war_exploded/api/v1/vehicleSchedule",
+        method:"get",
+        success(resp){
+            console.log(resp)
+            for (var i of resp.data){
+                var row=`<tr><td>${i.bookingDetailsId.bookingDetailsId}</td><td>${i.vehicleNumber.vehicleNumber}</td><<td>${i.vehicleStartDate}</td>/<td>${i.vehicleEndDate}</td>t<td>${i.vehicleScheduleStatus}</td>r>`;
+
+                $("#tblVehicleSchedule").append(row);
+            }
+        }
+    });
+});
+
+$("#btn-onBookingVehicleSchedule").click(function (){
+
+    $("#tblVehicleSchedule").empty();
+    $.ajax({
+        url:"http://localhost:8080/Back_end_war_exploded/api/v1/vehicleSchedule",
+        method:"get",
+        success(resp){
+            console.log(resp)
+            for (var i of resp.data){
+                if(i.vehicleScheduleStatus=="On Booking"){
+                    var row=`<tr><td>${i.bookingDetailsId.bookingDetailsId}</td><td>${i.vehicleNumber.vehicleNumber}</td><<td>${i.vehicleStartDate}</td>/<td>${i.vehicleEndDate}</td>t<td>${i.vehicleScheduleStatus}</td>r>`;
+
+                    $("#tblVehicleSchedule").append(row);
+                }
+
+            }
+        }
+    });
+});
+
+$("#btn-canceldVehicleSchedule").click(function (){
+    $("#tblVehicleSchedule").empty();
+    $.ajax({
+        url:"http://localhost:8080/Back_end_war_exploded/api/v1/vehicleSchedule",
+        method:"get",
+        success(resp){
+            console.log(resp)
+            for (var i of resp.data){
+                if(i.vehicleScheduleStatus=="Cancel"){
+                    var row=`<tr><td>${i.bookingDetailsId.bookingDetailsId}</td><td>${i.vehicleNumber.vehicleNumber}</td><<td>${i.vehicleStartDate}</td>/<td>${i.vehicleEndDate}</td>t<td>${i.vehicleScheduleStatus}</td>r>`;
+
+                    $("#tblVehicleSchedule").append(row);
+                }
+
+            }
+        }
+    });
+
 });

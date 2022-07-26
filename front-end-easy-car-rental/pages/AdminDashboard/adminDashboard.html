@@ -42,10 +42,10 @@
                 <a href="#" class="dashboard" onclick="forDashBoard()"><i class="material-icons">dashboard</i><span>Dashboard</span></a>
             </li>
 
-            <div class="small-screen navbar-display">
+       <!--     <div class="small-screen navbar-display">
                 <li class="dropdown d-lg-none d-md-block d-xl-none d-sm-block">
                     <a href="#homeSubmenu0" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="material-icons">notifications</i><span> 4 notification</span></a>
+                        <i class="material-icons">person</i><span> 4 notification</span></a>
                     <ul class="collapse list-unstyled menu" id="homeSubmenu0">
                         <li>
                             <a href="#">You have 5 new messages</a>
@@ -67,14 +67,28 @@
                 </li>
 
                 <li class="d-lg-none d-md-block d-xl-none d-sm-block">
-                    <a href="#"><i class="material-icons">person</i><span>user</span></a>
+                    <a href="userSetting"><i class="material-icons">person</i><span>user</span></a>
+                    <ul class="collapse list-unstyled menu" id="userSetting">
+                        <li>
+                            <a href="#">You have 5 new messages</a>
+                        </li>
+                        <li>
+                            <a href="#">You're now friend with Mike</a>
+                        </li>
+                        <li>
+                            <a href="#">Wish Mary on her birthday!</a>
+                        </li>
+                        <li>
+                            <a href="#">5 warnings in Server Console</a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="d-lg-none d-md-block d-xl-none d-sm-block">
                     <a href="#"><i class="material-icons">settings</i><span>setting</span></a>
                 </li>
             </div>
-
+-->
 
             <li class="dropdown">
                 <a href="#homeSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
@@ -159,35 +173,36 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="#">You have 5 new messages</a>
+                                        <a href="#">Inbox</a>
                                     </li>
                                     <li>
-                                        <a href="#">You're now friend with Mike</a>
+                                        <a href="#">Sent Box</a>
                                     </li>
                                     <li>
-                                        <a href="#">Wish Mary on her birthday!</a>
+                                        <a href="#">All Mail</a>
                                     </li>
-                                    <li>
-                                        <a href="#">5 warnings in Server Console</a>
-                                    </li>
+
 
                                 </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <span class="material-icons">apps</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
+
+                            <li class="nav-item dropdown nav-item active">
+                                <a href="#" class="nav-link" data-toggle="dropdown">
                                     <span class="material-icons">person</span>
                                 </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#">Profile</a>
+                                    </li>
+                                    <li >
+                                        <a href="#">Log out</a>
+                                    </li>
+
+
+                                </ul>
+
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <span class="material-icons">settings</span>
-                                </a>
-                            </li>
+
                         </ul>
                     </div>
                 </div>
@@ -579,19 +594,27 @@
                             <div class="card-header card-header-text">
                                 <h4 class="card-title">Driver Schedule</h4>
                             </div>
+                            <div class="row">
+                                <div class="input-group col-5">
+                                    <input type="text" class="form-control" placeholder="Driver NIC Number" id="txtDriverSheduleSearch"
+                                           aria-label="Recipient's username" aria-describedby="button-addon2">
+                                    <button class="btn btn-outline-success" type="button" id="btn-Driver-schedule-search">Search</button>
+                                </div>
 
-                            <div class="input-group col-6">
-                                <input type="text" class="form-control" placeholder="Driver NIC Number" id="txtDriverSheduleSearch"
-                                       aria-label="Recipient's username" aria-describedby="button-addon2">
-                                <button class="btn btn-outline-success" type="button" id="btn-Driver-schedule-search">Search</button>
+                                <div class="input-group col-6">
+                                    <button class="btn btn-outline-success" type="button" id="btn-all-driverscedule">All Schedules</button>
+                                    <button class="btn btn-outline-primary" type="button" id="btn-onworkDriverSchedule">On Work Schedules</button>
+                                    <button class="btn btn-outline-danger" type="button" id="btn-canceldDriverSchedule">Cancel Schedules</button>
+                                </div>
                             </div>
+
 
                             <div class="card-content table-responsive">
 
                                 <table class="table table-hover">
                                     <thead class="text-primary">
                                     <tr>
-
+                                        <th>Booking Details ID</th>
                                         <th>Driver NIC</th>
                                         <th>Start Date</th>
                                         <th>End Date</th>
@@ -1047,18 +1070,28 @@
                                 <h4 class="card-title">Vehicle Schedule</h4>
                             </div>
 
-                            <div class="input-group col-6">
-                                <input type="text" class="form-control" placeholder="Vehicle Number" id="txtVehiclescheduleSearch"
-                                       aria-label="Recipient's username" aria-describedby="button-addon2">
-                                <button class="btn btn-outline-success" type="button" id="btn-vehicleSchedule-search">Search</button>
+                            <div class="row">
+                                <div class="input-group col-6">
+                                    <input type="text" class="form-control" placeholder="Vehicle Number" id="txtVehiclescheduleSearch"
+                                           aria-label="Recipient's username" aria-describedby="button-addon2">
+                                    <button class="btn btn-outline-success" type="button" id="btn-vehicleSchedule-search">Search</button>
+                                </div>
+
+                                <div class="input-group col-6">
+                                    <button class="btn btn-outline-success" type="button" id="btn-all-Vehiclescedule">All Schedules</button>
+                                    <button class="btn btn-outline-primary" type="button" id="btn-onBookingVehicleSchedule">On Work Schedules</button>
+                                    <button class="btn btn-outline-danger" type="button" id="btn-canceldVehicleSchedule">Cancel Schedules</button>
+                                </div>
                             </div>
+
+
 
                             <div class="card-content table-responsive">
 
                                 <table class="table table-hover">
                                     <thead class="text-primary">
                                     <tr>
-
+                                        <th>Booking Details ID</th>
                                         <th>Vehicle Number</th>
                                         <th>Start Date</th>
                                         <th>End Date</th>
@@ -1156,7 +1189,7 @@
                                 </div>
                                 <div class="col-4">
                                     <br>
-                                    <button type="button" id="btn-change-driver" class="btn btn-outline-success">Change Driver</button>
+                                    <button type="button" id="btn-change-driver"  class="btn btn-outline-success">Change Driver</button>
                                 </div>
                                 <div class=" col-6">
                                     <label for="txtBManagePickDate" class="form-label">Pick Up Date</label>
@@ -1185,8 +1218,8 @@
 
                         </div>
                         <div class="mx-5 md-5">
-                            <button type="button" class="btn btn-outline-primary">Approve</button>
-                            <button type="button" class="btn btn-outline-danger">Reject</button>
+                            <button type="button" id="btn-approve-booking" class="btn btn-outline-primary">Approve</button>
+                            <button type="button" id="btn-Reject-booking" class="btn btn-outline-danger">Reject</button>
 
                         </div>
 
@@ -1205,7 +1238,7 @@
                                 <input type="text" class="form-control" placeholder="Driver NIC Number"
                                        aria-label="Recipient's username" aria-describedby="button-addon2">
 
-                                <button class="btn btn-outline-success" type="button" id="button-addon2">Search</button>
+                                <button class="btn btn-outline-success" type="button" id="btn-search-changeDriver">Search</button>
                             </div>
 
                             <div class="card-content table-responsive">
@@ -1219,7 +1252,7 @@
                                     </tr>
 
                                     </thead>
-                                    <tbody>
+                                    <tbody id="tblChangeDriver">
 
 
 

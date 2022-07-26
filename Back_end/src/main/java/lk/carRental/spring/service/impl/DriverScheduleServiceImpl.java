@@ -31,14 +31,15 @@ public class DriverScheduleServiceImpl implements DriverScheduleService {
         drivescheduleRepo.save(driverSchedule);
     }
 
-    public void deleteDriverSchedule(String id) {
-        if(drivescheduleRepo.existsById(id)){
-            drivescheduleRepo.deleteById(id);
-        }
+    public void deleteDriverSchedule(DriverScheduleDTO dto) {
+        DriverSchedule driverSchedule = mapper.map(dto, DriverSchedule.class);
+        drivescheduleRepo.delete(driverSchedule);
     }
 
-    public void updateDriverSchedule(DriverScheduleDTO entity) {
 
+    public void updateDriverSchedule(DriverScheduleDTO entity) {
+        DriverSchedule driverSchedule = mapper.map(entity, DriverSchedule.class);
+        drivescheduleRepo.save(driverSchedule);
 
     }
 

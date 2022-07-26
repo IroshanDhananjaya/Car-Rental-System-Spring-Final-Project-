@@ -12,7 +12,7 @@ public interface BookindDetailsService {
 
     public void saveBookingDetails(BookingDetailsDTO entity);
 
-    public void deleteBookingDetails(String id);
+    public void deleteBookingDetails(BookingDetailsDTO dto);
 
     public void updateBookingDetails(BookingDetailsDTO entity);
 
