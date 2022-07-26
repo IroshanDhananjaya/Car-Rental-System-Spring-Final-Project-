@@ -126,6 +126,7 @@ $("#btn-approve-booking").click(function (){
         "loseDamageStatus":$("#txtBManageLoseDamage").val(),
         "loseDamageImg":loseDamegeImg,
         "detailsStatus":"Approved",
+        "custNIC":$("#txtBManageCustomerID").val(),
         "bookingId":bookingid,
         "vehicleNumber":$("#txtBManageVNumber").val(),
         "driverNICNumber":$("#txtBManageDriverNIC").val()
@@ -154,6 +155,7 @@ $("#btn-Reject-booking").click(function (){
         "loseDamageStatus":$("#txtBManageLoseDamage").val(),
         "loseDamageImg":loseDamegeImg,
         "detailsStatus":"Rejected",
+        "custNIC":$("#txtBManageCustomerID").val(),
         "bookingId":bookingid,
         "vehicleNumber":$("#txtBManageVNumber").val(),
         "driverNICNumber":$("#txtBManageDriverNIC").val()

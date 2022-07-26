@@ -298,3 +298,4 @@ function setButton() {
 $('#btn-register').click(function () {
     checkIfCustValid();
 });
+

@@ -16,23 +16,97 @@ var bookingid;
 var loseDamegeImg;
 var vehicleScheduleID;
 var driverscheduleID;
-var driverID;/**/
-var custId;
+var driverID;
+
 
 function loadAllCustomerBooking(){
     $("#tblCustomerBooking").empty();
 
-
-
-
-            $.ajax({
+    $.ajax({
                 url:"http://localhost:8080/Back_end_war_exploded/api/v1/bookingDetails",
                 method:"get",
                 success(detailsResp) {
                     for(var j of detailsResp.data){
+
                         if ($("#txtCustNICNumber1").val() == j.custNIC) {
+                            console.log(j.custNIC)
                             var row = `<tr><td>${j.bookingDetailsId}</td><td>${j.bookingId}</td><td>${j.pickUpDate}</td><td>${j.returnDate}</td><td>${j.detailsStatus}</td></tr>`
                             $("#tblCustomerBooking").append(row);
+
+
+                            $("#tblCustomerBooking>tr").click(function () {
+                                $("#txtBManageBookingID1").val($(this).children(":eq(1)").text());
+                                $("#txtBManagePickDate1").val($(this).children(":eq(2)").text());
+                                $("#txtBManageReturnDate1").val($(this).children(":eq(3)").text());
+
+
+                                bookigDetailsID = $(this).children(":eq(0)").text();
+                                bookingid = $(this).children(":eq(1)").text()
+                                loseDamegeImg =j.loseDamageImg
+                                $("#lblBookingStatus").text($(this).children(":eq(4)").text())
+
+                                if ($(this).children(":eq(4)").text() == "Not Approved") {
+                                    $("#lblBookingStatus").css({"color": "Orange"})
+                                    $("#btn-Cancel-booking").attr('disabled', false);
+                                } else if ($(this).children(":eq(4)").text() == "Approved") {
+                                    $("#lblBookingStatus").css({"color": "Blue"})
+                                    $("#btn-Cancel-booking").attr('disabled', false);
+                                } else if ($(this).children(":eq(4)").text() == "Completed") {
+                                    $("#lblBookingStatus").css({"color": "Green"})
+                                    $("#btn-Cancel-booking").attr('disabled', true);
+                                } else if ($(this).children(":eq(4)").text() == "Cancel") {
+                                    $("#lblBookingStatus").css({"color": "Red"})
+                                    $("#btn-Cancel-booking").attr('disabled', true);
+                                }
+
+                                $.ajax({
+                                    url: "http://localhost:8080/Back_end_war_exploded/api/v1/driverSchedule",
+                                    method: "get",
+                                    success(resp) {
+                                        for (var i of resp.data) {
+                                            if (i.bookingDetails.bookingDetailsId == bookigDetailsID) {
+
+                                                $("#txtBManageDriverNIC1").val(i.driverId.driverNICNumber);
+                                                driverID = i.driverId.driverNICNumber;
+                                                driverscheduleID = i.diverscheduleId;
+                                                return
+                                            }
+                                            $("#txtBManageDriverNIC1").val("Not Assign");
+
+                                        }
+
+                                    }
+                                });
+
+
+                                $.ajax({
+                                    url: "http://localhost:8080/Back_end_war_exploded/api/v1/vehicleSchedule",
+                                    method: "get",
+                                    success(resp) {
+                                        for (var i of resp.data) {
+                                            if (i.bookingDetailsId.bookingDetailsId == bookigDetailsID) {
+
+                                                $("#txtBManageVNumber1").val(i.vehicleNumber.vehicleNumber)
+
+                                                vehicleScheduleID = i.vehicleScheduleId;
+
+                                                var type = i.vehicleNumber.vehicleType;
+
+                                                if (type == "General") {
+                                                    $("#txtBManageLoseDamage1").val("10000")
+                                                } else if (type == "Premium") {
+                                                    $("#txtBManageLoseDamage1").val("15000")
+                                                } else {
+                                                    $("#txtBManageLoseDamage1").val("20000")
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                });
+
+                            });
+
                         }
                     }
 
@@ -46,67 +120,43 @@ function loadAllCustomerBooking(){
 }
 
 
-$("#btn-approve-booking").click(function (){
+
+$("#btn-Cancel-booking").click(function (){
     details={
         "bookingDetailsId":bookigDetailsID,
-        "pickUpDate":$("#txtBManagePickDate").val(),
-        "returnDate":$("#txtBManageReturnDate").val(),
-        "loseDamageStatus":$("#txtBManageLoseDamage").val(),
+        "pickUpDate":$("#txtBManagePickDate1").val(),
+        "returnDate":$("#txtBManageReturnDate1").val(),
+        "loseDamageStatus":$("#txtBManageLoseDamage1").val(),
         "loseDamageImg":loseDamegeImg,
-        "detailsStatus":"Approved",
+        "detailsStatus":"Cancel",
+        "custNIC":$("#txtCustNICNumber1").val(),
         "bookingId":bookingid,
-        "vehicleNumber":$("#txtBManageVNumber").val(),
-        "driverNICNumber":$("#txtBManageDriverNIC").val()
+        "vehicleNumber":$("#txtBManageVNumber1").val(),
+        "driverNICNumber":$("#txtBManageDriverNIC1").val()
     }
 
-
-
-    $.ajax({
-        url:"http://localhost:8080/Back_end_war_exploded/api/v1/bookingDetails",
-        method:"put",
-        contentType:"Application/json",
-        data:JSON.stringify(details),
-        success(resp){
-            alert(resp.message);
-            pendingBookings();
-        }
-    });
-});
-
-
-$("#btn-Reject-booking").click(function (){
-    details={
-        "bookingDetailsId":bookigDetailsID,
-        "pickUpDate":$("#txtBManagePickDate").val(),
-        "returnDate":$("#txtBManageReturnDate").val(),
-        "loseDamageStatus":$("#txtBManageLoseDamage").val(),
-        "loseDamageImg":loseDamegeImg,
-        "detailsStatus":"Rejected",
-        "bookingId":bookingid,
-        "vehicleNumber":$("#txtBManageVNumber").val(),
-        "driverNICNumber":$("#txtBManageDriverNIC").val()
-    }
     $.ajax({
         url:"http://localhost:8080/Back_end_war_exploded/api/v1/bookingDetails/Reject",
         method:"put",
         contentType: "application/json",
         data: JSON.stringify(details),
         success(resp){
-            if($("#txtBManageDriverNIC").val()!="Not Assign"){
-                freeDriverSchedule();
+            if($("#txtBManageDriverNIC1").val()!="Not Assign"){
+                freeDriverSchedule1();
             }
-            freeVehuicleSchedule();
-            alert(resp.message)
-            pendingBookings();
+            freeVehuicleSchedule1();
+            alert("Your Booking Canceled")
+           loadAllCustomerBooking();
         }
     });
-});
+})
 
-function freeDriverSchedule(){
+
+function freeDriverSchedule1(){
     driverSchedule={
         "diverscheduleId":driverscheduleID,
-        "driverStartDate":$("#txtBManageReturnDate").val(),
-        "driverEndDate":$("#txtBManageReturnDate").val(),
+        "driverStartDate":$("#txtBManageReturnDate1").val(),
+        "driverEndDate":$("#txtBManageReturnDate1").val(),
         "driverScheduleStatus":"Cancel",
         "bookingDetails":{
             "bookingDetailsId":bookigDetailsID,
@@ -127,17 +177,17 @@ function freeDriverSchedule(){
     });
 }
 
-function freeVehuicleSchedule(){
+function freeVehuicleSchedule1(){
     vehicleSchedule={
         "vehicleScheduleId":vehicleScheduleID,
-        "vehicleStartDate":$("#txtBManageReturnDate").val(),
-        "vehicleEndDate":$("#txtBManageReturnDate").val(),
+        "vehicleStartDate":$("#txtBManageReturnDate1").val(),
+        "vehicleEndDate":$("#txtBManageReturnDate1").val(),
         "vehicleScheduleStatus":"Cancel",
         "bookingDetailsId":{
             "bookingDetailsId":bookigDetailsID,
         },
         "vehicleNumber":{
-            "vehicleNumber":$("#txtBManageVNumber").val(),
+            "vehicleNumber":$("#txtBManageVNumber1").val(),
         }
     }
 

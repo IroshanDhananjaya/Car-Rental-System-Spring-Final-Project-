@@ -429,10 +429,11 @@
                                         <option selected>No</option>
                                     </select>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-12 ">
                                     <label for="txtBookingVNumber" class="form-label">Vehicle Number</label>
-                                    <input type="email" class="form-control" disabled id="txtBookingVNumber"
+                                    <input type="email" class="form-control col-6" disabled id="txtBookingVNumber"
                                            placeholder="">
+                                    <button type="button" id="btn-Chose-Vehicle" class="btn btn-outline-success col-4 " style="margin-top: 10px">Select Vehicle</button>
                                 </div>
                                 <div class="col-12">
                                     <label for="txtBookingLoseDamage" class="form-label">Lose Damage</label>
@@ -715,32 +716,68 @@
             <h4>User Dashboard</h4>
             <p>Dashboard \ Vehicle \ Vehicle Manage </p>
             <div class="row ">
-
-
                 <div class="12 col-md-12">
                     <div class="card" style="min-height: 0">
                         <div class="card-header card-header-text">
                             <h4 class="card-title">Vehicles</h4>
 
                         </div>
+                        <div class="card-content">
+                            <div class="row">
+                                <div class="col-3">
+                                    <h2 style="font-weight: bold" id="lblVehicleNumber">Vehicle Number</h2>
+                                </div>
+                                <div class="col-3">
+                                    <label for="lblVehicleFuelType"> Vehicle fuel Type</label>
+                                    <h3 style="font-weight: bold" id="lblVehicleFuelType">Vehicle fuel Type</h3>
+                                </div>
+                                <div class="col-3">
+                                    <label for="lblVehiclNoOfPassenger"> No of Passenger</label>
+                                    <h3 style="font-weight: bold" id="lblVehiclNoOfPassenger">No of Passenger</h3>
+                                </div>
+                                <div class="col-3">
+                                    <label for="lblVehicleDailyRent">Daily Rent</label>
+                                    <h3 style="font-weight: bold" id="lblVehicleDailyRent">Daily Rent</h3>
+                                </div>
+                                <div class="col-3">
+                                    <label for="lblVehicleMonthlyRent">Monthly Rent</label>
+                                    <h3 style="font-weight: bold" id="lblVehicleMonthlyRent">Monthly Rent</h3>
+                                </div>
+                                <div class="col-3">
+                                    <label for="lblVehiclePriceForKM"> Price For KM</label>
+                                    <h3 style="font-weight: bold" id="lblVehiclePriceForKM">Price For KM</h3>
+                                </div>
+                                <div class="col-3">
+                                    <label for="lblVehiclePriceForExtraKM"> Price For Extra KM</label>
+                                    <h3 style="font-weight: bold" id="lblVehiclePriceForExtraKM">Price For Extra KM</h3>
+                                </div>
+                                <div class="col-3" style="margin-top: 30px">
+                                    <button type="button" id="btn-select-vehicle-b0ok" class="btn btn-outline-primary" style="width: 100%">Book</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="12 col-md-12">
+                    <div class="card" style="min-height: 0">
+                        <div class="card-header card-header-text">
+                            <h4 class="card-title">Vehicles</h4>
+                        </div>
+
+
                         <div class="card-content table-responsive">
                             <table class="table table-hover">
                                 <thead class="text-primary">
                                 <tr>
-                                    <th>Vehicle Number</th>
+                                    <th>Image</th>
                                     <th>Type</th>
                                     <th>Brand</th>
                                     <th>Transmission Type</th>
-                                    <th>No Of Passenger</th>
                                     <th>Colour</th>
-                                    <th>Daily Rent</th>
-                                    <th>MonthlyRent</th>
-                                    <th>Price For KM</th>
-                                    <th>Price For Extra KM</th>
-                                    <th>Status</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="tblAllVehicleWithImg">
 
                                 </tbody>
                             </table>
@@ -806,58 +843,51 @@
                         <div class="card-content">
                             <div class="row">
                                 <div class="col-4">
-                                    <label for="txtBManageBookingID" class="form-label">Booking ID</label>
-                                    <input type="text" class="form-control" id="txtBManageBookingID"
+                                    <label for="txtBManageBookingID1" class="form-label">Booking ID</label>
+                                    <input type="text" class="form-control" id="txtBManageBookingID1"
                                            placeholder="">
                                 </div>
                                 <div class="col-4">
-                                    <label for="txtBManageCustomerID" class="form-label">Customer NIC</label>
-                                    <input type="text" class="form-control" id="txtBManageCustomerID"
+                                    <label for="txtBManageVNumber1" class="form-label">Vehicle Number</label>
+                                    <input type="text" class="form-control" id="txtBManageVNumber1"
                                            placeholder="">
                                 </div>
+
                                 <div class="col-4">
-                                    <label for="txtBManageCustomerName" class="form-label">Customer Name</label>
-                                    <input type="text" class="form-control" id="txtBManageCustomerName"
-                                           placeholder="">
-                                </div>
-                                <div class="col-6">
-                                    <label for="txtBManageVNumber" class="form-label">Vehicle Number</label>
-                                    <input type="text" class="form-control" id="txtBManageVNumber"
-                                           placeholder="">
-                                </div>
-
-                                <div class="col-6">
-                                    <label for="txtBManageDriverNIC" class="form-label">Driver NIC</label>
-                                    <input type="text" class="form-control" id="txtBManageDriverNIC"
+                                    <label for="txtBManageDriverNIC1" class="form-label">Driver NIC</label>
+                                    <input type="text" class="form-control" id="txtBManageDriverNIC1"
                                            placeholder="">
                                 </div>
 
                                 <div class=" col-4">
-                                    <label for="txtBManagePickDate" class="form-label">Pick Up Date</label>
-                                    <input type="text" class="form-control" id="txtBManagePickDate">
+                                    <label for="txtBManagePickDate1" class="form-label">Pick Up Date</label>
+                                    <input type="text" class="form-control" id="txtBManagePickDate1">
 
                                 </div>
                                 <div class=" col-4">
-                                    <label for="txtBManageReturnDate" class="form-label">Return Date</label>
-                                    <input type="text" class="form-control" id="txtBManageReturnDate">
+                                    <label for="txtBManageReturnDate1" class="form-label">Return Date</label>
+                                    <input type="text" class="form-control" id="txtBManageReturnDate1">
                                 </div>
 
                                 <div class=" col-4">
-                                    <label for="txtBManageLoseDamage" class="form-label">Lose Damage</label>
-                                    <input type="text" class="form-control" id="txtBManageLoseDamage">
+                                    <label for="txtBManageLoseDamage1" class="form-label">Lose Damage</label>
+                                    <input type="text" class="form-control" id="txtBManageLoseDamage1">
                                 </div>
 
+                                <div class=" col-4" style="margin-top: 20px">
+                                    <button type="button" id="btn-Cancel-booking" class="btn btn-outline-danger" style="width: 100%">Cancel</button>
+                                </div>
 
+                                <div class=" col-4" style="margin-top: 20px">
+                                    <h1 style="font-weight: bold" id="lblBookingStatus">Booking Status</h1>
+                                </div>
 
                             </div>
 
 
                         </div>
-                        <div class="mx-5 md-5">
 
-                            <button type="button" id="btn-Cancel-booking" class="btn btn-outline-danger">Cancel</button>
 
-                        </div>
 
                     </div>
 
@@ -966,6 +996,7 @@
 <script src="Controller/CustomerDashboadController.js"></script>
 <script src="Controller/UserProfileController.js"></script>
 <script src="Controller/CustomerBookingController.js"></script>
+<script src="Controller/CustomerVehicleController.js"></script>
 <script src="../../pages/LoginPage/rejisterController.js"></script>
 
 
@@ -995,7 +1026,7 @@
     }
 
 
-    function forvehicleMage() {
+   /* function forvehicleMage() {
         document.getElementsByClassName("CustomerHomePage")[0].style.display = "none"
         document.getElementsByClassName(" customer-Manage-content")[0].style.display = "none"
         document.getElementsByClassName("vehicle-manage-content")[0].style.display = "block"
@@ -1003,7 +1034,7 @@
 
         document.getElementsByClassName(" userProfile-manage-content ")[0].style.display = "none"
     }
-
+*/
 
    /* function forBookingManage() {
         document.getElementsByClassName("CustomerHomePage")[0].style.display = "none"

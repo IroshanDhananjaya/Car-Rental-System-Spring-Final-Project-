@@ -208,3 +208,12 @@ function addbooking(){
         }
     });
  }
+
+ $("#btn-Chose-Vehicle").click(function (){
+     $("#btn-select-vehicle-b0ok").attr('disabled', true);
+     document.getElementsByClassName("CustomerHomePage")[0].style.display = "none"
+     document.getElementsByClassName(" customer-Manage-content")[0].style.display = "none"
+     document.getElementsByClassName("vehicle-manage-content")[0].style.display = "block"
+     document.getElementsByClassName(" Manage-Booking-content")[0].style.display = "none"
+     document.getElementsByClassName(" userProfile-manage-content ")[0].style.display = "none"
+ });
