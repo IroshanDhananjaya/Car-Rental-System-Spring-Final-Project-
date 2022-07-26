@@ -2,6 +2,7 @@ package lk.carRental.spring.service;
 
 import lk.carRental.spring.dto.BookingDTO;
 import lk.carRental.spring.dto.CustomerDTO;
+import lk.carRental.spring.dto.UserDTO;
 
 import java.util.List;
 
@@ -15,6 +16,8 @@ public interface CustomerService {
     public void deleteCustomer(String id);
 
     public void updateCustomer(CustomerDTO entity);
+
+    public CustomerDTO getCustomerForLoging(UserDTO userDTO);
 
     public CustomerDTO searchCustomer(String id);
 

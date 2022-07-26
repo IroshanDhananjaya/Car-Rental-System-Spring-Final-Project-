@@ -1,6 +1,7 @@
 package lk.carRental.spring.service.impl;
 
 import lk.carRental.spring.dto.CustomerDTO;
+import lk.carRental.spring.dto.UserDTO;
 import lk.carRental.spring.entity.Customer;
 import lk.carRental.spring.repo.CustomerRepo;
 import lk.carRental.spring.service.CustomerService;
@@ -56,6 +57,16 @@ public class CustomerServiceImpl implements CustomerService {
         Customer customer = customerRepo.findById(id).get();
         CustomerDTO customerDTO = mapper.map(customer, CustomerDTO.class);
         return customerDTO;
+    }
+
+    public CustomerDTO getCustomerForLoging(UserDTO userDTO) {
+        List<Customer> all=customerRepo.findAll();
+        for (Customer c:all) {
+            if(c.getCustEmail().equals(userDTO.getUserName())&c.getCustPassword().equals(userDTO.getUserPassword())){
+                return new CustomerDTO(c.getCustNICNumber(),c.getCustName(),c.getCustAddress(),c.getCustNICImg(),c.getCustdrivingImg(),c.getCustContact(),c.getCustEmail(),c.getCustPassword(),c.getCustStatus(),c.getType());
+            }
+        }
+        return null;
     }
 
     public List<CustomerDTO> getAllCustomer() {

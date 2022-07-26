@@ -215,7 +215,7 @@ a:focus {
 }
 
 
-#sidebar ul.components {    
+#sidebar ul.components {
     padding: 20px 0;
 }
 
@@ -251,6 +251,130 @@ a:focus {
 ----------------------------------------------------- */
 
 
+/* ---------------------------------------------------
+    SIDEBAR1 STYLE start
+----------------------------------------------------- */
+
+
+
+#sidebar1 {
+    position:fixed;
+    height:100vh!important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index:11;
+    width: 260px;
+    overflow:auto;
+    transition:all 0.3s ;
+    background: #FFFFFF;
+    box-shadow: 0 10px 30px -12px rgb(0 0 0 / 42%), 0 4px 25px 0px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
+}
+
+
+#sidebar1::-webkit-scrollbar{
+    width:5px;
+    border-radius:10px;
+    background-color:#eee;
+    display:none;
+}
+#sidebar1::-webkit-scrollbar-thumbs{
+    width:5px;
+    border-radius:10px;
+    background-color:#333;
+    display:none;
+}
+
+
+#sidebar1:hover::-webkit-scrollbar{
+    display:block;
+}
+#sidebar1:hover::-webkit-scrollbar-thumbs{
+    display:block;
+}
+
+#sidebar1 .sidebar-header {
+    padding:20px;
+    background-color:#ffffff;
+    border-bottom:1px solid #eee;
+}
+
+.sidebar1-header h3{
+    color:#333;
+    font-size:17px;
+    margin:0px;
+    text-transform:uppercase;
+    transition:all 0.5s ease;
+    font-weight:600;
+}
+
+.sidebar1-header h3 img{
+    width:45px;
+    margin-right:10px;
+}
+
+#sidebar1 ul li{
+    padding:2px 7px;
+}
+
+#sidebar1 ul li.active>a{
+    color: #333;
+    background-color: rgba(200, 200, 200, 0.2);
+}
+
+#sidebar1 ul li a:hover{
+    color: #333;
+    background-color: rgba(200, 200, 200, 0.2);
+}
+
+.dropdown-toggle::after {
+    position: absolute;
+    right: 10px;
+    top: 23px;
+}
+
+#sidebar1 ul li.drodown{
+    position:sticky;
+}
+
+
+#sidebar1 ul.components {
+    padding: 20px 0;
+}
+
+#sidebar1 ul li a {
+    padding: 10px;
+    line-height: 30px;
+    border-radius:5px;
+    font-size: 15px;
+    position:relative;'
+font-weight: 400;
+    display: block;
+}
+
+#sidebar1 ul li a span{
+    text-transform:capitalize;
+    display:inline-block;
+}
+
+#sidebar1 ul li a i {
+    position: relative;
+    margin-right: 10px;
+    top: 5px;
+    color: #555555;
+    margin-left: 10px;
+}
+
+
+
+
+
+/* ---------------------------------------------------
+   sidebar1 end
+----------------------------------------------------- */
+
+
+
 
 
 /*=======================================================
@@ -264,6 +388,18 @@ a:focus {
     transition: all 0.3s;
 	background-color: #EEEEEE;
 }
+#content1 {
+    position: relative;
+    transition: all 0.3s;
+    background-color: #EEEEEE;
+}
+
+#content1 {
+    position: relative;
+    transition: all 0.3s;
+    background-color: #EEEEEE;
+}
+
 
 .top-navbar{
 	width:100%;
@@ -319,6 +455,38 @@ a:focus {
     padding: 0px;
 }
 
+#sidebarCollapse1{
+    border-radius:50%;
+    width:45px;
+    height:45px;
+    text-align:center;
+    line-height:45px;
+    margin-right:20px;
+    border:none;
+    color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.09);
+}
+
+#sidebarCollapse1 span {
+    margin: 9px;
+    padding: 0px;
+}
+#sidebarCollapse2{
+    border-radius:50%;
+    width:45px;
+    height:45px;
+    text-align:center;
+    line-height:45px;
+    margin-right:20px;
+    border:none;
+    color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.09);
+}
+
+#sidebarCollapse2 span {
+    margin: 9px;
+    padding: 0px;
+}
 
 
 .navbar-nav > li.active{
@@ -695,9 +863,34 @@ footer .copyright {
 
 #content.active {
     width: calc(100% - 80px);
-} 
+}
+    #content1 {
+        width: calc(100% );
+        position: relative;
+        float: right;
+        transition: all 0.3s;
+        background-color: #EEEEEE;
+    }
 
-#sidebar.active .menu {
+    #content1.active {
+        width: calc(100% );
+    }
+
+
+    #content2 {
+        width: calc(100% - 260px);
+        position: relative;
+        float: right;
+        transition: all 0.3s;
+        background-color: #EEEEEE;
+    }
+
+    #content2.active {
+        width: calc(100% - 80px);
+    }
+
+
+    #sidebar.active .menu {
     position: absolute;
     left: 81px;
     background-color: white;

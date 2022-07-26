@@ -15,14 +15,22 @@ function loging(){
     var email=$("#txtEmail").val();
     var password=$("#txtPassword").val();
 
+    user={
+        "userName":email,
+        "userPassword":password
+    }
+
     $.ajax({
-        url:"http://localhost:8080/Back_end_war_exploded/api/v1/customer",
-        method:"get",
+        url:"http://localhost:8080/Back_end_war_exploded/api/v1/loging",
+        method:"put",
+        contentType: "application/json",
+        data: JSON.stringify(user),
         success(resp){
-            for (var i of resp.data){
+            var i = resp.data
                 if(i.custEmail==email & i.custPassword==password){
                     document.getElementsByClassName("dashboard-container")[0].style.display = "block"
                     document.getElementsByClassName("loging-Form-container")[0].style.display = "none"
+                    document.getElementsByClassName("driver-dashboard-container")[0].style.display = "none"
                     $("#txtCustNICNumber1").val(i.custNICNumber);
                     $("#txtCustName1").val(i.custName);
                     $("#txtCustAddress1").val(i.custAddress);
@@ -46,17 +54,22 @@ function loging(){
                         "height": "300px"
                     });
 
+                    return;
+
                 }
-            }
+
         }
     });
+
+
 
 }
 
 
 $("#btn-login").click(function (){
 
-    console.log("Clicked")
+
+
     loging();
 
 });
