@@ -84,11 +84,12 @@ function saveDriver(){
         processData:false,
         data:data,
         success(resp){
-            alert(resp.message);
+            swal("Driver Saved", "Done", "success");
             loadAllDriver();
             clearAll();
         },error (ob, textStatus, error) {
-            alert(ob.responseJSON.message);
+
+            swal(ob.responseJSON.message, "error", "error");
         }
     });
 
@@ -135,7 +136,7 @@ $("#btn-Update-Driver").click(function (){
                 clearAll();
             },error (ob, textStatus, error) {
 
-                swal(ob.responseJSON.message, "Error", "Error");
+                swal(ob.responseJSON.message, "Error", "error");
             }
         });
     }

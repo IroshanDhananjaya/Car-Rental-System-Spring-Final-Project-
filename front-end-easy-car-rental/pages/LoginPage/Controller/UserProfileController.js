@@ -35,6 +35,7 @@ function loging(){
                 document.getElementsByClassName("admin-dashboard-container")[0].style.display = "none"
 
                 $("#txtCustNICNumber1").val(i.custNICNumber);
+                $("#txtBookingCustId").val(i.custNICNumber)
                 $("#txtCustName1").val(i.custName);
                 $("#txtCustAddress1").val(i.custAddress);
                 $("#txtContactNumber1").val(i.custContact);
@@ -77,7 +78,8 @@ function loging(){
                 document.getElementsByClassName("driver-dashboard-container")[0].style.display = "none"
                 document.getElementsByClassName("admin-dashboard-container")[0].style.display = "block"
             }else {
-                alert(resp.message);
+                swal(resp.message, "Error", "error");
+
             }
 
         }

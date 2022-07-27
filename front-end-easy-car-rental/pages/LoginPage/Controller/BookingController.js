@@ -142,7 +142,7 @@ $("#btn-approve-booking").click(function (){
         contentType:"Application/json",
         data:JSON.stringify(details),
         success(resp){
-            alert(resp.message);
+            swal("Booking Approved !", "Done", "success");
             pendingBookings();
         }
     });
@@ -172,7 +172,7 @@ $("#btn-Reject-booking").click(function (){
                 freeDriverSchedule();
             }
             freeVehuicleSchedule();
-            alert(resp.message)
+            swal("Booking Rejected !", "Done", "success");
             pendingBookings();
         }
     });
@@ -270,7 +270,7 @@ $("#btn-change-driver").click(function (){
         contentType: "application/json",
         data: JSON.stringify(driverSchedule),
         success(resp){
-            alert("Driver Change Successful")
+            swal("Changed Driver !", "Done", "success");
 
         }
     });

@@ -21,6 +21,14 @@ var perMonth;
 var priceForKm;
 var priceForextraKm;
 
+
+var loseDamage;
+var loseDamgeImage;
+
+var driverscheduleID;
+var vehicleScheduleID;
+var driverID;
+
 function loadAllPendingPaymentBooking(){
     $("#tblPendingPayementbooking").empty();
     $.ajax({
@@ -54,6 +62,25 @@ function loadAllPendingPaymentBooking(){
 
 
                         $.ajax({
+                            url: "http://localhost:8080/Back_end_war_exploded/api/v1/driverSchedule",
+                            method: "get",
+                            success(resp) {
+                                for (var i of resp.data) {
+                                    if (i.bookingDetails.bookingDetailsId == bookingDetailsId) {
+
+
+                                        driverID=i.driverId.driverNICNumber;
+                                        driverscheduleID=i.diverscheduleId;
+                                        return
+                                    }
+
+
+                                }
+
+                            }
+                        });
+
+                        $.ajax({
                             url: "http://localhost:8080/Back_end_war_exploded/api/v1/vehicleSchedule",
                             method: "get",
                             success(resp) {
@@ -82,6 +109,18 @@ function loadAllPendingPaymentBooking(){
                                     }
                                 }
 
+                            }
+                        });
+                        $.ajax({
+                            url: "http://localhost:8080/Back_end_war_exploded/api/v1/bookingDetails",
+                            method: "get",
+                            success(resp) {
+                                for (var i of resp.data){
+                                    if(i.bookingDetailsId==bookingDetailsId){
+                                        loseDamage=i.loseDamageStatus;
+                                        loseDamgeImage=i.loseDamageImg
+                                    }
+                                }
                             }
                         });
 
@@ -154,9 +193,87 @@ $("#btn-complete-Booking").click(function () {
         contentType:"application/json",
         data:JSON.stringify(payement),
         success(resp){
-            alert(resp.message);
+            swal("Order Completed !", "Done", "success");
+            completeBookingDetails();
+            freeVehuicleSchedule();
+            freeDriverSchedule();
         }
     });
 
 
 });
+
+function completeBookingDetails(){
+    details={
+        "bookingDetailsId":bookingDetailsId,
+        "pickUpDate":$("#txtPaymentRentDate").val(),
+        "returnDate":$("#txtPaymentReturnDate").val(),
+        "loseDamageStatus":loseDamage,
+        "loseDamageImg":loseDamgeImage,
+        "detailsStatus":"Completed",
+        "custNIC":$("#txtPaymentCustNIC").val(),
+        "bookingId":bookingId,
+
+    }
+    $.ajax({
+        url:"http://localhost:8080/Back_end_war_exploded/api/v1/bookingDetails",
+        method:"put",
+        contentType:"Application/json",
+        data:JSON.stringify(details),
+        success(resp){
+
+        }
+    });
+}
+
+
+
+function freeDriverSchedule(){
+    driverSchedule={
+        "diverscheduleId":driverscheduleID,
+        "driverStartDate":$("#txtPaymentRentDate").val(),
+        "driverEndDate":$("#txtPaymentReturnDate").val(),
+        "driverScheduleStatus":"Completed",
+        "bookingDetails":{
+            "bookingDetailsId":bookingDetailsId,
+        },
+        "driverId":{
+            "driverNICNumber":driverID,
+        }
+    }
+
+    $.ajax({
+        url:"http://localhost:8080/Back_end_war_exploded/api/v1/driverSchedule/freeDriverSchedule",
+        method:"put",
+        contentType: "application/json",
+        data: JSON.stringify(driverSchedule),
+        success(resp){
+
+        }
+    });
+}
+
+function freeVehuicleSchedule(){
+    vehicleSchedule={
+        "vehicleScheduleId":vehicleScheduleID,
+        "vehicleStartDate":$("#txtPaymentRentDate").val(),
+        "vehicleEndDate":$("#txtPaymentReturnDate").val(),
+        "vehicleScheduleStatus":"Completed",
+        "bookingDetailsId":{
+            "bookingDetailsId":bookingDetailsId,
+        },
+        "vehicleNumber":{
+            "vehicleNumber":$("#txtPaymentVNumber").val(),
+        }
+    }
+
+    $.ajax({
+        url:"http://localhost:8080/Back_end_war_exploded/api/v1/vehicleSchedule/freeVehicleSchedule",
+        method:"put",
+        contentType: "application/json",
+        data: JSON.stringify(vehicleSchedule),
+        success(resp){
+
+        }
+    });
+}

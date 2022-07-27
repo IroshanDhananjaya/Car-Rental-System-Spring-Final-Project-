@@ -28,10 +28,9 @@ public class SystemUserServiceImpl implements SystemUserService {
 
     @Override
     public void saveSystemUser() {
-        SystemUser systemUser=new SystemUser("001","Iroshan Dhananjaya","iroshandhananjaya@gmail.com","12345");
-        SystemUser systemUser1=new SystemUser("002","Dhananjaya Egodawaththa","dhananjayaegodawaththa@gmail.com","12345");
+        SystemUser systemUser=new SystemUser("001","Iroshan Dhananjaya","admin","admin");
         systemUserRepo.save(systemUser);
-        systemUserRepo.save(systemUser1);
+
     }
 
     @Override

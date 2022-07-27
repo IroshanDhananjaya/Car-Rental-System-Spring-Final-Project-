@@ -146,7 +146,7 @@ $("#btn-Cancel-booking").click(function (){
                 freeDriverSchedule1();
             }
             freeVehuicleSchedule1();
-            alert("Your Booking Canceled")
+            swal("Booking Canceled", "Done", "success");
            loadAllCustomerBooking();
         }
     });

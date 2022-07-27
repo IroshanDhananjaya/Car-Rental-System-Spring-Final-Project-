@@ -1,6 +1,7 @@
 loadAllVehicleInCustomerDashboard();
 genarateNewBookingId();
 
+$("#btn-booking-place").attr('disabled', true);
 var cartDb=new Array();
 
 function loadAllVehicleInCustomerDashboard(){
@@ -79,12 +80,27 @@ function loadAllVehicleInCustomerDashboard(){
  }
 
  $("#btn-booking-addToCart").click(function (){
-     addToCart()
-     loadCart();
+     if($("#txtBookingLoseDamageImg").val()==""){
+         swal("Please upload slip  !", "error", "error");
+     }else {
+         addToCart()
+         loadCart();
+         $("#btn-booking-place").attr('disabled', false);
+     }
+
  });
 
 $("#btn-booking-place").click(function (){
     addbooking();
+    cartDb.splice(0,cartDb.length);
+    $("#bookingCartTable").empty();
+  $("#txtBookingPickDate").val("");
+   $("#txtBookingReturnDate").val("");
+
+   $("#txtBookingVNumber").val("");
+   $("#txtBookingLoseDamage").val("");
+
+    $("#btn-booking-place").attr('disabled', true);
 });
 
 
@@ -164,7 +180,7 @@ function addbooking(){
          processData:false,
          data:BookinData,
          success(resp){
-             alert(resp.message);
+             swal("Your Reservation Successful  !", "Done", "success");
              genarateNewBookingId();
          }
      });
@@ -195,19 +211,7 @@ function addbooking(){
      });
  }
 
- function getCustomer(){
-    var custID=$("#txtBookingCustId").val()
-     var cust;
 
-    $.ajax({
-        url:"http://localhost:8080/Back_end_war_exploded/api/v1/customer?id="+custID,
-        method: "get",
-        success(resp) {
-         cust= resp.data ;
-        (cust)
-        }
-    });
- }
 
  $("#btn-Chose-Vehicle").click(function (){
      $("#btn-select-vehicle-b0ok").attr('disabled', true);
