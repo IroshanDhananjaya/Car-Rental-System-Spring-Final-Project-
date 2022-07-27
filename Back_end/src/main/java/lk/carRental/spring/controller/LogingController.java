@@ -1,9 +1,9 @@
 package lk.carRental.spring.controller;
 
-import lk.carRental.spring.dto.BookingDetailsDTO;
-import lk.carRental.spring.dto.CustomerDTO;
-import lk.carRental.spring.dto.UserDTO;
+import lk.carRental.spring.dto.*;
 import lk.carRental.spring.service.CustomerService;
+import lk.carRental.spring.service.DriverService;
+import lk.carRental.spring.service.SystemUserService;
 import lk.carRental.spring.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -21,11 +21,35 @@ public class LogingController {
     @Autowired
     CustomerService customerService;
 
+    @Autowired
+    DriverService driverService;
+
+    @Autowired
+    SystemUserService userService;
+
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil cheakLoging(@RequestBody UserDTO userDTO){
+        userService.saveSystemUser();
+
         CustomerDTO customerDTO = customerService.getCustomerForLoging(userDTO);
-        return new ResponseUtil(200,"OK",customerDTO);
+        if(customerDTO==null){
+            DriverDTO driverForLoging = driverService.getDriverForLoging(userDTO);
+            if(driverForLoging==null){
+                SystemUserDTO adminForLoging = userService.getAdminForLoging(userDTO);
+                if (!(adminForLoging==null)){
+                    return new ResponseUtil(200,"Admin",adminForLoging);
+                }else {
+                    return new ResponseUtil(200,"Incorrect user name and password",null);
+                }
+            }else {
+                return new ResponseUtil(200,"Driver",driverForLoging);
+
+            }
+        }else {
+            return new ResponseUtil(200,"Customer",customerDTO);
+        }
+
     }
 }
 

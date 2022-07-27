@@ -214,6 +214,6 @@ function addbooking(){
      document.getElementsByClassName("CustomerHomePage")[0].style.display = "none"
      document.getElementsByClassName(" customer-Manage-content")[0].style.display = "none"
      document.getElementsByClassName("vehicle-manage-content")[0].style.display = "block"
-     document.getElementsByClassName(" Manage-Booking-content")[0].style.display = "none"
+     document.getElementsByClassName("Customer-Manage-Booking-content")[0].style.display = "none"
      document.getElementsByClassName(" userProfile-manage-content ")[0].style.display = "none"
  });

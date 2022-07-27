@@ -31,7 +31,7 @@ public class VehicleController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseUtil registerCustomer(@RequestPart("vImgFile") MultipartFile[] file, @RequestPart("vehicle") VehicleDTO vehicleDTO) {
+    public ResponseUtil addVehicle(@RequestPart("vImgFile") MultipartFile[] file, @RequestPart("vehicle") VehicleDTO vehicleDTO) {
 
 
         for (MultipartFile myFile : file) {
@@ -58,6 +58,35 @@ public class VehicleController {
     }
 
 
+
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PutMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseUtil updateVehicle(@RequestPart("vImgFile") MultipartFile[] file, @RequestPart("vehicle") VehicleDTO vehicleDTO) {
+
+
+        for (MultipartFile myFile : file) {
+
+            try {
+                String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
+                File uploadsDir = new File(projectPath + "/uploads");
+                uploadsDir.mkdir();
+                myFile.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + myFile.getOriginalFilename()));
+                System.out.println(projectPath);
+            } catch (IOException | URISyntaxException e) {
+                e.printStackTrace();
+                return new ResponseUtil(500, "Registration Failed.Try Again Latter", null);
+            }
+        }
+
+
+
+        vehicleDTO.setVehicleFontImage("uploads/" + vehicleDTO.getVehicleFontImage());
+        vehicleDTO.setVehicleBackImage("uploads/" + vehicleDTO.getVehicleBackImage());
+
+        vehicleService.updateVehicle(vehicleDTO);
+        return new ResponseUtil(200,"Vehicle Details Updated",null);
+    }
 
   /*  @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil addVehicle(@RequestBody VehicleDTO dto){

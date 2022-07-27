@@ -21,7 +21,7 @@ import javax.persistence.ManyToOne;
 @ToString
 public class PaymentDTO {
 
-    private String paymentId;
+    private int paymentId;
     private String finalReturnDate;
     private double finalPrice;
     private Booking bookingId;

@@ -29,6 +29,7 @@ public class VehicleScheduleServiceImpl implements VehicleScheduleService {
     ModelMapper mapper;
 
     public void saveVehicleSchedule(VehicleScheduleDTO entity) {
+
         VehicleSchedule vehicleSchedule = mapper.map(entity, VehicleSchedule.class);
         vehicleScheduleRepo.save(vehicleSchedule);
     }

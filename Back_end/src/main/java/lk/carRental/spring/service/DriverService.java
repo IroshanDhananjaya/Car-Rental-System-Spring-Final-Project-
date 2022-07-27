@@ -2,6 +2,7 @@ package lk.carRental.spring.service;
 
 import lk.carRental.spring.dto.CustomerDTO;
 import lk.carRental.spring.dto.DriverDTO;
+import lk.carRental.spring.dto.UserDTO;
 
 import java.util.List;
 
@@ -21,4 +22,6 @@ public interface DriverService {
     public DriverDTO getRandomDriver();
 
     public List<DriverDTO> getAllDriver();
+
+    public DriverDTO getDriverForLoging(UserDTO userDTO);
 }

@@ -2,6 +2,7 @@ package lk.carRental.spring.service.impl;
 
 import lk.carRental.spring.dto.CustomerDTO;
 import lk.carRental.spring.dto.DriverDTO;
+import lk.carRental.spring.dto.UserDTO;
 import lk.carRental.spring.entity.Customer;
 import lk.carRental.spring.entity.Driver;
 import lk.carRental.spring.repo.DriverRepo;
@@ -69,5 +70,15 @@ public class DriverServiceImpl implements DriverService {
     public List<DriverDTO> getAllDriver() {
         List<Driver> all=driverRepo.findAll();
         return mapper.map(all,new TypeToken<List<DriverDTO>>(){}.getType());
+    }
+
+    public DriverDTO getDriverForLoging(UserDTO userDTO) {
+        List<Driver> all=driverRepo.findAll();
+        for (Driver d:all) {
+            if(d.getDriverEmail().equals(userDTO.getUserName())&d.getDriverNICNumber().equals(userDTO.getUserPassword())){
+                return new DriverDTO(d.getDriverNICNumber(),d.getDriverName(),d.getDriverAddress(),d.getDriverContact(),d.getDriverEmail(),d.getDriverPassword(),d.getDriverLicenseImg(),d.getDiverStatus(),d.getType());
+            }
+        }
+        return null;
     }
 }

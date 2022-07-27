@@ -66,20 +66,48 @@ public class DriverController {
 
     }*/
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @PutMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseUtil updateDriver(@RequestPart("Driverfiles") MultipartFile[] file, @RequestPart("driver") DriverDTO driverDTO) {
+
+
+        for (MultipartFile myFile : file) {
+
+            try {
+                String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
+                File uploadsDir = new File(projectPath + "/uploads");
+                uploadsDir.mkdir();
+                myFile.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + myFile.getOriginalFilename()));
+                System.out.println(projectPath);
+            } catch (IOException | URISyntaxException e) {
+                e.printStackTrace();
+                return new ResponseUtil(500, "Registration Failed.Try Again Latter", null);
+            }
+        }
+
+
+
+        driverDTO.setDriverLicenseImg("uploads/" + driverDTO.getDriverLicenseImg());
+
+
+        driverService.updateDriver(driverDTO);
+        return new ResponseUtil(200,"Driver Details Updated",null);
+    }
+
 
     @DeleteMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil deleteDriver(@RequestParam String id){
 
         driverService.deleteDriver(id);
-        return new ResponseUtil(200,"Deleted",null);
+        return new ResponseUtil(200,"Driver Deleted",null);
     }
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+  /*  @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil updateDriver(@RequestBody DriverDTO dto){
         driverService.updateDriver(dto);
         return new ResponseUtil(200,"Driver Updated",null);
 
-    }
+    }*/
     @GetMapping(path = "randomDriver",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil getDriverRandom(){
         DriverDTO dto = driverService.getRandomDriver();

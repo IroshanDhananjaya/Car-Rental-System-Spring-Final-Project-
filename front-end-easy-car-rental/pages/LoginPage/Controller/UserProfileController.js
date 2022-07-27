@@ -3,7 +3,7 @@ function forUserProfile() {
     document.getElementsByClassName("CustomerHomePage")[0].style.display = "none"
     document.getElementsByClassName(" customer-Manage-content")[0].style.display = "none"
     document.getElementsByClassName("vehicle-manage-content")[0].style.display = "none"
-    document.getElementsByClassName(" Manage-Booking-content")[0].style.display = "none"
+    document.getElementsByClassName("Customer-Manage-Booking-content")[0].style.display = "none"
     document.getElementsByClassName(" userProfile-manage-content ")[0].style.display = "block"
 
 }
@@ -27,36 +27,58 @@ function loging(){
         data: JSON.stringify(user),
         success(resp){
             var i = resp.data
-                if(i.custEmail==email & i.custPassword==password){
-                    document.getElementsByClassName("dashboard-container")[0].style.display = "block"
-                    document.getElementsByClassName("loging-Form-container")[0].style.display = "none"
-                    document.getElementsByClassName("driver-dashboard-container")[0].style.display = "none"
-                    $("#txtCustNICNumber1").val(i.custNICNumber);
-                    $("#txtCustName1").val(i.custName);
-                    $("#txtCustAddress1").val(i.custAddress);
-                    $("#txtContactNumber1").val(i.custContact);
-                    $("#txtCustEmail1").val(i.custEmail);
-                    $("#txtCustPassword1").val(i.custPassword);
+            if(resp.message=="Customer"){
 
-                    nicImg=i.custNICImg
-                    licenseImg=i.custdrivingImg
+                document.getElementsByClassName("dashboard-container")[0].style.display = "block"
+                document.getElementsByClassName("loging-Form-container")[0].style.display = "none"
+                document.getElementsByClassName("driver-dashboard-container")[0].style.display = "none"
+                document.getElementsByClassName("admin-dashboard-container")[0].style.display = "none"
 
-                    $("#custNICImg").css({
-                        "background": `url(${"http://localhost:8080/Back_end_war_exploded/"+i.custNICImg})`,
-                        "background-size": "cover",
-                        "background-position":"center",
-                        "height": "300px"
-                    });
-                    $("#custLicense").css({
-                        "background": `url(${"http://localhost:8080/Back_end_war_exploded/"+i.custdrivingImg})`,
-                        "background-size": "cover",
-                        "background-position":"center",
-                        "height": "300px"
-                    });
+                $("#txtCustNICNumber1").val(i.custNICNumber);
+                $("#txtCustName1").val(i.custName);
+                $("#txtCustAddress1").val(i.custAddress);
+                $("#txtContactNumber1").val(i.custContact);
+                $("#txtCustEmail1").val(i.custEmail);
+                $("#txtCustPassword1").val(i.custPassword);
 
-                    return;
+                nicImg=i.custNICImg
+                licenseImg=i.custdrivingImg
 
-                }
+                $("#custNICImg").css({
+                    "background": `url(${"http://localhost:8080/Back_end_war_exploded/"+i.custNICImg})`,
+                    "background-size": "cover",
+                    "background-position":"center",
+                    "height": "300px"
+                });
+                $("#custLicense").css({
+                    "background": `url(${"http://localhost:8080/Back_end_war_exploded/"+i.custdrivingImg})`,
+                    "background-size": "cover",
+                    "background-position":"center",
+                    "height": "300px"
+                });
+
+                return;
+
+            }else if (resp.message=="Driver"){
+                document.getElementsByClassName("dashboard-container")[0].style.display = "driver"
+                document.getElementsByClassName("loging-Form-container")[0].style.display = "none"
+                document.getElementsByClassName("driver-dashboard-container")[0].style.display = "block"
+                document.getElementsByClassName("admin-dashboard-container")[0].style.display = "none"
+
+                $("#txtDriverDashboardDNIC").val(i.driverNICNumber)
+                $("#txtDriverDashboardDName").val(i.driverName)
+                $("#txtDriverDashboardDContact").val(i.driverContact)
+
+
+            }else if(resp.message=="Admin"){
+
+                document.getElementsByClassName("dashboard-container")[0].style.display = "driver"
+                document.getElementsByClassName("loging-Form-container")[0].style.display = "none"
+                document.getElementsByClassName("driver-dashboard-container")[0].style.display = "none"
+                document.getElementsByClassName("admin-dashboard-container")[0].style.display = "block"
+            }else {
+                alert(resp.message);
+            }
 
         }
     });
@@ -101,7 +123,7 @@ $("#btn-edit-customer").click(function (){
         data:JSON.stringify(customer),
         success(resp){
 
-         alert(resp.message)
+            alert(resp.message)
 
         }
     });

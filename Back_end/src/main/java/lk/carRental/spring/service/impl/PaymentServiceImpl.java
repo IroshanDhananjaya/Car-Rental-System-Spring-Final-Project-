@@ -38,10 +38,10 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     public void updatePayment(PaymentDTO entity) {
-        if(paymentRepo.existsById(entity.getPaymentId())){
+       /* if(paymentRepo.existsById(entity.getPaymentId())){
             Payment payment = mapper.map(entity, Payment.class);
             paymentRepo.save(payment);
-        }
+        }*/
     }
 
     public PaymentDTO searchPayment(String id) {

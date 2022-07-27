@@ -31,7 +31,7 @@
 </head>
 <body>
 
-<section class="login-area loging-Form-container" id="customer-Manage-content">
+<section class="login-area loging-Form-container"  id="customer-Manage-content">
 
     <!--==========================Login Form==============================-->
 
@@ -126,7 +126,7 @@
                     <i class="material-icons">web</i><span>Booking</span></a>
                 <ul class="collapse list-unstyled menu" id="pageSubmenu4">
                     <li>
-                        <a href="#" onclick="forBookingManage()">Manage Booking</a>
+                        <a href="#" onclick="forCustBookingManage()">Manage Booking</a>
                     </li>
                 </ul>
             </li>
@@ -831,7 +831,7 @@
 
 
         <!--=============Manage Booking Content=============-->
-        <div class="Manage-Booking-content content-body" style="display: none">
+        <div class="Customer-Manage-Booking-content content-body" style="display: none">
             <h4>Admin Dashboard</h4>
             <p>Dashboard \ Booking \ Booking Manage </p>
             <div class="row ">
@@ -909,9 +909,9 @@
                             </div>
 
                             <div class="input-group col-6">
-                                <button class="btn btn-outline-success" type="button" id="btn-all-Vehiclescedule">All Booking</button>
-                                <button class="btn btn-outline-primary" type="button" id="btn-onBookingVehicleSchedule">Not Approved Booking</button>
-                                <button class="btn btn-outline-warning" type="button" id="btn-canceldVehicleSchedule">Complete Booking</button>
+                                <button class="btn btn-outline-success" type="button" id="btn-all-YourBooking">All Booking</button>
+                                <button class="btn btn-outline-primary" type="button" id="btn-AllNotApproveBooking">Not Approved Booking</button>
+                                <button class="btn btn-outline-warning" type="button" id="btn-AllCompleteBooking">Complete Booking</button>
                             </div>
                         </div>
 
@@ -1083,10 +1083,22 @@
                                     <span class="material-icons">apps</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
+
+                            <li class="nav-item dropdown nav-item active">
+                                <a href="#" class="nav-link" data-toggle="dropdown">
                                     <span class="material-icons">person</span>
                                 </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#" onclick="forUserProfile()">Profile</a>
+                                    </li>
+                                    <li >
+                                        <a href="#" onclick="forLogOut()">Log out</a>
+                                    </li>
+
+
+                                </ul>
+
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
@@ -1170,24 +1182,44 @@
                     <div class="card" style="min-height: 0">
                         <div class="card" style="min-height: 450px">
                             <div class="card-header card-header-text">
-                                <h4 class="card-title">Driver Schedule</h4>
+                                <h4 class="card-title">Your Schedule</h4>
                             </div>
 
                             <div class="row">
                                 <div class=" mx-5 col-3">
-                                    <label for="exampleFormControlInput1" class="form-label">Start Date</label>
-                                    <input type="date" class="form-control" id="exampleFormControlInput1"
+                                    <label for="txtDriverDashboardDNIC" class="form-label">Your NIC Number</label>
+                                    <input type="text" class="form-control" id="txtDriverDashboardDNIC"
                                            placeholder="">
 
                                 </div>
                                 <div class=" mx-5 col-3">
-                                    <label for="exampleFormControlInput1" class="form-label">End Date</label>
-                                    <input type="date" class="form-control" id="exampleFormControlInput1"
+                                    <label for="txtDriverDashboardDName" class="form-label">Your Name</label>
+                                    <input type="text" class="form-control" id="txtDriverDashboardDName"
+                                           placeholder="">
+
+                                </div>
+                                <div class=" mx-5 col-3">
+                                    <label for="txtDriverDashboardDContact" class="form-label">Your Contact</label>
+                                    <input type="text" class="form-control" id="txtDriverDashboardDContact"
+                                           placeholder="">
+
+                                </div>
+                                <div class=" mx-5 col-3">
+                                    <label for="txtDriverDashboardStartDate" class="form-label">Start Date</label>
+                                    <input type="date" class="form-control" id="txtDriverDashboardStartDate"
+                                           placeholder="">
+
+                                </div>
+                                <div class=" mx-5 col-3">
+                                    <label for="txtDriverDashboardEndDate" class="form-label">End Date</label>
+                                    <input type="date" class="form-control" id="txtDriverDashboardEndDate"
                                            placeholder="">
                                 </div>
                                 <div class=" col-3" style="margin-top: 35px">
-                                    <button type="button" class="btn btn-outline-info">Search</button>
+                                    <button type="button" id="btn-search-driverdashboard-schedule" class="btn btn-outline-info">Search</button>
+                                    <button type="button" id="btn-all-driverdashboard-schedule" class="btn btn-outline-success">View All</button>
                                 </div>
+
 
                             </div>
 
@@ -1201,18 +1233,11 @@
                                         <th>Driver NIC</th>
                                         <th>Start Date</th>
                                         <th>End Date</th>
-
                                         <th>status</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Bob Williams</td>
-                                        <td>$23,566</td>
-                                        <td>USA</td>
-                                        <td>Not Approved</td>
-                                    </tr>
+                                    <tbody id="driverDashboardTBL">
+
                                     </tbody>
                                 </table>
                             </div>
@@ -1260,6 +1285,1333 @@
     </div>
 </section>
 
+<section class="wrapper admin-dashboard-container" style="display: none">
+
+
+    <div class="body-overlay"></div>
+
+
+    <!--===============Side Bar========================-->
+    <nav id="Adminsidebar">
+        <div class="Admin-sidebar-header">
+            <h3><img src="AdminDashboardimg/logo.png" class="img-fluid"/><span>Easy Car Rental</span></h3>
+        </div>
+        <ul class="list-unstyled components">
+            <li class="active">
+                <a href="#" class="dashboard" onclick="forDashBoard()"><i class="material-icons">dashboard</i><span>Dashboard</span></a>
+            </li>
+
+            <!--     <div class="small-screen navbar-display">
+                     <li class="dropdown d-lg-none d-md-block d-xl-none d-sm-block">
+                         <a href="#homeSubmenu0" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                             <i class="material-icons">person</i><span> 4 notification</span></a>
+                         <ul class="collapse list-unstyled menu" id="homeSubmenu0">
+                             <li>
+                                 <a href="#">You have 5 new messages</a>
+                             </li>
+                             <li>
+                                 <a href="#">You're now friend with Mike</a>
+                             </li>
+                             <li>
+                                 <a href="#">Wish Mary on her birthday!</a>
+                             </li>
+                             <li>
+                                 <a href="#">5 warnings in Server Console</a>
+                             </li>
+                         </ul>
+                     </li>
+
+                     <li class="d-lg-none d-md-block d-xl-none d-sm-block">
+                         <a href="#"><i class="material-icons">apps</i><span>apps</span></a>
+                     </li>
+
+                     <li class="d-lg-none d-md-block d-xl-none d-sm-block">
+                         <a href="userSetting"><i class="material-icons">person</i><span>user</span></a>
+                         <ul class="collapse list-unstyled menu" id="userSetting">
+                             <li>
+                                 <a href="#">You have 5 new messages</a>
+                             </li>
+                             <li>
+                                 <a href="#">You're now friend with Mike</a>
+                             </li>
+                             <li>
+                                 <a href="#">Wish Mary on her birthday!</a>
+                             </li>
+                             <li>
+                                 <a href="#">5 warnings in Server Console</a>
+                             </li>
+                         </ul>
+                     </li>
+
+                     <li class="d-lg-none d-md-block d-xl-none d-sm-block">
+                         <a href="#"><i class="material-icons">settings</i><span>setting</span></a>
+                     </li>
+                 </div>
+     -->
+
+            <li class="dropdown">
+                <a href="#AdminhomeSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="material-icons">person</i><span>Drivers</span></a>
+                <ul class="collapse list-unstyled menu" id="AdminhomeSubmenu1">
+                    <li>
+                        <a href="#" id="btn-home" onclick="forManageDriver()">Manage Driver</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="fordriverSchedule()">Manage Driver Schedule</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="#AdminpageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="material-icons">group</i><span>Customer</span></a>
+                <ul class="collapse list-unstyled menu" id="AdminpageSubmenu2">
+                    <li>
+                        <a href="#" onclick="forCustomerMange()">Manage Customer</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="#AdminpageSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="material-icons">directions_car</i><span>Vehicles</span></a>
+                <ul class="collapse list-unstyled menu" id="AdminpageSubmenu3">
+                    <li>
+                        <a href="#" onclick="forvehicle()">Manage Vehicle</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="forvehicleScheduleMage()">Manage Vehicle Schedule</a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#AdminpageSubmenu4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="material-icons">web</i><span>Booking</span></a>
+                <ul class="collapse list-unstyled menu" id="AdminpageSubmenu4">
+                    <li>
+                        <a href="#" onclick="forBookingManage()">Manage Booking</a>
+                    </li>
+                </ul>
+            </li>
+
+
+        </ul>
+
+
+    </nav>
+
+
+    <!--=====================Content=====================-->
+    <div id="Admincontent">
+
+        <!--================Top Nav Bar====================-->
+        <div class="top-navbar">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+
+                    <button type="button" id="AdminsidebarCollapse" class="d-xl-block d-lg-block d-md-mone d-none">
+                        <span class="material-icons">arrow_back_ios</span>
+                    </button>
+
+                    <a class="navbar-brand" href="#"> Dashboard </a>
+
+                    <button class="d-inline-block d-lg-none ml-auto more-button" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="material-icons">more_vert</span>
+                    </button>
+
+                    <div class="collapse navbar-collapse d-lg-block d-xl-block d-sm-none d-md-none d-none"
+                         id="AdminnavbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="dropdown nav-item active">
+                                <a href="#" class="nav-link" data-toggle="dropdown">
+                                    <span class="material-icons">notifications</span>
+                                    <span class="notification">4</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#">Inbox</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Sent Box</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">All Mail</a>
+                                    </li>
+
+
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown nav-item active">
+                                <a href="#" class="nav-link" data-toggle="dropdown">
+                                    <span class="material-icons">logout</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item dropdown nav-item active">
+                                        <ul class="dropdown-menu">
+
+                                            <li >
+                                                <a href="#" onclick="forLogOut()">Log out</a>
+                                            </li>
+
+
+                                        </ul>
+
+                                    </li>
+                                    <li >
+                                        <a href="#">Log out</a>
+                                    </li>
+
+
+                                </ul>
+
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+
+        <!--================Admin Home Page====================-->
+        <div class="AdminHomePage content-body">
+            <h4>Admin Dashboard</h4>
+            <p>Dashboard \ Home</p>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats">
+                        <div class="card-header">
+                            <div class="icon icon-warning">
+                                <span class="material-icons">web</span>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <p class="category"><strong>Booking</strong></p>
+                            <h3 class="card-title">70,340</h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">update</i> Just Updated
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats">
+                        <div class="card-header">
+                            <div class="icon icon-rose">
+                                <span class="material-icons">person</span>
+
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <p class="category"><strong>Drivers</strong></p>
+                            <h3 class="card-title">102</h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">update</i> Just Updated
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats">
+                        <div class="card-header">
+                            <div class="icon icon-success">
+                                <span class="material-icons">group</span>
+
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <p class="category"><strong>Customers</strong></p>
+                            <h3 class="card-title">$23,100</h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">update</i> Just Updated
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats">
+                        <div class="card-header">
+                            <div class="icon icon-info">
+                                <span class="material-icons">directions_car</span>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <p class="category"><strong>Vehicles</strong></p>
+                            <h3 class="card-title">+245</h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">update</i> Just Updated
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row ">
+                <div class="12 col-md-12">
+                    <div class="card" style="min-height: 0">
+                        <div class="card-header card-header-text">
+                            <h4 class="card-title">Payment</h4>
+
+                        </div>
+                        <div class="input-group col-6">
+                            <input type="text" class="form-control" id="txtSearchPendingBooking" placeholder="Booking ID"
+                                   aria-label="Recipient's username" aria-describedby="button-addon2">
+
+                            <button class="btn btn-outline-success" type="button" id="btn-SearchPendingBooking">Search</button>
+                        </div>
+                        <div class="card-content table-responsive">
+                            <table class="table table-hover">
+                                <thead class="text-primary">
+                                <tr>
+                                    <th>Booking Details</th>
+                                    <th>Booking ID</th>
+                                    <th>Pick up Date</th>
+                                    <th>Return Date</th>
+                                    <th>status</th>
+                                </tr>
+                                </thead>
+                                <tbody id="tblPendingPayementbooking">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="12 col-md-12 card-hover">
+                    <div class="card" style="min-height: 400px">
+                        <div class="card-header card-header-text">
+                            <h4 class="card-title">Payment Details</h4>
+                        </div>
+                        <div class="card-content">
+                            <div class="row">
+                                <div class="col-2">
+                                    <label for="txtPaymentBookingId" class="form-label">Booking ID</label>
+                                    <input type="email" class="form-control" id="txtPaymentBookingId"
+                                           placeholder="">
+                                </div>
+                                <div class="col-3">
+                                    <label for="txtPaymentCustNIC" class="form-label">Customer NIC</label>
+                                    <input type="email" class="form-control" id="txtPaymentCustNIC"
+                                           placeholder="">
+                                </div>
+                                <div class="col-3">
+                                    <label for="txtPaymentCustName" class="form-label">Customer Name</label>
+                                    <input type="email" class="form-control" id="txtPaymentCustName"
+                                           placeholder="">
+                                </div>
+                                <div class="col-3">
+
+                                    <label for="txtPaymentVNumber" class="form-label">Vehicle Number</label>
+                                    <input type="email" class="form-control" id="txtPaymentVNumber"
+                                           placeholder="">
+                                </div>
+                                <div class="col-4">
+                                    <label for="txtPaymentLoseDamage" class="form-label">Lose Damage</label>
+                                    <input type="email" class="form-control" id="txtPaymentLoseDamage"
+                                           placeholder="">
+                                </div>
+                                <div class="col-4">
+                                    <label for="txtPaymentRentDate" class="form-label">Rent Date</label>
+                                    <input type="email" class="form-control" id="txtPaymentRentDate"
+                                           placeholder="">
+                                </div>
+                                <div class="col-4">
+                                    <label for="txtPaymentReturnDate" class="form-label">Return Date</label>
+                                    <input type="email" class="form-control" id="txtPaymentReturnDate"
+                                           placeholder="">
+                                </div>
+                                <div class="col-4">
+                                    <label for="txtPaymentTotalDate" class="form-label">Total Date</label>
+                                    <input type="number" class="form-control" id="txtPaymentTotalDate"
+                                           placeholder="">
+                                </div>
+                                <div class="col-4">
+                                    <label for="txtPaymentKM" class="form-label">KM</label>
+                                    <input type="number" class="form-control" id="txtPaymentKM"
+                                           placeholder="">
+                                </div>
+                                <div class="col-4">
+                                    <label for="txtPaymentExtraKM" class="form-label">Extra KM</label>
+                                    <input type="number" class="form-control" id="txtPaymentExtraKM"
+                                           placeholder="">
+                                </div>
+
+                                <div class=" col-6">
+                                    <label for="txtPaymentFinalPrice" class="form-label">Total Price</label>
+                                    <input type="text" class="form-control" id="txtPaymentFinalPrice">
+
+                                </div>
+                                <div class="col-6">
+                                    <br>
+                                    <button type="button" id="btn-complete-Booking" class="btn btn-outline-success">Complete Booking</button>
+                                    <button type="button" id="btn-cancel-complete" class="btn btn-outline-danger">Cancel</button>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <nav class="d-flex">
+                                    <ul class="m-0 p-0">
+                                        <li>
+                                            <a href="#">
+                                                Home
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Company
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Portfolio
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Blog
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+        <!--=============Driver Manage Content=============-->
+
+        <div class="driver-manage-content content-body" style="display: none">
+            <h4>Admin Dashboard</h4>
+            <p>Dashboard \ Drivers \ Driver Manage </p>
+            <div class="row ">
+                <div class="12 12 card-hover">
+                    <div class="card" style="min-height: 850px">
+                        <div class="card-header card-header-text">
+                            <h4 class="card-title">Manage Driver</h4>
+                        </div>
+                        <div class="card-content">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="txtDriverNICNumber" class="form-label">Driver NIC</label>
+                                    <input type="email" class="form-control" id="txtDriverNICNumber"
+                                           placeholder="">
+                                    <p><small class="text-danger pl-1" id="lblDriverNIC"></small></p>
+                                </div>
+                                <div class="col-6">
+                                    <label for="txtDriverName" class="form-label">Driver Full Name</label>
+                                    <input type="email" class="form-control" id="txtDriverName"
+                                           placeholder="">
+                                    <p><small class="text-danger pl-1" id="lblDriverName"></small></p>
+                                </div>
+                                <div class="col-6">
+                                    <label for="txtDriverAddress" class="form-label">Driver Address</label>
+                                    <input type="email" class="form-control" id="txtDriverAddress"
+                                           placeholder="">
+                                    <p><small class="text-danger pl-1" id="lblDriverAdress"></small></p>
+                                </div>
+                                <div class="col-6">
+                                    <label for="txtDriverContact" class="form-label">Driver Contact</label>
+                                    <input type="email" class="form-control" id="txtDriverContact"
+                                           placeholder="">
+                                    <p><small class="text-danger pl-1" id="lblDriverContact"></small></p>
+                                </div>
+                                <div class=" col-6">
+                                    <label for="txtDriverlicenseImg" class="form-label">Driving License</label>
+                                    <input type="file" name="Driverfiles" class="form-control" id="txtDriverlicenseImg">
+
+                                </div>
+                                <div class=" col-6">
+                                    <label for="txtDriverEmail" class="form-label">Email</label>
+                                    <input type="text" class="form-control" id="txtDriverEmail">
+                                    <p><small class="text-danger pl-1" id="lblDriverEmail"></small></p>
+                                </div>
+                                <div class=" col-3">
+                                    <button type="button" id="btn-save-Driver" class="btn btn-outline-primary col-12">Save</button>
+                                </div>
+                                <div class=" col-3">
+
+                                    <button type="button" id="btn-Update-Driver" class="btn btn-outline-success col-12">Upadate</button>
+                                </div>
+                                <div class=" col-3">
+
+                                    <button type="button" id="btn-delete-Driver" class="btn btn-outline-danger col-12">Delete</button>
+                                </div>
+                                <div class=" col-3">
+
+                                    <button type="button" id="btn-clear-Driver" class="btn btn-outline-info col-12">Clear</button>
+                                </div>
+                                <div class=" col-6 mx-5" style="margin-top: 40px">
+                                    <div id="driverImg" class="border border-1, w-100 md-5" style="height: 300px"></div>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <div class="12 col-md-12">
+                    <div class="card" style="min-height: 0">
+                        <div class="card-header card-header-text">
+                            <h4 class="card-title">Drivers</h4>
+
+                        </div>
+                        <div class="card-content table-responsive">
+                            <table class="table table-hover">
+                                <thead class="text-primary">
+                                <tr>
+                                    <th>Driver NIC</th>
+                                    <th>Driver Name</th>
+                                    <th>Address</th>
+                                    <th>Contact</th>
+                                    <th>Email</th>
+                                    <th>License</th>
+                                    <th>status</th>
+                                </tr>
+                                </thead>
+                                <tbody id="driverTable">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <nav class="d-flex">
+                                    <ul class="m-0 p-0">
+                                        <li>
+                                            <a href="#">
+                                                Home
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Company
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Portfolio
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Blog
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </footer>
+
+
+                <!--    ====================2 page==============-->
+
+
+            </div>
+
+        </div>
+
+        <!--=============Driver Shedule Content=============-->
+
+        <div class="driver-schedule-content content-body" style="display: none">
+            <h4>Admin Dashboard</h4>
+            <p>Dashboard \ Drivers \ Driver schedule </p>
+            <div class="row ">
+                <div class="12 col-md-12">
+                    <div class="card" style="min-height: 0">
+                        <div class="card" style="min-height: 450px">
+                            <div class="card-header card-header-text">
+                                <h4 class="card-title">Driver Schedule</h4>
+                            </div>
+                            <div class="row">
+                                <div class="input-group col-5">
+                                    <input type="text" class="form-control" placeholder="Driver NIC Number" id="txtDriverSheduleSearch"
+                                           aria-label="Recipient's username" aria-describedby="button-addon2">
+                                    <button class="btn btn-outline-success" type="button" id="btn-Driver-schedule-search">Search</button>
+                                </div>
+
+                                <div class="input-group col-6">
+                                    <button class="btn btn-outline-success" type="button" id="btn-all-driverscedule">All Schedules</button>
+                                    <button class="btn btn-outline-primary" type="button" id="btn-onworkDriverSchedule">On Work Schedules</button>
+                                    <button class="btn btn-outline-danger" type="button" id="btn-canceldDriverSchedule">Cancel Schedules</button>
+                                </div>
+                            </div>
+
+
+                            <div class="card-content table-responsive">
+
+                                <table class="table table-hover">
+                                    <thead class="text-primary">
+                                    <tr>
+                                        <th>Booking Details ID</th>
+                                        <th>Driver NIC</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tblDriverSchedule">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <nav class="d-flex">
+                                    <ul class="m-0 p-0">
+                                        <li>
+                                            <a href="#">
+                                                Home
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Company
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Portfolio
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Blog
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </footer>
+
+
+            </div>
+
+        </div>
+
+        <!--=============Customer Manage Content=============-->
+        <div class="admin-customer-Manage-content content-body" style="display: none">
+            <h4>Admin Dashboard</h4>
+            <p>Dashboard \ Customer \ Customer Manage </p>
+            <div class="row ">
+                <div class="12 col-md-12">
+                    <div class="card" style="min-height: 650px">
+                        <div class="card-header card-header-text">
+                            <h4 class="card-title">View Customer</h4>
+                        </div>
+                        <div class="card-content">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="txtCNICNumber" class="form-label">National Identity Card
+                                        No</label>
+                                    <input type="text" class="form-control" id="txtCNICNumber"
+                                           placeholder="" disabled>
+                                </div>
+                                <div class="mb-2 col-6">
+                                    <label for="txtCname" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="txtCname"
+                                           placeholder="E.K.Iroshan Dhananjaya" disabled>
+                                </div>
+                                <div class="mb-2 col-6">
+                                    <label for="txtCAddress" class="form-label">Address</label>
+                                    <input type="text" class="form-control" id="txtCAddress"
+                                           placeholder="123/A Galle Road,Panadura" disabled>
+                                </div>
+                                <div class="mb-2 col-6">
+                                    <label for="txtCContactNumber" class="form-label">Contact Number</label>
+                                    <input type="text" class="form-control" id="txtCContactNumber"
+                                           placeholder="0771239850" disabled>
+                                </div>
+                                <div class="mb-2 col-7">
+                                    <label for="txtCEmail" class="form-label">Email</label>
+                                    <input type="Email" class="form-control" id="txtCEmail"
+                                           placeholder="iroshandhananjaya@gmail.com" disabled>
+                                </div>
+                                <div class=" col-6">
+                                    <label for="display" class="form-label">NIC Image</label>
+                                    <div id="display" class="border border-1, w-100" style="height: 300px"></div>
+                                </div>
+                                <div class=" col-6">
+                                    <label for="display2" class="form-label">License Image</label>
+                                    <div id="display2" class="border border-1, w-100" style="height: 300px"></div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="12 col-md-12">
+                    <div class="card" style="min-height: 0">
+                        <div class="card-header card-header-text">
+                            <h4 class="card-title">Customers</h4>
+
+                        </div>
+                        <div class="card-content table-responsive">
+                            <table class="table table-hover">
+                                <thead class="text-primary">
+                                <tr>
+                                    <th>Customer NIC</th>
+                                    <th>Customer Name</th>
+                                    <th>Address</th>
+                                    <th>Contact</th>
+                                    <th>Email</th>
+                                    <th>status</th>
+                                </tr>
+                                </thead>
+                                <tbody id="tblPendingCustomer">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <nav class="d-flex">
+                                    <ul class="m-0 p-0">
+                                        <li>
+                                            <a href="#">
+                                                Home
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Company
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Portfolio
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Blog
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </footer>
+
+
+                <!--    ====================2 page==============-->
+
+
+            </div>
+
+        </div>
+
+        <!--=============Vehicle Manage Content=============-->
+
+        <div class="Admin-vehicle-manage-content content-body" style="display: none">
+            <h4>Admin Dashboard</h4>
+            <p>Dashboard \ Vehicle \ Vehicle Manage </p>
+            <a type="button" href="#vMaintanence" class="btn btn-primary 3">Maintenance Vehicle</a>
+            <div class="row ">
+                <div class="12 col-md-12 card-hover">
+                    <div class="card" style="min-height: 570px">
+                        <div class="card-header card-header-text">
+                            <h4 class="card-title">Manage Vehicle</h4>
+                        </div>
+
+                        <div class="card-content">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label for="txtVehicleNumber" class="form-label">Vehicle Number</label>
+                                    <input type="email" class="form-control" id="txtVehicleNumber"
+                                           placeholder="">
+                                </div>
+                                <div class="col-4">
+                                    <label for="cmbVehicleBrand" class="form-label">Brand</label>
+                                    <select class="form-select" aria-label="Default select example" id="cmbVehicleBrand">
+                                        <option selected>Select Vehicle Brand</option>
+                                        <option>Suzuki Alto</option>
+                                        <option>Suzuki Alto K10</option>
+                                        <option>Suzuki Celerio</option>
+                                        <option>Perodua (Daihatsu) Axia</option>
+                                        <option>Toyota Prius C/ Aqua</option>
+                                        <option>Toyota Corolla Axio</option>
+                                        <option>Perodua Bezza Prime Sedan</option>
+                                        <option>Toyota Allion NZT 260</option>
+                                        <option>Toyota Premio</option>
+                                        <option>Mercedes</option>
+                                        <option>BMW i8</option>
+                                    </select>
+                                </div>
+                                <div class="col-4">
+                                    <label for="cmbVehicleType" class="form-label">Type</label>
+                                    <select class="form-select" aria-label="Default select example" id="cmbVehicleType">
+                                        <option selected>Select Vehicle Type</option>
+                                        <option >General</option>
+                                        <option >Premium</option>
+                                        <option >Luxury</option>
+                                    </select>
+                                </div>
+
+
+                                <div class="col-4">
+                                    <label for="cmbTransmissionType" class="form-label">Transmission Type</label>
+                                    <select class="form-select" aria-label="Default select example" id="cmbTransmissionType">
+                                        <option selected>Select Transmission Type</option>
+                                        <option>Auto</option>
+                                        <option>Manual</option>
+
+                                    </select>
+                                </div>
+                                <div class="col-4">
+                                    <label for="cmbFuelType" class="form-label">Fuel Type</label>
+                                    <select class="form-select" aria-label="Default select example" id="cmbFuelType">
+                                        <option selected>Select Fuel Type</option>
+                                        <option>Petrol</option>
+                                        <option>Diesel</option>
+
+                                    </select>
+                                </div>
+                                <div class="col-4">
+                                    <label for="txtNoOfPassenger" class="form-label">No Of Passenger</label>
+                                    <input type="number" class="form-control" id="txtNoOfPassenger"
+                                           placeholder="">
+                                </div>
+                                <div class="col-4">
+                                    <label for="cmbVehicleColor" class="form-label">Colour</label>
+                                    <select class="form-select" aria-label="Default select example" id="cmbVehicleColor">
+                                        <option selected>Select Colour</option>
+                                        <option>Red</option>
+                                        <option>Blue</option>
+                                        <option>Wight</option>
+                                        <option>Black</option>
+                                        <option>Silver</option>
+                                    </select>
+                                </div>
+                                <div class=" col-4">
+                                    <label for="txtDailyRent" class="form-label">Daily Rent</label>
+                                    <input type="text" class="form-control" id="txtDailyRent">
+
+                                </div>
+                                <div class=" col-4">
+                                    <label for="txtMonthlyRent" class="form-label">Monthly Rent</label>
+                                    <input type="text" class="form-control" id="txtMonthlyRent">
+
+                                </div>
+                                <div class=" col-6">
+                                    <label for="txtPriceForKM" class="form-label">Price For KM</label>
+                                    <input type="text" class="form-control" id="txtPriceForKM">
+
+                                </div>
+                                <div class=" col-6">
+                                    <label for="txtPriceForExtraKM" class="form-label">Price For Extra KM</label>
+                                    <input type="text" class="form-control" id="txtPriceForExtraKM">
+
+                                </div>
+                                <div class=" col-6">
+                                    <label for="txtVehicleFrontImage" class="form-label">Vehicle Front Image</label>
+                                    <input type="file" name="vImgFile" class="form-control" id="txtVehicleFrontImage">
+                                </div>
+                                <div class=" col-6">
+                                    <label for="txtVehicleBackImg" class="form-label">Vehicle Back Image</label>
+                                    <input type="file" name="vImgFile" class="form-control" id="txtVehicleBackImg">
+                                </div>
+                                <div class=" col-3" style="margin-top: 40px">
+                                    <button type="button" id="btn-vehicle-save" class="btn btn-outline-primary col-12">Save</button>
+                                </div>
+                                <div class=" col-3" style="margin-top: 40px">
+                                    <button type="button" id="btn-vehicle-update" class="btn btn-outline-success col-12">Updated</button>
+                                </div>
+                                <div class=" col-3" style="margin-top: 40px">
+                                    <button type="button" id="btn-vehicle-delete" class="btn btn-outline-danger col-12">Delete</button>
+                                </div>
+                                <div class=" col-3" style="margin-top: 40px">
+                                    <button type="button" id="btn-vehicle-clear" class="btn btn-outline-info col-12">Clear</button>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <div class="12 col-md-12">
+                    <div class="card" style="min-height: 0">
+                        <div class="card-header card-header-text">
+                            <h4 class="card-title">Vehicles</h4>
+
+                        </div>
+                        <div class="card-content table-responsive">
+                            <table class="table table-hover">
+                                <thead class="text-primary">
+                                <tr>
+                                    <th>Vehicle Number</th>
+                                    <th>Type</th>
+                                    <th>Brand</th>
+                                    <th>Transmission Type</th>
+                                    <th>Fuel Type</th>
+                                    <th>No Of Passenger</th>
+                                    <th>Colour</th>
+                                    <th>Daily Rent</th>
+                                    <th>MonthlyRent</th>
+                                    <th>Price For KM</th>
+                                    <th>Price For Extra KM</th>
+                                    <th>Status</th>
+                                </tr>
+                                </thead>
+                                <tbody id="vehicleTable">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="12 col-md-12" id="vMaintanence">
+                    <div class="card" style="min-height: 0">
+                        <div class="card-header card-header-text">
+                            <h4 class="card-title">Vehicles Maintenance</h4>
+
+                        </div>
+                        <div class="card-content table-responsive">
+                            <div class="row">
+                                <div class=" col-6">
+                                    <label for="txtMaintenanceVehicle" class="form-label">Enter Vehicle Number</label>
+                                    <input type="text" class="form-control" id="txtMaintenanceVehicle">
+                                </div>
+
+                                <button type="button" id="btn-vehicle-Maintenance" class="btn btn-outline-info col-3 md-5 col-3">Add Maintenance</button>
+                                <button type="button" id="btn-Release-Maintenance" class="btn btn-outline-warning col-3 md-5 col-3">Release Maintenance</button>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="12 col-md-12">
+                    <div class="card" style="min-height: 0">
+                        <div class="card-header card-header-text">
+                            <h4 class="card-title">Maintenance Vehicle</h4>
+
+                        </div>
+                        <div class="card-content table-responsive">
+                            <table class="table table-hover">
+                                <thead class="text-primary">
+                                <tr>
+                                    <th>Vehicle Number</th>
+
+                                    <th>Status</th>
+                                </tr>
+                                </thead>
+                                <tbody id="MaintenancevehicleTable">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <nav class="d-flex">
+                                    <ul class="m-0 p-0">
+                                        <li>
+                                            <a href="#">
+                                                Home
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Company
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Portfolio
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Blog
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </footer>
+
+
+                <!--    ====================2 page==============-->
+
+
+            </div>
+
+        </div>
+
+        <!--=============Vehicle Shedule Content=============-->
+
+        <div class="vehicle-schedule-content content-body" style="display: none">
+            <h4>Admin Dashboard</h4>
+            <p>Dashboard \ Vehicle \ Vehicle schedule </p>
+            <div class="row ">
+                <div class="12 col-md-12">
+                    <div class="card" style="min-height: 0">
+                        <div class="card" style="min-height: 450px">
+                            <div class="card-header card-header-text">
+                                <h4 class="card-title">Vehicle Schedule</h4>
+                            </div>
+
+                            <div class="row">
+                                <div class="input-group col-6">
+                                    <input type="text" class="form-control" placeholder="Vehicle Number" id="txtVehiclescheduleSearch"
+                                           aria-label="Recipient's username" aria-describedby="button-addon2">
+                                    <button class="btn btn-outline-success" type="button" id="btn-vehicleSchedule-search">Search</button>
+                                </div>
+
+                                <div class="input-group col-6">
+                                    <button class="btn btn-outline-success" type="button" id="btn-all-Vehiclescedule">All Schedules</button>
+                                    <button class="btn btn-outline-primary" type="button" id="btn-onBookingVehicleSchedule">On Work Schedules</button>
+                                    <button class="btn btn-outline-danger" type="button" id="btn-canceldVehicleSchedule">Cancel Schedules</button>
+                                </div>
+                            </div>
+
+
+
+                            <div class="card-content table-responsive">
+
+                                <table class="table table-hover">
+                                    <thead class="text-primary">
+                                    <tr>
+                                        <th>Booking Details ID</th>
+                                        <th>Vehicle Number</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tblVehicleSchedule">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <nav class="d-flex">
+                                    <ul class="m-0 p-0">
+                                        <li>
+                                            <a href="#">
+                                                Home
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Company
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Portfolio
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Blog
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </footer>
+
+
+            </div>
+
+        </div>
+
+
+        <!--=============Manage Booking Content=============-->
+        <div class="Admin-Manage-Booking-content content-body" style="display: none">
+            <h4>Admin Dashboard</h4>
+            <p>Dashboard \ Booking \ Booking Manage </p>
+            <div class="row ">
+                <div class="12 col-md-7 card-hover">
+                    <div class="card" style="min-height: 850px">
+                        <div class="card-header card-header-text">
+                            <h4 class="card-title">Manage Booking</h4>
+                        </div>
+                        <div class="card-content">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label for="txtBManageBookingID" class="form-label">Booking ID</label>
+                                    <input type="text" class="form-control" id="txtBManageBookingID"
+                                           placeholder="">
+                                </div>
+                                <div class="col-4">
+                                    <label for="txtBManageCustomerID" class="form-label">Customer NIC</label>
+                                    <input type="text" class="form-control" id="txtBManageCustomerID"
+                                           placeholder="">
+                                </div>
+                                <div class="col-4">
+                                    <label for="txtBManageCustomerName" class="form-label">Customer Name</label>
+                                    <input type="text" class="form-control" id="txtBManageCustomerName"
+                                           placeholder="">
+                                </div>
+                                <div class="col-4">
+                                    <label for="txtBManageVNumber" class="form-label">Vehicle Number</label>
+                                    <input type="text" class="form-control" id="txtBManageVNumber"
+                                           placeholder="">
+                                </div>
+
+                                <div class="col-4">
+                                    <label for="txtBManageDriverNIC" class="form-label">Driver NIC</label>
+                                    <input type="text" class="form-control" id="txtBManageDriverNIC"
+                                           placeholder="">
+                                </div>
+                                <div class="col-4">
+                                    <br>
+                                    <button type="button" id="btn-change-driver"  class="btn btn-outline-success">Change Driver</button>
+                                </div>
+                                <div class=" col-6">
+                                    <label for="txtBManagePickDate" class="form-label">Pick Up Date</label>
+                                    <input type="text" class="form-control" id="txtBManagePickDate">
+
+                                </div>
+                                <div class=" col-6">
+                                    <label for="txtBManageReturnDate" class="form-label">Return Date</label>
+                                    <input type="text" class="form-control" id="txtBManageReturnDate">
+                                </div>
+
+                                <div class=" col-6">
+                                    <label for="txtBManageLoseDamage" class="form-label">Lose Damage</label>
+                                    <input type="text" class="form-control" id="txtBManageLoseDamage">
+                                </div>
+                                <div class=" col-12">
+                                    <br>
+                                    <label for="exampleFormControlInput1" class="form-label">Lose Damage Slip</label>
+
+                                    <div id="loseDamageSlip" class="border border-1, w-100" style="height: 300px"></div>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                        <div class="mx-5 md-5">
+                            <button type="button" id="btn-approve-booking" class="btn btn-outline-primary">Approve</button>
+                            <button type="button" id="btn-Reject-booking" class="btn btn-outline-danger">Reject</button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="12 col-md-5">
+                    <div class="card" style="min-height: 0">
+                        <div class="card  pre-scrollable" style="min-height:800px">
+                            <div class="card-header card-header-text">
+                                <h4 class="card-title">Select Driver</h4>
+                            </div>
+
+                            <div class="input-group col-12">
+                                <input type="text" class="form-control" placeholder="Driver NIC Number"
+                                       aria-label="Recipient's username" aria-describedby="button-addon2">
+
+                                <button class="btn btn-outline-success" type="button" id="btn-search-changeDriver">Search</button>
+                            </div>
+
+                            <div class="card-content table-responsive">
+
+                                <table class="table table-hover">
+                                    <thead class="text-primary">
+                                    <tr>
+                                        <th>Driver NIC</th>
+                                        <th>Driver Name</th>
+
+                                    </tr>
+
+                                    </thead>
+                                    <tbody id="tblChangeDriver">
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="12 col-md-12">
+                    <div class="card" style="min-height: 0">
+                        <div class="card-header card-header-text">
+                            <h4 class="card-title">Booking Details</h4>
+
+                        </div>
+                        <div class="card-content table-responsive">
+                            <table class="table table-hover">
+                                <thead class="text-primary">
+                                <tr>
+                                    <th>Booking Details ID</th>
+                                    <th>Booking ID</th>
+                                    <th>Pick up Date</th>
+                                    <th>Return Date</th>
+                                    <th>Lose Damage</th>
+                                    <th>status</th>
+                                </tr>
+                                </thead>
+                                <tbody id="tblPendingBooking">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <nav class="d-flex">
+                                    <ul class="m-0 p-0">
+                                        <li>
+                                            <a href="#">
+                                                Home
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Company
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Portfolio
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Blog
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </footer>
+
+
+                <!--    ====================2 page==============-->
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+</section>
+
 <script src="../../assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="../../assets/jQuery/jquery-3.6.0.min.js"></script>
 
@@ -1276,7 +2628,15 @@
 <script src="Controller/CustomerVehicleController.js"></script>
 <script src="../../pages/LoginPage/rejisterController.js"></script>
 
-
+<script src="Controller/DriverController.js"></script>
+<script src="Controller/VehicleController.js"></script>
+<script src="Controller/CustomerController.js"></script>
+<script src="Controller/VehicleScheduleController.js"></script>
+<script src="Controller/DriverScheduleController.js"></script>
+<script src="Controller/BookingController.js"></script>
+<script src="Controller/AdminDashboardController.js"></script>
+<script src="Controller/DriverDashboadController.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
 <script type="text/javascript">
@@ -1328,6 +2688,7 @@
     function forLogOut(){
         document.getElementsByClassName("dashboard-container")[0].style.display = "none"
         document.getElementsByClassName("driver-dashboard-container")[0].style.display = "none"
+        document.getElementsByClassName("admin-dashboard-container")[0].style.display = "none"
         document.getElementsByClassName("loging-Form-container")[0].style.display = "block"
     }
 

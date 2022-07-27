@@ -18,8 +18,8 @@ import javax.persistence.*;
 @Entity
 public class Payment {
     @Id
-    private String paymentId;
-    private String finalReturnDate;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int paymentId;
     private double finalPrice;
 
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
