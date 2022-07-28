@@ -68,11 +68,18 @@ function loadAllCustomerBooking(){
                                             if (i.bookingDetails.bookingDetailsId == bookigDetailsID) {
 
                                                 $("#txtBManageDriverNIC1").val(i.driverId.driverNICNumber);
+                                                $("#lblDriverDetailsName").text(i.driverId.driverName);
+                                                $("#lblDriverDetailsAddress").text(i.driverId.driverAddress);
+                                                $("#lblDriverDetailsContact").text(i.driverId.driverContact);
+
                                                 driverID = i.driverId.driverNICNumber;
                                                 driverscheduleID = i.diverscheduleId;
                                                 return
                                             }
                                             $("#txtBManageDriverNIC1").val("Not Assign");
+                                            $("#lblDriverDetailsName").text("Driver Name");
+                                            $("#lblDriverDetailsAddress").text("Driver Address");
+                                            $("#lblDriverDetailsContact").text("Driver Contact");
 
                                         }
 
@@ -203,4 +210,19 @@ function freeVehuicleSchedule1(){
     });
 }
 
+
+$("#btn-viewDetailsDriver").click(function (){
+    $("#driverDetails-container").css({
+        "right": "45px",
+        "z-index": "4"
+    });
+});
+
+$("#btn-Cancel-driverDetails").click(function (){
+    $("#driverDetails-container").css({
+        "right": "-405px",
+    });
+
+
+});
 

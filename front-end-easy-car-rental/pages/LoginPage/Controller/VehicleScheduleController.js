@@ -7,6 +7,8 @@ function forvehicleScheduleMage() {
     document.getElementsByClassName("Admin-vehicle-manage-content")[0].style.display = "none"
     document.getElementsByClassName("vehicle-schedule-content")[0].style.display = "block"
     document.getElementsByClassName("Admin-Manage-Booking-content")[0].style.display = "none"
+    document.getElementsByClassName("Admin-all-Booking-content")[0].style.display = "none"
+
 
     loadAllVehicleSchedule();
 }

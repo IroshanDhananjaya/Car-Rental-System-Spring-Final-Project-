@@ -1728,6 +1728,43 @@ footer .copyright {
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
+/*================================Customer Vehicle Manage=====================================*/
+.Customer-Manage-Booking-content{
+    overflow: hidden;
+}
+
+.driverDetails-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 340px;
+    height: 280px;
+    background-color: #e5e2e2;
+    top: 250px;
+    right: -405px;
+    z-index: 0;
+    font-size: 2em;
+    box-shadow: 0 10px 30px -12px rgb(0 0 0 / 42%), 0 4px 25px 0px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
+}
+
+.driverDetails-container h4{
+    position: absolute;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
 
 
-
+.driverDetails-container>h4:nth-child(1){
+    top: 20px;
+}
+.driverDetails-container>h4:nth-child(2){
+    top: 90px;
+}
+.driverDetails-container>h4:nth-child(3){
+    top: 160px;
+}
+#btn-Cancel-driverDetails{
+    position: absolute;
+    bottom: 20px;
+}

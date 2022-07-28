@@ -31,7 +31,7 @@
 </head>
 <body>
 
-<section class="login-area loging-Form-container"  id="customer-Manage-content">
+<section class="login-area loging-Form-container"   id="customer-Manage-content">
 
     <!--==========================Login Form==============================-->
 
@@ -685,42 +685,42 @@
             <h4>User Dashboard</h4>
             <p>Dashboard \ Vehicle \ Vehicle Manage </p>
             <div class="row ">
-                <div class="12 col-md-12">
+                <div class="12 col-md-5 vehicleDetails">
                     <div class="card" style="min-height: 0">
                         <div class="card-header card-header-text">
                             <h4 class="card-title">Vehicles</h4>
 
                         </div>
                         <div class="card-content">
-                            <div class="row">
-                                <div class="col-3">
+                            <div class="row mx-5">
+                                <div class="col-12">
                                     <h2 style="font-weight: bold" id="lblVehicleNumber">Vehicle Number</h2>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-12">
                                     <label for="lblVehicleFuelType"> Vehicle fuel Type</label>
                                     <h3 style="font-weight: bold" id="lblVehicleFuelType">Vehicle fuel Type</h3>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-12">
                                     <label for="lblVehiclNoOfPassenger"> No of Passenger</label>
                                     <h3 style="font-weight: bold" id="lblVehiclNoOfPassenger">No of Passenger</h3>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-12">
                                     <label for="lblVehicleDailyRent">Daily Rent</label>
                                     <h3 style="font-weight: bold" id="lblVehicleDailyRent">Daily Rent</h3>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-12">
                                     <label for="lblVehicleMonthlyRent">Monthly Rent</label>
                                     <h3 style="font-weight: bold" id="lblVehicleMonthlyRent">Monthly Rent</h3>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-12">
                                     <label for="lblVehiclePriceForKM"> Price For KM</label>
                                     <h3 style="font-weight: bold" id="lblVehiclePriceForKM">Price For KM</h3>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-12">
                                     <label for="lblVehiclePriceForExtraKM"> Price For Extra KM</label>
                                     <h3 style="font-weight: bold" id="lblVehiclePriceForExtraKM">Price For Extra KM</h3>
                                 </div>
-                                <div class="col-3" style="margin-top: 30px">
+                                <div class="col-12" style="margin-top: 30px">
                                     <button type="button" id="btn-select-vehicle-b0ok" class="btn btn-outline-primary" style="width: 100%">Book</button>
                                 </div>
                             </div>
@@ -728,7 +728,7 @@
                     </div>
                 </div>
 
-                <div class="12 col-md-12">
+                <div class="12 col-md-6">
                     <div class="card" style="min-height: 0">
                         <div class="card-header card-header-text">
                             <h4 class="card-title">Vehicles</h4>
@@ -740,10 +740,7 @@
                                 <thead class="text-primary">
                                 <tr>
                                     <th>Image</th>
-                                    <th>Type</th>
-                                    <th>Brand</th>
-                                    <th>Transmission Type</th>
-                                    <th>Colour</th>
+                                    <th>Vehicle Number</th>
                                 </tr>
                                 </thead>
                                 <tbody id="tblAllVehicleWithImg">
@@ -822,10 +819,11 @@
                                            placeholder="">
                                 </div>
 
-                                <div class="col-4">
-                                    <label for="txtBManageDriverNIC1" class="form-label">Driver NIC</label>
+                                <div class="col-4 row">
+                                    <label for="txtBManageDriverNIC1" class="form-label col-6">Driver NIC</label>
                                     <input type="text" class="form-control" id="txtBManageDriverNIC1"
                                            placeholder="">
+                                    <button class="btn btn-outline-success col-6" type="button" id="btn-viewDetailsDriver">view Details</button>
                                 </div>
 
                                 <div class=" col-4">
@@ -862,6 +860,13 @@
 
                 </div>
 
+                <div class="driverDetails-container" id="driverDetails-container">
+                    <h4 id="lblDriverDetailsName">Driver Name</h4>
+                    <h4 id="lblDriverDetailsAddress">Driver Name</h4>
+                    <h4 id="lblDriverDetailsContact">Driver Name</h4>
+
+                    <button type="button" id="btn-Cancel-driverDetails" class="btn btn-outline-danger" style="width: 50%">Cancel</button>
+                </div>
 
 
                 <div class="12 col-md-12">
@@ -1360,6 +1365,9 @@
                 <ul class="collapse list-unstyled menu" id="AdminpageSubmenu4">
                     <li>
                         <a href="#" onclick="forBookingManage()">Manage Booking</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="forAdminAllBooking()">All Booking</a>
                     </li>
                 </ul>
             </li>
@@ -2577,6 +2585,151 @@
 
         </div>
 
+        <div class="Admin-all-Booking-content content-body" style="display: none">
+            <h4>Admin Dashboard</h4>
+            <p>Dashboard \ Booking \ Booking Manage </p>
+            <div class="row ">
+                <div class="12 col-md-5 card-hover mx-5">
+                    <div class="card" style="min-height: 400px">
+                        <div class="card-header card-header-text">
+                            <h4 class="card-title">Booking Details</h4>
+                        </div>
+                        <div class="card-content">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4 class="text-black-50">Booking ID</h4>
+                                    <h3 id="lblAllBDetailsBookingId">Booking ID</h3>
+                                </div>
+                                <div class="col-12">
+                                    <h4 class="text-black-50">Vehicle Number</h4>
+                                    <h3 id="lblAllBDetailsVnumber">Vehicle Number</h3>
+                                </div>
+                                <div class="col-12">
+                                    <h4 class="text-black-50">Driver NIC</h4>
+                                    <h3 id="lblAllBDetailsDriverNIC">Driver NIC</h3>
+                                </div>
+                                <div class="col-12">
+                                    <h4 class="text-black-50">Pick up date</h4>
+                                    <h3 id="lblAllBDetailsPickUpDate">Pick up date</h3>
+                                </div>
+                                <div class="col-12">
+                                    <h4 class="text-black-50">Return Date</h4>
+                                    <h3 id="lblAllBDetailsReturnDate">Return Date</h3>
+                                </div>
+                                <div class="col-12">
+                                    <h4 class="text-black-50">Booking Status</h4>
+                                    <h3 id="lblAllBDetailsBookingStatus">Status</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="12 col-md-5 card-hover ">
+                    <div class="card" style="min-height: 400px">
+                        <div class="card-header card-header-text">
+                            <h4 class="card-title">Customer Details</h4>
+                        </div>
+                        <div class="card-content">
+                            <div class="row mx-5">
+                                <div class="col-12">
+                                    <h4 class="text-black-50">Customer NIC</h4>
+                                    <h3 id="lblAllBDetailsCustomerNIC">Customer NIC</h3>
+                                </div>
+                                <div class="col-12">
+                                    <h4 class="text-black-50">Customer Name</h4>
+                                    <h3 id="lblAllBDetailsCustomerName">Customer Name</h3>
+                                </div>
+                                <div class="col-12">
+                                    <h4 class="text-black-50">Customer Address</h4>
+                                    <h3 id="lblAllBDetailsCustomerAddress">Customer Address</h3>
+                                </div>
+                                <div class="col-12">
+                                    <h4 class="text-black-50">Customer Contact</h4>
+                                    <h3 id="lblAllBDetailsCustomerContact">Customer Contact</h3>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+                <div class="12 col-md-12">
+                    <div class="card" style="min-height: 0">
+                        <div class="card-header card-header-text">
+                            <h4 class="card-title">Booking Details</h4>
+
+                        </div>
+                        <div class="card-content table-responsive">
+                            <table class="table table-hover">
+                                <thead class="text-primary">
+                                <tr>
+                                    <th>Booking Details ID</th>
+                                    <th>Booking ID</th>
+                                    <th>Pick up Date</th>
+                                    <th>Return Date</th>
+                                    <th>status</th>
+                                </tr>
+                                </thead>
+                                <tbody id="lblAllBooking">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <nav class="d-flex">
+                                    <ul class="m-0 p-0">
+                                        <li>
+                                            <a href="#">
+                                                Home
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Company
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Portfolio
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Blog
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </footer>
+
+
+                <!--    ====================2 page==============-->
+
+
+            </div>
+
+        </div>
+
 
     </div>
 </section>
@@ -2606,7 +2759,7 @@
 <script src="Controller/AdminDashboardController.js"></script>
 <script src="Controller/DriverDashboadController.js"></script>
 
-
+<script src="Controller/AdminAllBookingController.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {

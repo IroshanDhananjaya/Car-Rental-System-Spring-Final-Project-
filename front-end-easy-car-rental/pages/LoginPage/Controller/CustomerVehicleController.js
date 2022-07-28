@@ -19,7 +19,7 @@ function loadAllVehicleWithImg(){
         method: "GET",
         success(resp) {
             for (var i of resp.data) {
-                var row = `<tr><td><img style="width: 200px" src="${"http://localhost:8080/Back_end_war_exploded/"+i.vehicleFontImage}"/></td><td>${i.vehicleNumber}</td><td>${i.vehicleType}</td><td>${i.vehicleBrand}</td><td>${i.trasmissionType}</td><td>${i.colour}</td></tr>`;
+                var row = `<tr><td><img style="width: 200px" src="${"http://localhost:8080/Back_end_war_exploded/"+i.vehicleFontImage}"/></td><td>${i.vehicleNumber}</td></tr>`;
                 $("#tblAllVehicleWithImg").append(row);
 
                 $("#tblAllVehicleWithImg>tr").click(function (){
